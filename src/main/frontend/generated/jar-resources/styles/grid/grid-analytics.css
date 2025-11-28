@@ -1,0 +1,55 @@
+vaadin-grid.app-grid {
+    background: #ffffff;
+    border-radius: 16px;
+    margin: 0 24px 24px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+    font-size: 0.85rem;
+}
+
+/* Header */
+vaadin-grid.app-grid::part(header-row) {
+    background: #f9fafb;
+}
+
+vaadin-grid.app-grid::part(header-cell) {
+    font-weight: 600;
+    color: #6b7280;
+    padding: 10px 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Rows */
+vaadin-grid.app-grid::part(body-row) {
+    background-color: #ffffff;
+}
+
+vaadin-grid.app-grid::part(body-row):hover {
+    background-color: #fff7ed;
+}
+
+vaadin-grid.app-grid::part(cell) {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+/* Action buttons inside table */
+.app-grid-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.app-grid-action-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    padding: 0;
+    background: #f3f4ff;
+    border: none;
+}
+
+.app-grid-action-btn vaadin-icon {
+    width: 14px;
+    height: 14px;
+    color: #111827;
+}

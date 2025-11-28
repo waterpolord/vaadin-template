@@ -1,0 +1,330 @@
+/* ===== Fondo general ===== */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #eef5f2;
+}
+
+/* ===== Drawer & navbar ===== */
+vaadin-app-layout::part(drawer) {
+    background: #7c3aed;
+    border: none;
+    padding: 0;
+}
+
+vaadin-app-layout::part(navbar) {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0 32px 0 32px;
+}
+/* ===== SIDEBAR ===== */
+/*.sidebar {
+    background: #7c3aed;
+    border-radius: 0;
+    margin: 0;
+    padding: 20px 16px;
+    width: 240px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}*/
+
+.sidebar {
+    background: #f4f3ff;
+    border-radius: 0;
+    margin: 0;
+    padding: 20px 16px;
+    width: 250px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.sidebar-content {
+    height: 100%;
+}
+
+.sidebar-brand {
+    margin-bottom: 24px;
+}
+
+.sidebar-logo {
+    background: #ecfdf5;
+    color: #7c3aed;
+}
+
+.sidebar-appname {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ecfdf5;
+}
+
+/* Menú */
+.sidebar-menu {
+    margin: 0;
+    gap: 4px;
+}
+
+.sidebar-item {
+    padding: 8px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 6px 0;
+
+    /* colores finset-like */
+    color: #7c3aed;             /* gris azul oscuro */
+    opacity: 0.85;              /* ligero desvanecido */
+    font-weight: 500;           /* más fuerte, más limpio */
+}
+
+.sidebar-item-icon {
+    color: #7c3aed;             /* mismo color del texto */
+    opacity: 0.85;
+    font-size: 20px;
+}
+
+
+/* Activo */
+.sidebar-item-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+
+/* Item activo tipo pill morado */
+.sidebar-item-active {
+    background: #7c3aed;
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(124, 58, 237, 0.45);
+}
+
+.sidebar-item-active .sidebar-item-icon {
+    color: #ffffff;
+}
+
+/* Hover suave */
+.sidebar-item:hover:not(.sidebar-item-active) {
+    background: rgba(124, 58, 237, 0.05);
+}
+
+/* Modo colapsado: ocultar textos y centrar iconos */
+.sidebar-collapsed .sidebar-item-label,
+.sidebar-collapsed .sidebar-app-name {
+    display: none;
+}
+
+.sidebar-collapsed .sidebar-item {
+    justify-content: center;
+}
+
+
+/* Logout al fondo */
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid rgba(124, 58, 237, 0.45);
+}
+
+.sidebar-logout {
+    cursor: pointer;
+    gap: 8px;
+    color: #7c3aed;
+}
+
+.sidebar-logo {
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    border-radius: 18px;
+    display: block;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    width: 100%;
+}
+
+
+/* ===== TOPBAR ===== */
+.topbar {
+    background: transparent;
+}
+
+.topbar-toggle {
+    margin-right: 12px;
+}
+
+.topbar {
+    width: 100%;
+    align-items: flex-start;
+}
+
+.topbar-wrapper {
+    width: 100%;
+}
+
+.topbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0 0 0;
+}
+
+.topbar-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.topbar-border {
+    height: 2px;
+    width: 100%;
+    background: #7c3aed;
+    border-radius: 999px;
+    margin-top: 12px;
+}
+
+.topbar-right {
+    display: flex;
+    gap: 12px;
+}
+
+.topbar-divider {
+    height: 2px;
+    width: 100%;
+    background: #7c3aed;
+    border-radius: 999px;
+    margin-right: 16px;
+}
+
+.checkbox-reverse::part(container) {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+.checkbox-reverse::part(label) {
+    margin-right: 8px;
+    margin-left: 0;
+}
+
+.topbar-search {
+    width: 100%;
+}
+
+.topbar-search vaadin-text-field::part(input-field) {
+    background: #f9fafb;
+    border-radius: 999px;
+}
+
+/* Icon buttons */
+.topbar-icon-btn {
+    border-radius: 999px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: #f9fafb;
+    color: #7c3aed;
+    border: none;
+}
+
+.fd-topbar-toggle {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    border: 1px solid rgba(120, 54, 255, 0.25); /* Morado suave */
+    background: rgba(120, 54, 255, 0.08);       /* Fondo soft */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.fd-topbar-toggle:hover {
+    background: rgba(120, 54, 255, 0.15);
+    border-color: rgba(120, 54, 255, 0.4);
+}
+
+.fd-topbar-toggle vaadin-icon {
+    color: #7c3aed; /* Morado principal */
+    width: 18px;
+    height: 18px;
+}
+
+
+
+/* Usuario */
+.topbar-right {
+    gap: 12px;
+}
+
+.topbar-avatar {
+    background: #845ef7;
+    color: #fff;
+}
+
+.topbar-userinfo span {
+    display: block;
+}
+
+.topbar-username {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.topbar-userrole {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.topbar-userarea {
+    gap: 8px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    vaadin-app-layout::part(drawer) {
+        padding: 16px;
+    }
+
+    vaadin-app-layout::part(navbar) {
+        padding: 16px 16px 0 16px;
+    }
+
+    .sidebar {
+        border-radius: 20px;
+        width: 210px;
+    }
+
+    .topbar-content {
+        padding: 8px 12px;
+    }
+
+    .topbar-right {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 640px) {
+    .topbar-content {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .topbar-right {
+        width: 100%;
+    }
+}

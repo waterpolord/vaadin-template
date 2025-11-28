@@ -1,0 +1,101 @@
+@import url("grid-base.css");
+
+/* Tabla estilo FinSet: limpia, morado suave, fondo blanco */
+vaadin-grid.app-grid {
+    background: #ffffff;
+    border-radius: 18px;
+    margin: 0 24px 24px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+    font-size: 0.85rem;
+}
+
+/* Header */
+vaadin-grid.app-grid::part(header-row) {
+    background: #f7f3ff; /* morado muy claro */
+}
+
+vaadin-grid.app-grid::part(header-cell) {
+    font-weight: 600;
+    color: #5b21b6;
+    padding: 10px 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Filas */
+vaadin-grid.app-grid::part(body-row) {
+    background-color: #ffffff;
+}
+
+vaadin-grid.app-grid::part(body-row):hover {
+    background-color: #f4ebff; /* hover morado suave */
+}
+
+vaadin-grid.app-grid::part(cell) {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+/* Primera columna ligeramente más marcada (opcional) */
+vaadin-grid.app-grid::part(body-cell):first-child {
+    font-weight: 500;
+    color: #111827;
+}
+
+/* Columna de acciones */
+.app-grid-actions {
+    display: flex;
+    gap: 6px;
+}
+
+/* Botones de acción circulares en tono morado */
+.app-grid-action-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    padding: 0;
+    background: #f3f4ff;
+    border: none;
+    box-shadow: 0 4px 10px rgba(129, 140, 248, 0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.app-grid-action-btn vaadin-icon {
+    width: 14px;
+    height: 14px;
+    color: #4c1d95;
+}
+
+.app-grid-action-btn:hover {
+    background: #e0e7ff;
+}
+
+.action-edit {
+    background: #eef2ff;
+    color: #4f46e5;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+.action-delete {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+.action-edit:hover {
+    background: #e0e7ff;
+}
+
+.action-delete:hover {
+    background: #fecaca;
+}
+
+
+
+
+
