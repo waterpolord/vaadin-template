@@ -1,0 +1,299 @@
+/* ===== Fondo general ===== */
+body {
+    margin: 0;
+    background: #EBF4FB;
+    border-color: #EBF4FB;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ===== Drawer & navbar ===== */
+vaadin-app-layout {
+    background: #EBF4FB;
+    border-color: #EBF4FB;
+}
+vaadin-app-layout::part(drawer) {
+    border-right: none !important;
+    box-shadow: none !important;
+}
+
+vaadin-app-layout::part(content) {
+    border-left: none !important;
+}
+.app-drawer {
+    border-right: none !important;
+}
+
+/* ===== SIDEBAR ===== */
+
+:root {
+    --app-border-color: #D6DFE6;   /* tu color estándar */
+    --lumo-border-color: transparent !important;
+}
+
+
+
+.sidebar {
+    height: calc(100vh - 40px);
+    background: #EBF4FB;
+    border-color: #EBF4FB;
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 18px;
+}
+
+.sidebar-brand {
+    margin-bottom: 24px;
+}
+
+.sidebar-logo {
+    background: #EBF4FB;
+    color: #25262b;
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    border-radius: 18px;
+    display: block;
+}
+
+.sidebar-appname {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ecfdf5;
+}
+
+/* Menú */
+.sidebar-menu {
+    margin: 0;
+    gap: 4px;
+}
+
+.sidebar-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    color: #25262b;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.sidebar-item-icon {
+    width: 18px;
+    height: 18px;
+    color: inherit;
+}
+
+.sidebar-item:hover {
+    background: rgba(148, 163, 184, 0.16);
+    transform: translateX(1px);
+    width: 85%
+}
+
+.sidebar-item-active {
+    background: #2563eb;
+    color: #ffffff;
+    width: 85%;
+}
+
+.sidebar-item-active .sidebar-item-icon {
+    color: #ffffff;
+}
+
+.sidebar-bottom {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-bottom .sidebar-item {
+    font-size: 0.85rem;
+}
+
+/* Activo */
+.sidebar-item-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+
+
+
+/* Modo colapsado: ocultar textos y centrar iconos */
+.sidebar-collapsed .sidebar-item-label,
+.sidebar-collapsed .sidebar-app-name {
+    display: none;
+}
+
+.sidebar-collapsed .sidebar-item {
+    justify-content: center;
+}
+
+
+/* Logout al fondo */
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: #25262b;
+}
+
+.sidebar-logout {
+    cursor: pointer;
+    gap: 8px;
+    color: #25262b;
+}
+
+
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    width: 100%;
+}
+
+
+/* ===== TOPBAR ===== */
+.topbar {
+    background: #EBF4FB;
+}
+
+.navbar {
+    background: #EBF4FB;
+}
+
+.topbar-toggle {
+    margin-right: 12px;
+}
+
+.topbar {
+    width: 100%;
+    align-items: flex-start;
+}
+
+.topbar-wrapper {
+    width: 100%;
+}
+
+.topbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0 0 0;
+}
+
+
+.topbar-right {
+    position: absolute;
+    right: 35px;
+}
+
+
+
+
+/* Icon buttons */
+.topbar-icon-btn {
+    border-radius: 999px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    color: #2563eb;
+    border: none;
+}
+
+/* Usuario */
+.topbar-right {
+    gap: 12px;
+}
+
+.topbar-avatar {
+    background: #2563eb;
+    color: #fff;
+}
+
+.topbar-userinfo span {
+    display: block;
+}
+
+.topbar-username {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.topbar-userrole {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.topbar-userarea {
+    gap: 8px;
+}
+
+vaadin-app-layout::part(navbar) {
+    padding: 16px 16px 0 16px;
+    background: #EBF4FB;
+    border-color: #EBF4FB;
+    border-radius: 18px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    vaadin-app-layout::part(drawer) {
+        padding: 16px;
+    }
+
+    vaadin-app-layout::part(navbar) {
+        padding: 16px 16px 0 16px;
+        background: #EBF4FB;
+    }
+
+    .sidebar {
+        border-radius: 20px;
+        width: 210px;
+    }
+
+    .topbar-content {
+        padding: 8px 12px;
+    }
+
+    .topbar-right {
+        position: revert;
+    }
+}
+
+@media (max-width: 640px) {
+    .topbar-content {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .topbar-right {
+        width: 100%;
+    }
+}

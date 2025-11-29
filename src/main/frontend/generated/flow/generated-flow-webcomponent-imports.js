@@ -3,9 +3,8 @@ import { injectGlobalWebcomponentCss } from 'Frontend/generated/jar-resources/th
 import { injectGlobalCss } from 'Frontend/generated/jar-resources/theme-util.js';
 
 import { css, unsafeCSS, registerStyles } from '@vaadin/vaadin-themable-mixin';
-import $cssFromFile_0 from 'Frontend/generated/jar-resources/styles/grid/grid-patients.css?inline';
-import $cssFromFile_1 from 'Frontend/generated/jar-resources/styles/header/header-patients.css?inline';
-import $cssFromFile_2 from 'Frontend/generated/jar-resources/styles/main-layout2.css?inline';
+import $cssFromFile_0 from 'Frontend/generated/jar-resources/styles/grid/grid-shape.css?inline';
+import $cssFromFile_1 from 'Frontend/generated/jar-resources/styles/main-layout.css?inline';
 import '@vaadin/polymer-legacy-adapter/style-modules.js';
 import '@vaadin/vertical-layout/theme/lumo/vaadin-vertical-layout.js';
 import '@vaadin/app-layout/theme/lumo/vaadin-app-layout.js';
@@ -100,9 +99,6 @@ injectGlobalWebcomponentCss($cssFromFile_0.toString());
 
 injectGlobalCss($cssFromFile_1.toString(), 'CSSImport end', document);
 injectGlobalWebcomponentCss($cssFromFile_1.toString());
-
-injectGlobalCss($cssFromFile_2.toString(), 'CSSImport end', document);
-injectGlobalWebcomponentCss($cssFromFile_2.toString());
 const loadOnDemand = (key) => { return Promise.resolve(0); }
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.Flow = window.Vaadin.Flow || {};
