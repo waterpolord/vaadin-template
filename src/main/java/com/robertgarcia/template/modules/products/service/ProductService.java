@@ -1,8 +1,8 @@
-package com.robertgarcia.template.modules.customers.service;
+package com.robertgarcia.template.modules.products.service;
 
 
-import com.robertgarcia.template.modules.customers.domain.Customer;
-import com.robertgarcia.template.modules.customers.repo.CustomerRepository;
+import com.robertgarcia.template.modules.products.domain.Product;
+import com.robertgarcia.template.modules.products.repo.ProductRepository;
 import com.robertgarcia.template.shared.crud.CrudService;
 import org.springframework.stereotype.Service;
 
@@ -11,32 +11,32 @@ import java.util.NoSuchElementException;
 
 
 @Service
-public class CustomerService implements CrudService<Customer,Long> {
+public class ProductService implements CrudService<Product,Long> {
 
-    private final CustomerRepository customerRepository;
+    private final ProductRepository customerRepository;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    public ProductService(ProductRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
 
-    public List<Customer> findAll() {
+    public List<Product> findAll() {
         return customerRepository.findAllByDeletedIsFalse();
     }
 
 
-    public Customer findById(Long id) {
+    public Product findById(Long id) {
         return customerRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
 
-    public Customer save(Customer entity) {
+    public Product save(Product entity) {
         entity.setDeleted(false);
         return customerRepository.save(entity);
     }
 
 
-    public void delete(Customer entity) {
+    public void delete(Product entity) {
         entity.setDeleted(true);
         customerRepository.save(entity);
     }

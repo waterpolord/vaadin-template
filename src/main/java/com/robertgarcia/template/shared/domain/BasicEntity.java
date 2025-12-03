@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -28,6 +29,7 @@ public abstract class BasicEntity {
     private LocalDateTime createDate;
     @UpdateTimestamp
     private Timestamp updateDate;
+    @ColumnDefault("false")
     private Boolean deleted;
 
     public LocalDateTime getCreateDate() {

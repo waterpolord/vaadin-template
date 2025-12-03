@@ -1,10 +1,13 @@
 package com.robertgarcia.template.shared.ui;
 
+import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
@@ -15,11 +18,16 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.AfterNavigationEvent;
+import com.vaadin.flow.router.AfterNavigationObserver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @CssImport("./styles/main-layout.css")
-public class MainLayout extends AppLayout {
+public class MainLayout extends AppLayout implements AfterNavigationObserver {
     private final Div sidebar = new Div();
-
+    private final List<MenuItem> menuItems = new ArrayList<>();
 
     public MainLayout() {
         setPrimarySection(Section.DRAWER);
@@ -40,13 +48,13 @@ public class MainLayout extends AppLayout {
 
         // Menú principal
         VerticalLayout menu = new VerticalLayout(
-                createMenuItem(VaadinIcon.DASHBOARD, "Dashboard", false),
-                createMenuItem(VaadinIcon.CART, "Productos", false),
-                createMenuItem(VaadinIcon.USERS, "Clientes", true),
-                createMenuItem(VaadinIcon.PACKAGE, "Inventario", false),
-                createMenuItem(VaadinIcon.USER, "Usuarios", false),
-                createMenuItem(VaadinIcon.FILE_TEXT_O, "Reportes", false),
-                createMenuItem(VaadinIcon.COG, "Configuración", false)
+                createMenuItem(VaadinIcon.DASHBOARD.create(), "Dashboard",""),
+                createMenuItem(VaadinIcon.CART.create(), "Productos", "products"),
+                createMenuItem(VaadinIcon.USERS.create(), "Clientes", "customers"),
+                createMenuItem(VaadinIcon.PACKAGE.create(), "Inventario", ""),
+                createMenuItem(FontAwesome.Solid.USER_TIE.create(), "Usuarios", ""),
+                createMenuItem(VaadinIcon.FILE_TEXT_O.create(), "Reportes",""),
+                createMenuItem(VaadinIcon.COG.create(), "Configuración", "")
         );
         menu.addClassName("sidebar-menu");
         menu.setPadding(false);
@@ -117,22 +125,50 @@ public class MainLayout extends AppLayout {
         topbar.setWidthFull();
         addToNavbar(topbar);
     }
-    private Component createMenuItem(VaadinIcon icon, String label, boolean active) {
-        Icon i = icon.create();
-        i.addClassName("sidebar-item-icon");
+    private MenuItem createMenuItem(Icon icon, String label, String route) {
+        //Icon i = icon.create();
+        icon.addClassName("sidebar-item-icon");
 
         Span text = new Span(label);
         text.addClassName("sidebar-item-label");
 
-        HorizontalLayout item = new HorizontalLayout(i, text);
+        MenuItem item = new MenuItem(route);
+        item.add(icon, text);
         item.addClassName("sidebar-item");
-        if (active) {
-            item.addClassName("sidebar-item-active");
-        }
-        item.setAlignItems(FlexComponent.Alignment.CENTER);
+
+        item.addClickListener(e -> UI.getCurrent().navigate(route));
+
+        menuItems.add(item);
         return item;
     }
 
+    @Override
+    public void afterNavigation(AfterNavigationEvent event) {
+        String currentPath = event.getLocation().getFirstSegment();
 
+        menuItems.forEach(mi -> {
+            boolean active = mi.getRoute().equals(currentPath);
+            mi.setActive(active);
+        });
+    }
 
+    private static class MenuItem extends HorizontalLayout {
+        private final String route;
+
+        MenuItem(String route) {
+            this.route = route;
+        }
+
+        String getRoute() {
+            return route;
+        }
+
+        void setActive(boolean active) {
+            if (active) {
+                addClassName("sidebar-item-active");
+            } else {
+                removeClassName("sidebar-item-active");
+            }
+        }
+    }
 }

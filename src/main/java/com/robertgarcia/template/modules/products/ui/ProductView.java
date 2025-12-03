@@ -1,17 +1,18 @@
-package com.robertgarcia.template.modules.customers.ui;
+package com.robertgarcia.template.modules.products.ui;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
-import com.robertgarcia.template.modules.customers.domain.Customer;
-import com.robertgarcia.template.shared.domain.dto.Summary;
-import com.robertgarcia.template.modules.customers.service.CustomerService;
+import com.robertgarcia.template.modules.products.domain.Product;
+import com.robertgarcia.template.modules.products.service.ProductService;
 import com.robertgarcia.template.shared.crud.GenericCrudView;
+import com.robertgarcia.template.shared.domain.dto.Summary;
 import com.robertgarcia.template.shared.ui.MainLayout;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -19,23 +20,21 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.wontlost.sweetalert2.Config;
 import com.wontlost.sweetalert2.SweetAlert2Vaadin;
 
 import java.util.List;
 
-@PageTitle("Customers")
-@Route(value = "customers/", layout = MainLayout.class)
+@PageTitle("Productos")
+@Route(value = "products/", layout = MainLayout.class)
 @CssImport("./styles/grid/grid-shape.css")
-public class CustomersView extends GenericCrudView<Customer, Long> {
+public class ProductView extends GenericCrudView<Product, Long> {
 
-    private final CustomerService customerService;
+    private final ProductService customerService;
     private TextField nameFilter;
 
-    public CustomersView(CustomerService service) {
-        super(Customer.class, service, "Clientes", "Nuevo Cliente", true, CustomerFormView.class, FontAwesome.Solid.USER_PLUS.create());
+    public ProductView(ProductService service) {
+        super(Product.class, service, "Productos", "Nuevo Producto", true, ProductFormView.class, FontAwesome.Solid.CART_PLUS.create());
         this.customerService = service;
     }
 
@@ -44,13 +43,12 @@ public class CustomersView extends GenericCrudView<Customer, Long> {
         FlexLayout wrapper = new FlexLayout();
         List<Summary> summaries;
 
-        summaries = List.of(new Summary(FontAwesome.Solid.CIRCLE_USER.create(),"#6E727A", "Nuevos Clientes","","50","50"),
-                new Summary(FontAwesome.Solid.CHART_SIMPLE.create(),"#30DA9B", "Ingresos de clientes","S","250k","50"),
-                new Summary(FontAwesome.Solid.ARROW_TREND_DOWN.create(),"#EE0000", "Clientes en atrazo","","50","50"),
-                new Summary(FontAwesome.Solid.HEART.create(), "#E56984","Clientes Favoritos","","50","50"));
+        summaries = List.of(new Summary(FontAwesome.Solid.CART_SHOPPING.create(),"#D65A37", "Nuevos Productos","","50","50"),
+                new Summary(FontAwesome.Solid.CHART_SIMPLE.create(),"#30DA9B", "Ingresos de clientes","S","250k","50")
+               );
         wrapper.addClassName("crud-summary-wrapper");
         wrapper.add(createSummaryCard(summaries));
-        wrapper.setAlignItems(FlexComponent.Alignment.CENTER);
+        wrapper.setAlignItems(Alignment.CENTER);
         wrapper.setWidthFull();
         return wrapper;
     }
@@ -58,7 +56,7 @@ public class CustomersView extends GenericCrudView<Customer, Long> {
     private Component createSummaryCard(List<Summary> summaries) {
 
         HorizontalLayout kpi = new HorizontalLayout();
-        kpi.setAlignItems(FlexComponent.Alignment.CENTER);
+        kpi.setAlignItems(Alignment.CENTER);
         kpi.addClassName("app-card");
         kpi.setSpacing(true);
         int i = 0;
@@ -120,12 +118,12 @@ public class CustomersView extends GenericCrudView<Customer, Long> {
     }
 
     @Override
-    protected void buildGridColumns(Grid<Customer> grid) {
-        grid.addColumn(Customer::getId).setHeader("ID").setAutoWidth(true).addClassName("flow-pill");
-        grid.addColumn(customer -> customer.getName()+" "+customer.getLastName()).setHeader("Nombre").setAutoWidth(true);
-        grid.addColumn(Customer::getIdentification).setHeader("Identificación").setAutoWidth(true).addClassName("status-chip");
-        grid.addColumn(Customer::getCellPhone).setHeader("Celular").setAutoWidth(true);
-        grid.addColumn(Customer::getAddress).setHeader("Dirección").setAutoWidth(true);
+    protected void buildGridColumns(Grid<Product> grid) {
+        grid.addColumn(Product::getId).setHeader("ID").setAutoWidth(true).addClassName("flow-pill");
+        grid.addColumn(Product::getName).setHeader("Nombre").setAutoWidth(true);
+        grid.addColumn(Product::getMeasure).setHeader("Medida").setAutoWidth(true).addClassName("status-chip");
+        grid.addColumn(Product::getCost).setHeader("Costo").setAutoWidth(true);
+        grid.addColumn(Product::getPrice).setHeader("Precio").setAutoWidth(true);
         grid.addComponentColumn(item -> {
             Button edit = new Button(FontAwesome.Solid.PEN.create());
             edit.addClassName("app-grid-action-btn");
@@ -137,8 +135,8 @@ public class CustomersView extends GenericCrudView<Customer, Long> {
             delete.addClickListener(e -> {
                 Config config = new Config();
 
-                config.setTitle("Eliminar Cliente");
-                config.setText("¿Seguro que desea eliminar el cliente "+item.getName()+"?");
+                config.setTitle("Eliminar Producto");
+                config.setText("¿Seguro que desea eliminar el producto "+item.getName()+"?");
                 config.setIcon("warning");
                 config.setIconColor("red");
                 config.setShowCancelButton(true);
@@ -165,17 +163,17 @@ public class CustomersView extends GenericCrudView<Customer, Long> {
 
 
     @Override
-    protected Long getId(Customer bean) {
+    protected Long getId(Product bean) {
         return bean.getId();
     }
 
     @Override
-    protected void buildForm(FormLayout form, Binder<Customer> binder) {
+    protected void buildForm(FormLayout form, Binder<Product> binder) {
         DialogFormComponent.generateCustomerForm(form,binder);
     }
 
     @Override
-    protected Customer createNewBean() {
-        return new Customer();
+    protected Product createNewBean() {
+        return new Product();
     }
 }

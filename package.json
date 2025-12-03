@@ -3,11 +3,13 @@
   "license": "UNLICENSED",
   "type": "module",
   "dependencies": {
+    "@flowingcode/font-awesome-iron-iconset": "5.2.0",
     "@polymer/polymer": "3.5.2",
     "@vaadin/bundles": "24.9.5",
     "@vaadin/common-frontend": "0.0.19",
     "@vaadin/polymer-legacy-adapter": "24.9.5",
     "@vaadin/react-components": "24.9.5",
+    "@vaadin/react-components-pro": "24.9.5",
     "@vaadin/vaadin-development-mode-detector": "2.0.7",
     "@vaadin/vaadin-lumo-styles": "24.9.5",
     "@vaadin/vaadin-material-styles": "24.9.5",
@@ -16,9 +18,11 @@
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
     "lit": "3.3.1",
+    "proj4": "2.15.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-router": "7.6.3"
+    "react-router": "7.6.3",
+    "sweetalert2": "^11.14.3"
   },
   "devDependencies": {
     "@babel/preset-react": "7.27.1",
@@ -43,11 +47,13 @@
   },
   "vaadin": {
     "dependencies": {
+      "@flowingcode/font-awesome-iron-iconset": "5.2.0",
       "@polymer/polymer": "3.5.2",
       "@vaadin/bundles": "24.9.5",
       "@vaadin/common-frontend": "0.0.19",
       "@vaadin/polymer-legacy-adapter": "24.9.5",
       "@vaadin/react-components": "24.9.5",
+      "@vaadin/react-components-pro": "24.9.5",
       "@vaadin/vaadin-development-mode-detector": "2.0.7",
       "@vaadin/vaadin-lumo-styles": "24.9.5",
       "@vaadin/vaadin-material-styles": "24.9.5",
@@ -56,9 +62,11 @@
       "construct-style-sheets-polyfill": "3.1.0",
       "date-fns": "2.29.3",
       "lit": "3.3.1",
+      "proj4": "2.15.0",
       "react": "18.3.1",
       "react-dom": "18.3.1",
-      "react-router": "7.6.3"
+      "react-router": "7.6.3",
+      "sweetalert2": "^11.14.3"
     },
     "devDependencies": {
       "@babel/preset-react": "7.27.1",
@@ -81,7 +89,7 @@
       "workbox-core": "7.3.0",
       "workbox-precaching": "7.3.0"
     },
-    "hash": "4edb83f9556f1d7d0c3f44354d2f8db935fdd1cd3f4d47d27324f1146b766d3b"
+    "hash": "36a09a321016a4895e8a70f33076901d5e0881deaad9178916d43de1ef264bba"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
@@ -158,6 +166,18 @@
     "@vaadin/upload": "24.9.5",
     "@vaadin/router": "2.0.0",
     "@vaadin/vertical-layout": "24.9.5",
-    "@vaadin/virtual-list": "24.9.5"
+    "@vaadin/virtual-list": "24.9.5",
+    "@flowingcode/font-awesome-iron-iconset": "$@flowingcode/font-awesome-iron-iconset",
+    "@vaadin/react-components-pro": "$@vaadin/react-components-pro",
+    "sweetalert2": "$sweetalert2",
+    "proj4": "$proj4",
+    "@vaadin/board": "24.9.5",
+    "@vaadin/charts": "24.9.5",
+    "@vaadin/cookie-consent": "24.9.5",
+    "@vaadin/crud": "24.9.5",
+    "@vaadin/dashboard": "24.9.5",
+    "@vaadin/grid-pro": "24.9.5",
+    "@vaadin/map": "24.9.5",
+    "@vaadin/rich-text-editor": "24.9.5"
   }
 }

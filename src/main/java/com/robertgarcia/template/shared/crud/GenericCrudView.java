@@ -1,5 +1,6 @@
 package com.robertgarcia.template.shared.crud;
 
+import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -7,6 +8,7 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -29,7 +31,10 @@ public abstract class GenericCrudView<T, ID extends Serializable> extends Vertic
     private final Class<? extends Component> formViewClass;
     private T current;
 
-    public GenericCrudView(Class<T> beanType, CrudService<T, ID> service, String title, String dialogTitle, boolean dialogForm, Class<? extends Component> formViewClass) {
+    public GenericCrudView(Class<T> beanType, CrudService<T, ID> service, String title,
+                           String dialogTitle, boolean dialogForm,
+                           Class<? extends Component> formViewClass,
+                           Icon icon) {
         this.beanType = beanType;
         this.service = service;
         this.grid = new Grid<>(beanType, false);
@@ -48,7 +53,7 @@ public abstract class GenericCrudView<T, ID extends Serializable> extends Vertic
             configureDialog(dialogTitle);
         }
 
-        HorizontalLayout header = createHeaderBar(title);
+        HorizontalLayout header = createHeaderBar(title,icon);
         Component summary = buildSummarySection();
         Component filters = buildFilterSection();
 
@@ -66,11 +71,11 @@ public abstract class GenericCrudView<T, ID extends Serializable> extends Vertic
         refreshGrid();
     }
 
-    private HorizontalLayout createHeaderBar(String title) {
+    private HorizontalLayout createHeaderBar(String title, Icon icon) {
         H2 h2 = new H2(title);
         h2.addClassName("crud-title");
 
-        Button newBtn = new Button("Nuevo", e -> onNewAction());
+        Button newBtn = new Button("Nuevo", icon, e -> onNewAction());
         newBtn.addClassName("principal-button");
 
         HorizontalLayout bar = new HorizontalLayout(h2, newBtn);

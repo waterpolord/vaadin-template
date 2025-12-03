@@ -102,27 +102,43 @@ vaadin-grid.app-grid::part(body-cell):first-child {
     gap: 6px;
 }
 
-/* Botones de acción circulares en tono morado */
-.app-grid-action-btn {
-    width: 28px;
-    height: 28px;
+
+
+.app-grid-action-btn-delete {
+    color: #d10000;
+    background: transparent;
     border-radius: 999px;
     padding: 0;
-    background: #f3f4ff;
     border: none;
-    box-shadow: 0 4px 10px rgba(129, 140, 248, 0.35);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 }
 
-.app-grid-action-btn vaadin-icon {
-    width: 14px;
-    height: 14px;
-    color: #4c1d95;
+.app-grid-action-btn {
+    width: 28px;
+    border-radius: 999px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.summary-divider {
+    width: 5px;
+    background-color: var(--lumo-contrast-10pct); /* gris suave */
+    align-self: stretch;   /* ocupa toda la altura del row */
+    margin: 0 0.5rem;
 }
 
 .app-grid-action-btn:hover {
+    background: rgba(148, 163, 184, 0.16);
+}
+
+.app-grid-action-btn-delete:hover {
     background: rgba(148, 163, 184, 0.16);
 }
