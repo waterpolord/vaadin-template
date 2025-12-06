@@ -14,7 +14,9 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import jakarta.annotation.security.RolesAllowed;
 
+@RolesAllowed({"ADMIN","WRITE_PRODUCTS"})
 public class DialogFormComponent {
     public static void generateCustomerForm(FormLayout form, Binder<Product> binder) {
         TextField name = new TextField("Nombre");

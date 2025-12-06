@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 public abstract class BasicEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @CreationTimestamp
     private LocalDateTime createDate;
     @UpdateTimestamp
@@ -48,11 +48,11 @@ public abstract class BasicEntity {
         this.deleted = deleted;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

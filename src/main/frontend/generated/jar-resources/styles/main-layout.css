@@ -56,11 +56,16 @@ vaadin-app-layout::part(content) {
 }
 
 .sidebar-brand {
-    margin-bottom: 24px;
+    background: #F9FDFF;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    width: 100%;
 }
 
 .sidebar-logo {
-    background: #EBF4FB;
     color: #25262b;
     width: 88px;
     height: 88px;
@@ -95,10 +100,20 @@ vaadin-app-layout::part(content) {
     gap: 10px;
     padding: 8px 14px;
     border-radius: 10px;
-    color: #25262b;
+    color: #2563eb;
     font-size: 0.9rem;
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    color: #2563eb;
+
 }
 
 .sidebar-item-icon {
@@ -164,18 +179,18 @@ vaadin-app-layout::part(content) {
 .sidebar-logout {
     cursor: pointer;
     gap: 8px;
-    color: #25262b;
+    color: #2563eb;
 }
 
 
-
-.sidebar-brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 32px;
-    width: 100%;
+html {
+    --vaadin-input-field-background: #FFFFFF;
+    --lumo-primary-color: #2563eb;
+    --lumo-font-family: "Inter", sans-serif;
+    --vaadin-input-field-border-radius: 16px;
 }
+
+
 
 
 /* ===== TOPBAR ===== */
@@ -211,6 +226,7 @@ vaadin-app-layout::part(content) {
 .topbar-right {
     position: absolute;
     right: 35px;
+    top: 20px;
 }
 
 

@@ -1,8 +1,10 @@
-package com.robertgarcia.template.modules.products.ui;
+package com.robertgarcia.template.modules.users.ui;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
-import com.robertgarcia.template.modules.products.domain.Product;
-import com.robertgarcia.template.modules.products.service.ProductService;
+import com.robertgarcia.template.modules.users.domain.User;
+import com.robertgarcia.template.modules.users.service.PermissionService;
+import com.robertgarcia.template.modules.users.service.RoleService;
+import com.robertgarcia.template.modules.users.service.UserService;
 import com.robertgarcia.template.shared.crud.GenericCrudView;
 import com.robertgarcia.template.shared.domain.dto.Summary;
 import com.robertgarcia.template.shared.ui.MainLayout;
@@ -26,18 +28,22 @@ import jakarta.annotation.security.RolesAllowed;
 
 import java.util.List;
 
-@PageTitle("Productos")
-@Route(value = "products/", layout = MainLayout.class)
+@PageTitle("Usuarios")
+@Route(value = "users/", layout = MainLayout.class)
 @CssImport("./styles/grid/grid-shape.css")
-@RolesAllowed({"ADMIN","WRITE_PRODUCTS","READ_PRODUCTS"})
-public class ProductView extends GenericCrudView<Product, Integer> {
+@RolesAllowed({"ADMIN","WRITE_USERS","READ_USERS","DELETE_USERS"})
+public class UsersView extends GenericCrudView<User, Integer> {
 
-    private final ProductService customerService;
+    private final UserService userService;
     private TextField nameFilter;
+    private final RoleService roleService;
+    private final PermissionService permissionService;
 
-    public ProductView(ProductService service) {
-        super(Product.class, service, "Productos", "Nuevo Producto", true, ProductFormView.class, FontAwesome.Solid.CART_PLUS.create());
-        this.customerService = service;
+    public UsersView(UserService service, RoleService roleService, PermissionService permissionService) {
+        super(User.class, service, "Usuarios", "Nuevo Usuario", false, UserFormView.class, FontAwesome.Solid.USER_FRIENDS.create());
+        this.userService = service;
+        this.roleService = roleService;
+        this.permissionService = permissionService;
     }
 
     @Override
@@ -45,9 +51,9 @@ public class ProductView extends GenericCrudView<Product, Integer> {
         FlexLayout wrapper = new FlexLayout();
         List<Summary> summaries;
 
-        summaries = List.of(new Summary(FontAwesome.Solid.CART_SHOPPING.create(),"#D65A37", "Nuevos Productos","","50","50"),
-                new Summary(FontAwesome.Solid.CHART_SIMPLE.create(),"#30DA9B", "Ingresos de clientes","S","250k","50")
-               );
+        summaries = List.of(new Summary(FontAwesome.Solid.CIRCLE_USER.create(),"#6E727A", "Nuevos Usuarios","","50","50"),
+                new Summary(FontAwesome.Solid.CHART_SIMPLE.create(),"#30DA9B", "Inventarios por usuarios","S","250k","50"),
+                new Summary(FontAwesome.Solid.HEART.create(), "#E56984","Usuarios Destacados","","50","50"));
         wrapper.addClassName("crud-summary-wrapper");
         wrapper.add(createSummaryCard(summaries));
         wrapper.setAlignItems(Alignment.CENTER);
@@ -92,6 +98,7 @@ public class ProductView extends GenericCrudView<Product, Integer> {
         nameFilter = new TextField();
         nameFilter.setPlaceholder("Search by name");
 
+
         Button apply = new Button("Apply", e -> applyFilters());
 
 
@@ -102,7 +109,6 @@ public class ProductView extends GenericCrudView<Product, Integer> {
         clear.addClassName("crud-filter-clear");
 
         HorizontalLayout filters = new HorizontalLayout(nameFilter, apply, clear);
-        //filters.addClassName("app-card");
         filters.setWidthFull();
         return filters;
     }
@@ -113,49 +119,50 @@ public class ProductView extends GenericCrudView<Product, Integer> {
             refreshGrid();
             return;
         }
-        grid.setItems(customerService.findAll().stream()
-                .filter(c -> c.getName() != null && c.getName().toLowerCase().contains(text.toLowerCase())).toList()
+        grid.setItems(userService.findAll().stream()
+                .filter(c -> c.getFirstName() != null && c.getFirstName().toLowerCase().contains(text.toLowerCase())).toList()
         );
     }
 
     @Override
-    protected void buildGridColumns(Grid<Product> grid) {
-        grid.addColumn(Product::getId).setHeader("ID").setAutoWidth(true).addClassName("flow-pill");
-        grid.addColumn(Product::getName).setHeader("Nombre").setAutoWidth(true);
-        grid.addColumn(Product::getMeasure).setHeader("Medida").setAutoWidth(true).addClassName("status-chip");
-        grid.addColumn(Product::getCost).setHeader("Costo").setAutoWidth(true);
-        grid.addColumn(Product::getPrice).setHeader("Precio").setAutoWidth(true);
+    protected void buildGridColumns(Grid<User> grid) {
+        grid.addColumn(User::getId).setHeader("ID").setAutoWidth(true).addClassName("flow-pill");
+        grid.addColumn(User::getIdentification).setHeader("Identificación").setAutoWidth(true).addClassName("status-chip");
+        grid.addColumn(customer -> customer.getFirstName()+" "+customer.getLastName()).setHeader("Nombre").setAutoWidth(true);
+        grid.addColumn(User::getUsername).setHeader("Username").setAutoWidth(true);
+        grid.addColumn(User::getPhone).setHeader("Dirección").setAutoWidth(true);
         grid.addComponentColumn(item -> {
             Button edit = new Button(FontAwesome.Solid.PEN.create());
             edit.addClassName("app-grid-action-btn");
-
-            Button delete = new Button(FontAwesome.Solid.TRASH.create());
-            delete.addClassName("app-grid-action-btn-delete");
-
             edit.addClickListener(e -> openEditor(item));
-            delete.addClickListener(e -> {
-                Config config = new Config();
+            HorizontalLayout actions = new HorizontalLayout(edit);
+            if(!item.getOwner()) {
+                Button delete = new Button(FontAwesome.Solid.TRASH.create());
+                delete.addClassName("app-grid-action-btn-delete");
+                delete.addClickListener(e -> {
+                    Config config = new Config();
 
-                config.setTitle("Eliminar Producto");
-                config.setText("¿Seguro que desea eliminar el producto "+item.getName()+"?");
-                config.setIcon("warning");
-                config.setIconColor("red");
-                config.setShowCancelButton(true);
-                config.setCancelButtonText("Cancelar");
-                SweetAlert2Vaadin sweetAlert2Vaadin = new SweetAlert2Vaadin(config);
-                sweetAlert2Vaadin.addConfirmListener(event->{
-                    System.out.println("confirm result : "+event.getSource().getSweetAlert2Result());
-                    service.delete(item);
-                    refreshGrid();
+                    config.setTitle("Eliminar Usuario");
+                    config.setText("¿Seguro que desea eliminar el usuario " + item.getFirstName() + "?");
+                    config.setIcon("warning");
+                    config.setIconColor("red");
+                    config.setShowCancelButton(true);
+                    config.setCancelButtonText("Cancelar");
+                    SweetAlert2Vaadin sweetAlert2Vaadin = new SweetAlert2Vaadin(config);
+                    sweetAlert2Vaadin.addConfirmListener(event -> {
+                        System.out.println("confirm result : " + event.getSource().getSweetAlert2Result());
+                        service.delete(item);
+                        refreshGrid();
+                    });
+                    sweetAlert2Vaadin.addCancelListener(event -> {
+                        System.out.println("cancel result : " + event.getSource().getSweetAlert2Result());
+                        refreshGrid();
+                    });
+                    sweetAlert2Vaadin.open();
                 });
-                sweetAlert2Vaadin.addCancelListener(event->{
-                    System.out.println("cancel result : "+event.getSource().getSweetAlert2Result());
-                    refreshGrid();
-                });
-                sweetAlert2Vaadin.open();
-            });
+                actions.add(delete);
+            }
 
-            HorizontalLayout actions = new HorizontalLayout(edit, delete);
             actions.setSpacing(true);
             return actions;
         }).setHeader("Acción");
@@ -164,17 +171,17 @@ public class ProductView extends GenericCrudView<Product, Integer> {
 
 
     @Override
-    protected Integer getId(Product bean) {
+    protected Integer getId(User bean) {
         return bean.getId();
     }
 
     @Override
-    protected void buildForm(FormLayout form, Binder<Product> binder) {
-        DialogFormComponent.generateCustomerForm(form,binder);
+    protected void buildForm(FormLayout form, Binder<User> binder) {
+        DialogFormComponent.generateUserForm(form,binder,roleService,permissionService);
     }
 
     @Override
-    protected Product createNewBean() {
-        return new Product();
+    protected User createNewBean() {
+        return new User();
     }
 }

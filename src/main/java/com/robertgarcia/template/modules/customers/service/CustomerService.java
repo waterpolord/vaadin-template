@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 
 @Service
-public class CustomerService implements CrudService<Customer,Long> {
+public class CustomerService implements CrudService<Customer,Integer> {
 
     private final CustomerRepository customerRepository;
 
@@ -25,7 +25,7 @@ public class CustomerService implements CrudService<Customer,Long> {
     }
 
 
-    public Customer findById(Long id) {
+    public Customer findById(Integer id) {
         return customerRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 

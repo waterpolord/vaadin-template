@@ -1,7 +1,10 @@
-package com.robertgarcia.template.modules.products.ui;
+package com.robertgarcia.template.modules.users.ui;
 
-import com.robertgarcia.template.modules.products.domain.Product;
-import com.robertgarcia.template.modules.products.service.ProductService;
+import com.robertgarcia.template.modules.users.domain.User;
+import com.robertgarcia.template.modules.users.service.PermissionService;
+import com.robertgarcia.template.modules.users.service.RoleService;
+import com.robertgarcia.template.modules.users.service.UserService;
+import com.robertgarcia.template.shared.ui.FullScreenLayout;
 import com.robertgarcia.template.shared.ui.MainLayout;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -17,34 +20,39 @@ import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
 
-@Route(value = "products/form", layout = MainLayout.class)
-@RolesAllowed({"ADMIN","WRITE_PRODUCTS"})
-public class ProductFormView extends VerticalLayout implements HasUrlParameter<Integer> {
+@Route(value = "users/form", layout = FullScreenLayout.class)
+@RolesAllowed({"ADMIN","WRITE_USERS"})
+public class UserFormView extends VerticalLayout implements HasUrlParameter<Integer> {
 
-    private final ProductService service;
-    private final Binder<Product> binder = new Binder<>(Product.class);
-    private Product current;
+    private final UserService service;
+    private final RoleService roleService;
+    private final PermissionService permissionService;
+    private final Binder<User> binder = new Binder<>(User.class);
+    private User current;
 
-    public ProductFormView(ProductService service) {
+    public UserFormView(UserService service, RoleService roleService, PermissionService permissionService) {
         this.service = service;
+        this.roleService = roleService;
+        this.permissionService = permissionService;
         setSizeFull();
 
-        H2 title = new H2("Nuevo Cliente");
+        H2 title = new H2("Nuevo Usuario");
 
         FormLayout form = new FormLayout();
-        DialogFormComponent.generateCustomerForm(form,binder);
+        DialogFormComponent.generateUserForm(form,binder,roleService,permissionService);
         Button save = new Button("Guardar", e -> {
             try {
                 binder.writeBean(current);
+                current.setOwner(false);
                 service.save(current);
-                UI.getCurrent().navigate(ProductView.class);
+                UI.getCurrent().navigate(UsersView.class);
             } catch (Exception ex) {
                 Notification.show("Error al guardar");
             }
         });
 
         Button cancel = new Button("Cancelar", e ->
-                UI.getCurrent().navigate(ProductView.class)
+                UI.getCurrent().navigate(UsersView.class)
         );
 
         HorizontalLayout actions = new HorizontalLayout(save, cancel);
@@ -56,9 +64,10 @@ public class ProductFormView extends VerticalLayout implements HasUrlParameter<I
         if (id != null) {
             current = service.findById(id);
         } else {
-            current = new Product();
+            current = new User();
         }
         binder.readBean(current);
     }
+
 }
 

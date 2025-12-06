@@ -1,29 +1,56 @@
-package com.robertgarcia.template.modules.customers.ui;
+package com.robertgarcia.template.modules.users.ui;
 
-import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
-import com.robertgarcia.template.modules.customers.domain.Customer;
+import com.robertgarcia.template.modules.users.domain.Permission;
+import com.robertgarcia.template.modules.users.domain.Role;
+import com.robertgarcia.template.modules.users.domain.User;
+import com.robertgarcia.template.modules.users.service.PermissionService;
+import com.robertgarcia.template.modules.users.service.RoleService;
 import com.robertgarcia.template.shared.service.Helper;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.listbox.ListBox;
+import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import jakarta.annotation.security.RolesAllowed;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@RolesAllowed({"ADMIN","WRITE_BUSINESS"})
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+@RolesAllowed({"ADMIN","WRITE_USERS"})
 public class DialogFormComponent {
-    public static void generateCustomerForm(FormLayout form, Binder<Customer> binder) {
+
+    public static void generateUserForm(FormLayout form, Binder<User> binder, RoleService roleService, PermissionService permissionService) {
         TextField name = new TextField("Nombre");
         TextField lastName = new TextField("Apellido");
-        TextField nickname = new TextField("Apodo");
         TextField identification = new TextField("Identificacion");
+        TextField username = new TextField("Usuario");
+
+        PasswordField password = new PasswordField("Password");
+        password.setRequiredIndicatorVisible(true);
+        password.setPattern("^[A-Za-z0-9]+$");
+        password.setMinLength(6);
+        password.setMaxLength(12);
+
+        password.setI18n(new PasswordField.PasswordFieldI18n()
+                .setRequiredErrorMessage("Field is required")
+                .setMinLengthErrorMessage("Minimum length is 6 characters")
+                .setMaxLengthErrorMessage("Maximum length is 12 characters")
+                .setPatternErrorMessage(
+                        "Only letters A-Z and numbers are allowed"));
+        PasswordField cPassword = new PasswordField("Confirmar Contraseña");
 
         identification.setValueChangeMode(ValueChangeMode.EAGER);
         identification.setAllowedCharPattern("[0-9-]");
@@ -66,110 +93,82 @@ public class DialogFormComponent {
 
         phone.setValueChangeMode(ValueChangeMode.EAGER);
         phone.setMaxLength(12);
-        TextField cellPhone = new TextField("Celular");
-        cellPhone.setPlaceholder("+1(###)-###-####");
-        cellPhone.setAllowedCharPattern("[0-9-]");
-        cellPhone.addValueChangeListener(e -> {
-            String newField = Helper.phoneFormat(e.getValue());
-            if(newField.equalsIgnoreCase(e.getOldValue())) {
-                newField = newField.substring(0,newField.length()-1);
-            }
-            cellPhone.setValue(newField);
-        });
-        cellPhone.setValueChangeMode(ValueChangeMode.EAGER);
-        cellPhone.setMaxLength(12);
-        DatePicker birthDate = new DatePicker("Fecha de nacimiento");
-        Select<String> gender = new Select<>();
-        gender.setLabel("Género");
-        gender.setItems("Masculino", "Femenino");
-        gender.setPlaceholder("Seleccione");
-        gender.setWidthFull();
 
-        Select<String> maritalStatus = new Select<>();
-        maritalStatus.setLabel("Estado civil");
-        maritalStatus.setItems("Soltero", "Casado", "Unión libre", "Divorciado", "Viudo");
-        maritalStatus.setPlaceholder("Seleccione");
-        maritalStatus.setWidthFull();
-
-        TextArea address = new TextArea("Dirección");
-        TextArea addressReference = new TextArea("Referencias");
 
         name.setWidthFull();
         lastName.setWidthFull();
-        nickname.setWidthFull();
+
         identification.setWidthFull();
         mail.setWidthFull();
         phone.setWidthFull();
 
-        cellPhone.setWidthFull();
-
-        birthDate.setWidthFull();
-        gender.setWidthFull();
-        maritalStatus.setWidthFull();
-        address.setWidthFull();
-        addressReference.setWidthFull();
-
         binder.forField(name)
                 .asRequired("Obligatorio")
-                .bind(Customer::getName, Customer::setName);
+                .bind(User::getFirstName, User::setFirstName);
 
         binder.forField(lastName)
                 .asRequired("Obligatorio")
-                .bind(Customer::getLastName, Customer::setLastName);
+                .bind(User::getLastName, User::setLastName);
 
-        binder.forField(nickname)
-                .bind(Customer::getNickname, Customer::setNickname);
+        binder.forField(username)
+                .asRequired("Obligatorio")
+                .bind(User::getUsername, User::setUsername);
         binder.forField(passport)
-                .bind(Customer::isPassport, Customer::setPassport);
+                .bind(User::getPassport, User::setPassport);
         binder.forField(identification)
                 .asRequired("Obligatorio")
-                .bind(Customer::getIdentification, Customer::setIdentification);
+                .bind(User::getIdentification, User::setIdentification);
 
         binder.forField(mail)
-                .bind(Customer::getMail, Customer::setMail);
+                .bind(User::getEmail, User::setEmail);
 
         binder.forField(phone)
-                .bind(Customer::getPhone, Customer::setPhone);
-
-        binder.forField(cellPhone)
+                .bind(User::getPhone, User::setPhone);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        binder.forField(password)
                 .asRequired("Obligatorio")
-                .bind(Customer::getCellPhone, Customer::setCellPhone);
+                .bind(User::getPassword, (user, s) -> {
+                    if(password.getValue().equals(cPassword.getValue())) {
+                        user.setPassword(passwordEncoder.encode(s));
+                    }
+                });
 
-        binder.forField(birthDate)
-                .bind(Customer::getBirthDate, Customer::setBirthDate);
-
-        binder.forField(gender)
-                .bind(Customer::getGender, Customer::setGender);
-
-        binder.forField(maritalStatus)
-                .bind(Customer::getMaritalStatus, Customer::setMaritalStatus);
-
-        binder.forField(address)
-                .asRequired("Obligatorio")
-                .bind(Customer::getAddress, Customer::setAddress);
-
-        binder.forField(addressReference)
-                .bind(Customer::getAddressReference, Customer::setAddressReference);
+        binder.forField(cPassword)
+                .asRequired("Confirme la contraseña")
+                .withValidator(pwd -> Objects.equals(pwd, password.getValue()),
+                        "Las contraseñas no coinciden")
+                .bind(user -> "", (user, value) -> {});
 
 
         HorizontalLayout idAndPassport = new HorizontalLayout(lblPassport,passport, identification);
         idAndPassport.setWidthFull();
         idAndPassport.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.END);
         idAndPassport.setFlexGrow(1, identification);
-
-
         form.setResponsiveSteps(
                 new FormLayout.ResponsiveStep("0", 1),
                 new FormLayout.ResponsiveStep("700px", 2)
         );
+
+        ListBox<String> roleBox = new ListBox<>();
+        List<Role> roles = roleService.findAll();
+
+        roleBox.setItems(roleService.findAll().stream().map(Role::getName).collect(Collectors.toList()));
+
+        /*TODO implementar despues de seguridad para poder crear el usuario bien*/
+        /*binder.forField(roleBox).asRequired("Obligatorio")
+                .bind(user -> , User::setEmail);*/
+        HorizontalLayout rolePermission = new HorizontalLayout();
+        MultiSelectListBox<String> permissionBox = new MultiSelectListBox<>();
+        permissionBox.setItems(permissionService.findAll().stream().map(Permission::getDescription).collect(Collectors.toList()));
+        rolePermission.add(roleBox,permissionBox);
         form.add(idAndPassport);
         form.add(
                 name, lastName,
-                nickname,
-                mail, phone,
-                cellPhone, birthDate,
-                gender, maritalStatus,
-                address, addressReference
+                username,
+                password,cPassword,
+                mail, phone, rolePermission
         );
+
+
     }
 }

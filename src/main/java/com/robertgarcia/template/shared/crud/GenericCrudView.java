@@ -4,9 +4,11 @@ import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
@@ -17,7 +19,7 @@ import com.vaadin.flow.router.RouteParameters;
 
 import java.io.Serializable;
 import java.util.List;
-
+@CssImport("./styles/grid/grid-shape.css")
 public abstract class GenericCrudView<T, ID extends Serializable> extends VerticalLayout {
 
     protected final Grid<T> grid;
@@ -58,7 +60,7 @@ public abstract class GenericCrudView<T, ID extends Serializable> extends Vertic
         Component filters = buildFilterSection();
 
         add(header);
-        VerticalLayout verticalLayout = new VerticalLayout();
+
         if (summary != null) {
             add(summary);
         }
@@ -94,8 +96,10 @@ public abstract class GenericCrudView<T, ID extends Serializable> extends Vertic
     }
 
     private void configureGrid() {
-        grid.addClassName("app-card");
+        //grid.addClassName("app-card");
         grid.setSizeFull();
+        grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
+        grid.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
         buildGridColumns(grid);
         grid.addItemDoubleClickListener(e -> onItemDoubleClick(e.getItem()));
     }
@@ -116,11 +120,29 @@ public abstract class GenericCrudView<T, ID extends Serializable> extends Vertic
 
 
     private void configureDialog(String title) {
+        dialog.addOpenedChangeListener(e -> {
+            if (!e.isOpened()) {
+                return;
+            }
+            dialog.getElement().executeJs(
+                    "const ov = this.$.overlay;" +
+                            "if (ov && ov.shadowRoot) {" +
+                            "  const header  = ov.shadowRoot.querySelector('[part=\"header\"]');" +
+                            "  const content = ov.shadowRoot.querySelector('[part=\"content\"]');" +
+                            "  const footer = ov.shadowRoot.querySelector('[part=\"footer\"]');" +
+                            "  if (header)  header.style.background  = $0;" +
+                            "  if (content) content.style.background = $0;" +
+                            "  if (footer) content.style.background = $0;" +
+                            "}",
+                    "#F3F5F7"
+            );
+        });
         dialog.setHeaderTitle(title);
         dialog.setModal(true);
         dialog.setDraggable(false);
         dialog.setResizable(false);
 
+        dialog.addClassName("crud-dialog-basic");
         buildForm(formLayout, binder);
 
         Button save = new Button("Guardar", e -> saveCurrent());

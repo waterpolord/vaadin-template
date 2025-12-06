@@ -7,6 +7,7 @@ import com.robertgarcia.template.modules.customers.service.CustomerService;
 import com.robertgarcia.template.shared.crud.GenericCrudView;
 import com.robertgarcia.template.shared.ui.MainLayout;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
@@ -15,6 +16,7 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
@@ -23,13 +25,15 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.wontlost.sweetalert2.Config;
 import com.wontlost.sweetalert2.SweetAlert2Vaadin;
+import jakarta.annotation.security.RolesAllowed;
 
 import java.util.List;
 
 @PageTitle("Customers")
 @Route(value = "customers/", layout = MainLayout.class)
 @CssImport("./styles/grid/grid-shape.css")
-public class CustomersView extends GenericCrudView<Customer, Long> {
+@RolesAllowed({"ADMIN","READ_BUSINESS","WRITE_BUSINESS","DELETE_BUSINESS"})
+public class CustomersView extends GenericCrudView<Customer, Integer> {
 
     private final CustomerService customerService;
     private TextField nameFilter;
@@ -89,21 +93,13 @@ public class CustomersView extends GenericCrudView<Customer, Long> {
 
     @Override
     protected Component buildFilterSection() {
+
         nameFilter = new TextField();
-        nameFilter.setPlaceholder("Search by name");
-        nameFilter.addClassName("crud-filter-field");
+        nameFilter.setPlaceholder("Búsqueda");
+        nameFilter.setPrefixComponent(FontAwesome.Solid.SEARCH.create());
+        Select<String> select = new Select<>();
+        HorizontalLayout filters = new HorizontalLayout(nameFilter,  select);
 
-        Button apply = new Button("Apply", e -> applyFilters());
-        apply.addClassName("crud-filter-apply");
-
-        Button clear = new Button("Clear", e -> {
-            nameFilter.clear();
-            refreshGrid();
-        });
-        clear.addClassName("crud-filter-clear");
-
-        HorizontalLayout filters = new HorizontalLayout(nameFilter, apply, clear);
-        //filters.addClassName("app-card");
         filters.setWidthFull();
         return filters;
     }
@@ -165,7 +161,7 @@ public class CustomersView extends GenericCrudView<Customer, Long> {
 
 
     @Override
-    protected Long getId(Customer bean) {
+    protected Integer getId(Customer bean) {
         return bean.getId();
     }
 

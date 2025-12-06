@@ -66,23 +66,19 @@ vaadin-grid.app-grid {
 
 /* Header */
 vaadin-grid.app-grid::part(header-row) {
-    background: #f7f3ff; /* morado muy claro */
+    background: #a8a2b5;
 }
 
-vaadin-grid.app-grid::part(header-cell) {
+vaadin-grid::part(header-cell) {
     font-weight: 600;
-    color: #5b21b6;
+    color: #dbdbe3;
+    background: #2563eb;
     padding: 10px 16px;
     border-bottom: 1px solid #e5e7eb;
 }
 
-/* Filas */
-vaadin-grid.app-grid::part(body-row) {
-    background-color: #ffffff;
-}
-
-vaadin-grid.app-grid::part(body-row):hover {
-    background: rgba(148, 163, 184, 0.16);
+vaadin-grid::part(row):hover {
+    background: rgb(69, 101, 143);
 }
 
 vaadin-grid.app-grid::part(cell) {
@@ -141,4 +137,29 @@ vaadin-grid.app-grid::part(body-cell):first-child {
 
 .app-grid-action-btn-delete:hover {
     background: rgba(148, 163, 184, 0.16);
+}
+
+
+:host(.crud-dialog-basic) [part="header"] {
+    background-color: #EBF4FB;
+}
+
+:host(.crud-dialog-basic) [part="content"] {
+    background-color: #EBF4FB;
+}
+
+
+
+.crud-dialog-save {
+    background: #2563eb;
+    color: #ffffff;
+    border-radius: 999px;
+    padding: 6px 16px;
+}
+
+.crud-dialog-cancel {
+    border-radius: 999px;
+    padding: 6px 16px;
+    color: #FFFFFF;
+    background: #d10000;
 }

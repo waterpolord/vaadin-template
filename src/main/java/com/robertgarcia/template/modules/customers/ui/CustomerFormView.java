@@ -16,9 +16,11 @@ import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
+import jakarta.annotation.security.RolesAllowed;
 
 @Route(value = "customers/form", layout = MainLayout.class)
-public class CustomerFormView extends VerticalLayout implements HasUrlParameter<Long> {
+@RolesAllowed({"ADMIN","WRITE_BUSINESS"})
+public class CustomerFormView extends VerticalLayout implements HasUrlParameter<Integer> {
 
     private final CustomerService service;
     private final Binder<Customer> binder = new Binder<>(Customer.class);
@@ -51,7 +53,7 @@ public class CustomerFormView extends VerticalLayout implements HasUrlParameter<
     }
 
     @Override
-    public void setParameter(BeforeEvent event, @OptionalParameter Long id) {
+    public void setParameter(BeforeEvent event, @OptionalParameter Integer id) {
         if (id != null) {
             current = service.findById(id);
         } else {
