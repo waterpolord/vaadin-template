@@ -20,6 +20,7 @@ import jakarta.annotation.security.RolesAllowed;
 @RolesAllowed({"ADMIN","WRITE_BUSINESS"})
 public class DialogFormComponent {
     public static void generateCustomerForm(FormLayout form, Binder<Customer> binder) {
+
         TextField name = new TextField("Nombre");
         TextField lastName = new TextField("Apellido");
         TextField nickname = new TextField("Apodo");

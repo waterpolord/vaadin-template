@@ -90,19 +90,10 @@ public class ProductView extends GenericCrudView<Product, Integer> {
     @Override
     protected Component buildFilterSection() {
         nameFilter = new TextField();
-        nameFilter.setPlaceholder("Search by name");
+        nameFilter.setPlaceholder("Búsqueda");
+        nameFilter.setPrefixComponent(FontAwesome.Solid.SEARCH.create());
 
-        Button apply = new Button("Apply", e -> applyFilters());
-
-
-        Button clear = new Button("Clear", e -> {
-            nameFilter.clear();
-            refreshGrid();
-        });
-        clear.addClassName("crud-filter-clear");
-
-        HorizontalLayout filters = new HorizontalLayout(nameFilter, apply, clear);
-        //filters.addClassName("app-card");
+        HorizontalLayout filters = new HorizontalLayout(nameFilter);
         filters.setWidthFull();
         return filters;
     }
