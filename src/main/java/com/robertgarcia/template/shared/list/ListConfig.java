@@ -4,6 +4,7 @@ import com.robertgarcia.template.shared.domain.dto.Summary;
 import com.vaadin.flow.component.Component;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public record ListConfig<T>(
                             String title,
@@ -11,5 +12,5 @@ public record ListConfig<T>(
                             List<Summary> summaries,
                             List<FilterDef> filters,
                             List<ColumnDef<T,?>> columns,
-                            Runnable doubleClickHandler
+                            Consumer<T> doubleClickHandler
                             ) {}

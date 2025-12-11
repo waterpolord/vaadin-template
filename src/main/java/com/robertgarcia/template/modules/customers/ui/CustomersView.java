@@ -7,6 +7,7 @@ import com.robertgarcia.template.modules.customers.service.CustomerService;
 import com.robertgarcia.template.shared.list.*;
 import com.robertgarcia.template.shared.service.DialogAbstractHelper;
 import com.robertgarcia.template.shared.ui.MainLayout;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -15,6 +16,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.router.RouteParameters;
 import com.wontlost.sweetalert2.Config;
 import com.wontlost.sweetalert2.SweetAlert2Vaadin;
 import jakarta.annotation.security.RolesAllowed;
@@ -42,7 +44,7 @@ public class CustomersView extends DialogAbstractHelper<Customer,Integer> {
     }
 
 
-    public void initialize() {
+    private void initialize() {
 
         ListConfig<Customer> config = new ListConfig<>(
                 "Listado de clientes",
@@ -63,7 +65,7 @@ public class CustomersView extends DialogAbstractHelper<Customer,Integer> {
                         new ColumnDef<Customer,Void>("Acción",null,this::buildActionButtons,true)
 
                 ),
-                this::openCreateCustomer
+                this::openProfile
         );
         DataProvider<Customer> dataProvider = spec -> {
             List<Customer> items = customerService.findAll();
@@ -131,6 +133,10 @@ public class CustomersView extends DialogAbstractHelper<Customer,Integer> {
         binder.setBean(current);
         configureDialog("Crear Cliente");
         dialog.open();
+    }
+
+    void openProfile(Customer customer){
+        UI.getCurrent().navigate(CustomerProfile.class, customer.getId());
     }
 
     @Override

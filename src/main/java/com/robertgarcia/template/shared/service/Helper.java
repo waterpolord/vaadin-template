@@ -90,6 +90,9 @@ public class Helper {
         return formatted.toString();
     }
 
+    public static String nullSafety(String v) {
+        return v == null || v.isBlank() ? "N/A" : v;
+    }
 
 
 }

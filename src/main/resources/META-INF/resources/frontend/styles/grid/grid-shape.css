@@ -163,3 +163,163 @@ vaadin-grid.app-grid::part(body-cell):first-child {
     color: #FFFFFF;
     background: #d10000;
 }
+
+.profile-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: #f3f6fb;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+.profile-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+}
+
+.profile-subtitle {
+    color: #6e6e6e;
+    font-size: 0.9rem;
+}
+
+.profile-badge {
+    display: inline-block;
+    background: #e6f0ff;
+    color: #2667ff;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.profile-menu-btn {
+    background: transparent;
+    border-radius: 8px;
+    color: #666;
+    width: 36px;
+    height: 36px;
+}
+.profile-menu-btn:hover {
+    background: #f0f0f0;
+}
+
+
+/* ================================
+   PROFILE SECTIONS (Bloques de info)
+   ================================ */
+
+.profile-sections {
+    margin-top: 18px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+}
+
+.profile-section {
+    min-width: 250px;
+}
+
+.profile-section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.profile-field {
+    margin-bottom: 12px;
+}
+
+.profile-field-label {
+    font-size: 0.75rem;
+    color: #767676;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.profile-field-value {
+    font-size: 0.95rem;
+    color: #222;
+    font-weight: 500;
+}
+
+
+
+/* ================================
+   TABS SECTION
+   ================================ */
+
+.profile-tabs {
+    background: transparent;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-tabs vaadin-tab {
+    padding: 12px 20px;
+    font-weight: 600;
+    color: #555;
+    border-radius: 8px 8px 0 0;
+}
+
+.profile-tabs vaadin-tab[selected] {
+    background: #2667ff;
+    color: #ffffff;
+}
+
+.profile-tabs vaadin-tab:hover {
+    background: #eef2ff;
+}
+
+.profile-tab-pages {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-tab-content {
+    padding: 20px 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* ================================
+   GRID STYLING FOR INNER TABLES
+   ================================ */
+
+.profile-zones-grid,
+.profile-activities-grid,
+.profile-companies-grid,
+.profile-access-grid {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.profile-zones-grid::part(header-cell),
+.profile-activities-grid::part(header-cell),
+.profile-companies-grid::part(header-cell),
+.profile-access-grid::part(header-cell) {
+    background-color: #2667ff;
+    color: white;
+    font-weight: 600;
+}
+
+.profile-zones-grid::part(row):hover,
+.profile-activities-grid::part(row):hover,
+.profile-companies-grid::part(row):hover,
+.profile-access-grid::part(row):hover {
+    background: #f0f5ff;
+}
+
+.profile-zones-grid::part(cell),
+.profile-activities-grid::part(cell),
+.profile-companies-grid::part(cell),
+.profile-access-grid::part(cell) {
+    font-size: 0.92rem;
+}

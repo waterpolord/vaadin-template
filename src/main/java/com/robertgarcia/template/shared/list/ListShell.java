@@ -137,7 +137,13 @@ public class ListShell<T> {
         grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
         grid.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
 
-        grid.addItemDoubleClickListener(e -> config.doubleClickHandler().run());
+        grid.addItemDoubleClickListener(e -> {
+            T item = e.getItem();
+            if (config.doubleClickHandler() != null && item != null) {
+                config.doubleClickHandler().accept(item);
+            }
+        });
+
         for (ColumnDef<T, ?> def : config.columns()) {
             addColumn(def);
         }
