@@ -2,10 +2,11 @@ package com.robertgarcia.template.modules.users.domain;
 
 import com.robertgarcia.template.shared.domain.BasicEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

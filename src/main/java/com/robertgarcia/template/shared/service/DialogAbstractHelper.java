@@ -1,6 +1,5 @@
 package com.robertgarcia.template.shared.service;
 
-import com.robertgarcia.template.modules.customers.domain.Customer;
 import com.robertgarcia.template.shared.crud.CrudService;
 import com.robertgarcia.template.shared.list.ListShell;
 import com.vaadin.flow.component.button.Button;

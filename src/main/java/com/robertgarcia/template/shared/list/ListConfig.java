@@ -1,7 +1,6 @@
 package com.robertgarcia.template.shared.list;
 
 import com.robertgarcia.template.shared.domain.dto.Summary;
-import com.vaadin.flow.component.Component;
 
 import java.util.List;
 import java.util.function.Consumer;

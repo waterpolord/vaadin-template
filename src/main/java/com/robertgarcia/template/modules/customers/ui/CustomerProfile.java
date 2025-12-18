@@ -8,18 +8,12 @@ import com.robertgarcia.template.shared.profile.*;
 import com.robertgarcia.template.shared.service.Helper;
 import com.robertgarcia.template.shared.ui.MainLayout;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.OptionalParameter;
@@ -95,7 +89,7 @@ public class CustomerProfile extends VerticalLayout implements HasUrlParameter<I
                         )
                 ),
 
-                // Tabs (igual que toolbarActioHelper.nullSafety pero con contenido)
+
                 List.of(
                         new ProfileTab<>(
                                 new Icon(VaadinIcon.MAP_MARKER),

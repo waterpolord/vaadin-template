@@ -1,6 +1,5 @@
 package com.robertgarcia.template.modules.customers.ui;
 
-import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.robertgarcia.template.modules.customers.domain.Customer;
 import com.robertgarcia.template.shared.service.Helper;
 import com.vaadin.flow.component.checkbox.Checkbox;

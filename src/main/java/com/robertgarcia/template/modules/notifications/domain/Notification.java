@@ -1,13 +1,10 @@
 package com.robertgarcia.template.modules.notifications.domain;
 
 import com.robertgarcia.template.shared.domain.BasicEntity;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-
-import java.time.LocalDate;
 
 @Entity
 @Getter

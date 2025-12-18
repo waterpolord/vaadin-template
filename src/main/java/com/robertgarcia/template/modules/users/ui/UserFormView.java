@@ -5,7 +5,6 @@ import com.robertgarcia.template.modules.users.service.PermissionService;
 import com.robertgarcia.template.modules.users.service.RoleService;
 import com.robertgarcia.template.modules.users.service.UserService;
 import com.robertgarcia.template.shared.ui.FullScreenLayout;
-import com.robertgarcia.template.shared.ui.MainLayout;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -20,7 +19,7 @@ import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
 
-@Route(value = "users/form", layout = FullScreenLayout.class)
+@Route(value = "users/form2", layout = FullScreenLayout.class)
 @RolesAllowed({"ADMIN","WRITE_USERS"})
 public class UserFormView extends VerticalLayout implements HasUrlParameter<Integer> {
 
