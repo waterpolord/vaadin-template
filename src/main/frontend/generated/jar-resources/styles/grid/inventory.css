@@ -1,0 +1,123 @@
+.inv-root {
+    background: #EBF4FB;
+}
+
+/* top chips */
+.inv-topbar {
+    padding: 12px;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.inv-chip {
+    border-radius: 999px;
+    background: #eef2ff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    font-weight: 600;
+}
+
+/* body */
+.inv-body {
+    padding: 14px;
+    gap: 14px;
+}
+
+.inv-left, .inv-center, .inv-right {
+    height: 100%;
+}
+
+/* cards */
+.inv-card {
+    background: #F9FDFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+}
+
+.inv-pill {
+    background: #ffcc33;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-weight: 800;
+}
+
+.inv-link {
+    background: transparent;
+    color: #2563eb;
+    font-weight: 700;
+}
+
+/* mini grids */
+.inv-mini-grid {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* center */
+.inv-form vaadin-text-field::part(input-field),
+.inv-form vaadin-text-area::part(input-field) {
+    border-radius: 999px;
+}
+
+.inv-tools-label {
+    font-weight: 700;
+    color: #64748b;
+}
+
+.inv-ghost {
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+.inv-search::part(input-field) {
+    border-radius: 999px;
+}
+
+/* main grid */
+.inv-main-card {
+    background: #F9FDFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+}
+
+vaadin-grid.inv-grid::part(header-cell) {
+    font-weight: 700;
+    background: #eef2ff;
+}
+
+.inv-icon-btn {
+    border-radius: 10px;
+    background: #eef2f7;
+}
+
+/* right lists */
+.inv-list {
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 14px;
+    min-height: 140px;
+    width: 100%;
+    background: #ffffff;
+}
+
+.inv-plus {
+    border-radius: 999px;
+    background: #eef2ff;
+}
+
+/* bottom bar */
+.inv-bottombar {
+    background: #ffffff;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+    padding: 10px 14px;
+    gap: 12px;
+}
+
+.inv-muted {
+    color: #64748b;
+    font-weight: 700;
+}
+
+.inv-grand-total {
+    font-weight: 900;
+    font-size: 1.1rem;
+}

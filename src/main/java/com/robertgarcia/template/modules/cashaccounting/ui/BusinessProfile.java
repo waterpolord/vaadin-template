@@ -1,7 +1,7 @@
-package com.robertgarcia.template.modules.customers.ui;
+package com.robertgarcia.template.modules.cashaccounting.ui;
 
-import com.robertgarcia.template.modules.customers.domain.Customer;
-import com.robertgarcia.template.modules.customers.service.CustomerService;
+import com.robertgarcia.template.modules.cashaccounting.domain.Business;
+import com.robertgarcia.template.modules.cashaccounting.service.BusinessService;
 import com.robertgarcia.template.modules.notifications.domain.Notification;
 import com.robertgarcia.template.modules.notifications.service.NotificationService;
 import com.robertgarcia.template.shared.profile.*;
@@ -22,17 +22,17 @@ import jakarta.annotation.security.RolesAllowed;
 
 import java.util.List;
 
-@Route(value = "customers/profile", layout = MainLayout.class)
+@Route(value = "Businesss/profile", layout = MainLayout.class)
 @CssImport("./styles/grid/grid-shape.css")
 @RolesAllowed({"ADMIN","WRITE_CLIENT"})
-public class CustomerProfile extends VerticalLayout implements HasUrlParameter<Integer> {
+public class BusinessProfile extends VerticalLayout implements HasUrlParameter<Integer> {
 
-    private final CustomerService service;
+    private final BusinessService service;
     private final NotificationService notificationService;
-    private Customer current;
-    private final ProfileShell<Customer> profileShell = new ProfileShell<>();
+    private Business current;
+    private final ProfileShell<Business> profileShell = new ProfileShell<>();
 
-    public CustomerProfile(CustomerService service, NotificationService notificationService) {
+    public BusinessProfile(BusinessService service, NotificationService notificationService) {
         this.service = service;
         this.notificationService = notificationService;
 
@@ -58,24 +58,25 @@ public class CustomerProfile extends VerticalLayout implements HasUrlParameter<I
     }
 
     private void initialize(){
-        ProfileConfig<Customer> config = new ProfileConfig<>(
-                c -> c.getName() + " " + c.getLastName(),     // Title
+        ProfileConfig<Business> config = new ProfileConfig<>(
+                Business::getName,     // Title
                 c -> "Cliente registrado",                    // Subtitle
                 "Cliente VIP",                                // Badge
 
+                // Secciones (como columHelper.nullSafety)
                 List.of(
                         new ProfileSection<>(
                                 "Datos personales",
                                 List.of(
-                                        new ProfileField<>("Usuario", c -> Helper.nullSafety(c.getNickname())),
-                                        new ProfileField<>("Cédula", c -> Helper.nullSafety(c.getIdentification()))
+                                        new ProfileField<>("Nombre", c -> Helper.nullSafety(c.getOwnerName())),
+                                        new ProfileField<>("Negocio", c -> Helper.nullSafety(c.getName())),
+                                        new ProfileField<>("RNC", c -> Helper.nullSafety(c.getRnc()))
 
                                 )
                         ),
                         new ProfileSection<>(
                                 "Contacto",
                                 List.of(
-                                        new ProfileField<>("Correo", c -> Helper.nullSafety(c.getMail())),
                                         new ProfileField<>("Teléfono", c -> Helper.nullSafety(c.getPhone()))
                                 )
                         ),
@@ -112,7 +113,7 @@ public class CustomerProfile extends VerticalLayout implements HasUrlParameter<I
 
 
 
-    private Component buildActivitiesTab(Customer c) {
+    private Component buildActivitiesTab(Business c) {
         Grid<Notification> grid = new Grid<>(Notification.class, false);
         grid.addClassName("profile-activities-grid");
         grid.setSizeFull();
