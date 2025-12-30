@@ -1,343 +1,530 @@
 package com.robertgarcia.template.modules.cashaccounting.ui;
-
+import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.robertgarcia.template.modules.cashaccounting.domain.ProductAccounting;
+import com.robertgarcia.template.shared.list.*;
+import com.robertgarcia.template.shared.service.Helper;
 import com.robertgarcia.template.shared.ui.FullScreenLayout;
-import com.robertgarcia.template.shared.ui.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+
+import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
 
+import java.util.List;
+
 @Route(value = "inventory", layout = FullScreenLayout.class)
 @PageTitle("Inventario")
 @RolesAllowed({"ADMIN","READ_BUSINESS","WRITE_BUSINESS","DELETE_BUSINESS"})
-@CssImport("./styles/grid/inventory.css")
+@CssImport("./styles/inventory-workbench.css")
 public class InventoryView extends VerticalLayout {
-    // ===== top toolbar =====
-    private final HorizontalLayout topToolbar = new HorizontalLayout();
 
-    // ===== left / center / right =====
-    private final VerticalLayout leftSidebar = new VerticalLayout();
-    private final VerticalLayout centerContent = new VerticalLayout();
-    private final VerticalLayout rightSidebar = new VerticalLayout();
+    private Component listShell; // tu ListShell<ProductAccounting>
 
-    // ===== bottom bar =====
-    private final HorizontalLayout bottomBar = new HorizontalLayout();
-    private final Span lblTotal = new Span("0.00");
-    private final TextField tfEntradaRapida = new TextField();
+    // left grids
+    private final Grid<PastQtyRow> qtyGrid = new Grid<>(PastQtyRow.class, false);
+    private final Grid<PastCostRow> costGrid = new Grid<>(PastCostRow.class, false);
+    private Details pastInventoryDetails;
+    private final String GRID_SIZE = "170px";
 
-    // ===== main grid =====
-    private final Grid<ProductAccounting> grid = new Grid<>(ProductAccounting.class, false);
-
-    // ===== center form =====
-    private final TextField tfCodigo = new TextField();
-    private final TextField tfDescripcion = new TextField();
-    private final TextField tfCant = new TextField();
-    private final TextField tfMed = new TextField();
-    private final TextField tfCosto = new TextField();
-    private final TextField tfTotal = new TextField();
-
-    public InventoryView() {
+    public InventoryView(ListShell<ProductAccounting> compList) {
         setSizeFull();
         setPadding(false);
         setSpacing(false);
-        addClassName("inv-root");
+        addClassName("iw-root");
 
-        buildTopToolbar();
-        buildLeftSidebar();
-        buildCenter();
-        buildRightSidebar();
-        buildBottomBar();
+        // tu listShell
+        listShell = buildListShell(compList);
 
-        HorizontalLayout body = new HorizontalLayout(leftSidebar, centerContent, rightSidebar);
-        body.setSizeFull();
-        body.addClassName("inv-body");
-        body.setPadding(false);
-        body.setSpacing(true);
+        Component header = buildHeader();
+        Component body = buildBody();
+        /*Component footer = buildFooter();*/
 
-        // proporciones similares a tu screenshot
-        leftSidebar.setWidth("320px");
-        rightSidebar.setWidth("380px");
-        body.setFlexGrow(0, leftSidebar);
-        body.setFlexGrow(1, centerContent);
-        body.setFlexGrow(0, rightSidebar);
-
-        add(topToolbar, body, bottomBar);
-        setFlexGrow(0, topToolbar);
+        add(header, body/*, footer*/);
+        setFlexGrow(0, header);
         setFlexGrow(1, body);
-        setFlexGrow(0, bottomBar);
+        /*setFlexGrow(1, body);
+        setFlexGrow(0, footer);*/
     }
 
-    private void buildTopToolbar() {
-        topToolbar.addClassName("inv-topbar");
-        topToolbar.setWidthFull();
-        topToolbar.setJustifyContentMode(JustifyContentMode.CENTER);
-
-        topToolbar.add(
-                chip("Reportes"),
-                chip("Inventarios pasados"),
-                chip("Actualizar precios"),
-                chip("Productos"),
-                chip("Faltantes")
+    private Component buildHeader() {
+        HorizontalLayout bar = new HorizontalLayout(
+                Helper.chip("Reportes", FontAwesome.Solid.PRINT.create(),"#2563EB"),
+                Helper.chip("Inventarios pasados", FontAwesome.Solid.HISTORY.create(),"#6B7280"),
+                Helper.chip("Actualizar precios", FontAwesome.Solid.COGS.create(),"#F59E0B"),
+                Helper.chip("Productos", FontAwesome.Solid.CUBES.create(),"#10B981"),
+                Helper.chip("Faltantes", FontAwesome.Solid.EXCLAMATION_CIRCLE.create(),"#EF4444")
         );
+        bar.setWidthFull();
+        bar.setAlignItems(Alignment.CENTER);
+        bar.setJustifyContentMode(JustifyContentMode.CENTER);
+        bar.addClassName("iw-header");
+        return bar;
     }
 
-    private Button chip(String text) {
-        Button b = new Button(text);
-        b.addClassName("inv-chip");
-        return b;
-    }
 
-    private void buildLeftSidebar() {
-        leftSidebar.addClassName("inv-left");
-        leftSidebar.setHeightFull();
-        leftSidebar.setPadding(true);
-        leftSidebar.setSpacing(true);
+    private Component buildBody() {
+        HorizontalLayout body = new HorizontalLayout();
+        body.setSizeFull();
+        body.setPadding(false);
+        body.setSpacing(false);
+        body.addClassName("iw-body");
+        Component left = buildLeft();
+        Div center = new Div();
+        center.addClassName("iw-center");
 
-        leftSidebar.add(
-                sideCard("Cantidad pasada (Producto)", miniGrid3Cols()),
-                sideCard("Costo pasado (Producto)", miniGrid2Cols()),
-                inventoryPastBlock(),
-                logoutBlock()
+        Div centralCard = new Div();
+        centralCard.addClassName("iw-central-card");
+
+        centralCard.add(
+                /* grids, forms, layouts, etc */
         );
-        leftSidebar.setFlexGrow(0, leftSidebar.getChildren().toList().toArray(new Component[0]));
+
+        center.add(centralCard);
+
+        /*
+        Component center = buildCenter();
+        Component right = buildRight();*/
+
+        body.add(left,center/*, center, right*/);
+        body.setFlexGrow(0, left);
+        body.setFlexGrow(1, center);
+        /*
+        body.setFlexGrow(1, center);
+        body.setFlexGrow(0, right);*/
+
+        return body;
     }
 
-    private Component sideCard(String title, Component content) {
+    void openCantidadPasada() {
+
+    }
+
+    void openCostoPasado() {
+    }
+
+    void exit() {
+
+    }
+
+    private Component buildLeft() {
+        VerticalLayout left = new VerticalLayout();
+        left.addClassName("iw-left");
+        left.setPadding(false);
+        left.setSpacing(true);
+        left.setSizeFull();
+        buildQtyMiniGrid();
+        buildCostMiniGrid();
+        Details qty = detailsPill("Cantidad pasada (Producto)", sideMiniCard(qtyGrid),true);
+        Details cost = detailsPill("Costo pasado (Producto)", sideMiniCard(costGrid),true);
+        Details past = detailsPill("Inventario pasado", pastInventoryCard(), false);
+
+        left.add(qty, cost, past, exitButton());
+        left.expand(qty, cost, past);
+
+        return left;
+    }
+
+    private Details detailsPill(String title, Component content, boolean opened) {
+        Div pill = new Div(new Span(title));
+        pill.addClassName("iw-pill");
+        pill.addClassName("iw-pill--summary");
+
+        Details d = new Details(pill, content);
+        d.addClassName("iw-details");
+        d.setOpened(opened);
+        d.setWidthFull();
+        d.addOpenedChangeListener(e -> applyLeftSizing(e.isOpened()));
+        return d;
+    }
+
+    private Component sideMiniCard(Grid<?> grid) {
         VerticalLayout card = new VerticalLayout();
-        card.addClassName("inv-card");
+        card.addClassName("iw-card");
+        card.addClassName("iw-mini-card");
+        card.addClassName("iw-details");
         card.setPadding(true);
         card.setSpacing(true);
+        card.setWidthFull();
 
-        Div pill = new Div();
-        pill.setText(title);
-        pill.addClassName("inv-pill");
+        Button more = new Button("VER MÁS");
+        more.addClassName("iw-more");
 
-        Button verMas = new Button("VER MÁS");
-        verMas.addClassName("inv-link");
+        grid.setWidthFull();
+        grid.setHeight(GRID_SIZE);
 
-        card.add(pill, content, verMas);
+        card.add( grid, more);
+
         return card;
     }
 
-    private Component miniGrid3Cols() {
-        Grid<Object> g = new Grid<>(Object.class, false);
-        g.addClassName("inv-mini-grid");
-        g.setHeight("180px");
-        g.addColumn(x -> "").setHeader("Fecha").setAutoWidth(true);
-        g.addColumn(x -> "").setHeader("Cantidad").setAutoWidth(true);
-        g.addColumn(x -> "").setHeader("Costo").setAutoWidth(true);
-        return g;
-    }
 
-    private Component miniGrid2Cols() {
-        Grid<Object> g = new Grid<>(Object.class, false);
-        g.addClassName("inv-mini-grid");
-        g.setHeight("180px");
-        g.addColumn(x -> "").setHeader("Fecha").setAutoWidth(true);
-        g.addColumn(x -> "").setHeader("Costo").setAutoWidth(true);
-        return g;
-    }
 
-    private Component inventoryPastBlock() {
-        VerticalLayout block = new VerticalLayout();
-        block.addClassName("inv-past-block");
-        block.setPadding(false);
+    private Component buildQtyMiniGrid() {
+        qtyGrid.removeAllColumns();
+        qtyGrid.addClassName("iw-mini-grid");
 
-        Details d = new Details("Inventario pasado", new VerticalLayout(
-                new Span("INVENTARIO PASADO"),
-                new Span("PROXIMO INVENTARIO"),
-                new HorizontalLayout(new Span("COSTO DEL INVENTARIO"), new TextField())
-        ));
-        d.setWidthFull();
+        qtyGrid.setAllRowsVisible(false);
 
-        block.add(d);
-        return block;
-    }
+        qtyGrid.addColumn(PastQtyRow::fecha).setHeader("Fecha").setAutoWidth(true);
+        qtyGrid.addColumn(PastQtyRow::cantidad).setHeader("Cantidad").setAutoWidth(true);
+        qtyGrid.addColumn(PastQtyRow::costo).setHeader("Costo").setAutoWidth(true);
 
-    private Component logoutBlock() {
-        Button salir = new Button("Salir");
-        salir.addClassName("inv-danger");
-        Div wrap = new Div(salir);
-        wrap.addClassName("inv-logout");
-        return wrap;
-    }
-
-    private void buildCenter() {
-        centerContent.addClassName("inv-center");
-        centerContent.setHeightFull();
-        centerContent.setPadding(true);
-        centerContent.setSpacing(true);
-
-        centerContent.add(buildCenterForm(), buildToolsRow(), buildMainGridCard());
-        centerContent.setFlexGrow(0, centerContent.getComponentAt(0));
-        centerContent.setFlexGrow(0, centerContent.getComponentAt(1));
-        centerContent.setFlexGrow(1, centerContent.getComponentAt(2));
-    }
-
-    private Component buildCenterForm() {
-        FormLayout form = new FormLayout();
-        form.addClassName("inv-form");
-        form.setResponsiveSteps(
-                new FormLayout.ResponsiveStep("0", 6)
+        qtyGrid.setItems(
+                new PastQtyRow("15/74/40", "49", "45"),
+                new PastQtyRow("19/28/97", "51", "45"),
+                new PastQtyRow("19/28/97", "51", "45"),
+                new PastQtyRow("19/28/97", "51", "45")
         );
 
-        tfCodigo.setLabel("Código");
-        tfCodigo.setPlaceholder("Escanee o escriba");
-        tfDescripcion.setLabel("Descripción");
-        tfCant.setLabel("Cant");
-        tfMed.setLabel("Med");
-        tfCosto.setLabel("Costo");
-        tfTotal.setLabel("Total");
-        tfTotal.setReadOnly(true);
-
-        form.add(tfCodigo, tfDescripcion, tfCant, tfMed, tfCosto, tfTotal);
-
-        form.setColspan(tfDescripcion, 2); // para que se vea más ancho
-        return form;
+        return qtyGrid;
     }
 
-    private Component buildToolsRow() {
+    private Component buildCostMiniGrid() {
+        costGrid.removeAllColumns();
+        costGrid.addClassName("iw-mini-grid");
+
+        costGrid.setAllRowsVisible(false);
+
+        costGrid.addColumn(PastCostRow::fecha).setHeader("Fecha").setAutoWidth(true);
+        costGrid.addColumn(PastCostRow::costo).setHeader("Costo").setAutoWidth(true);
+
+        costGrid.setItems(
+                new PastCostRow("15/74/40", "500.00"),
+                new PastCostRow("19/28/97", "500.00"),
+                new PastCostRow("19/28/97", "500.00"),
+                new PastCostRow("19/28/97", "500.00")
+        );
+
+        return costGrid;
+    }
+
+
+
+    private Component pastInventoryCard() {
+        VerticalLayout content = new VerticalLayout();
+        content.setPadding(true);
+        content.setSpacing(true);
+        content.setWidthFull();
+        content.addClassName("iw-card");
+        content.addClassName("iw-past-card");
+
+        content.add(
+                infoLine("INVENTARIO PASADO:", "25/12/2025"),
+                divider(),
+                infoLine("PROXIMO INVENTARIO:", "25/01/2025"),
+                divider(),
+                new Span("COSTO DEL INVENTARIO")
+        );
+
+        TextField invCost = new TextField();
+        invCost.setValue("3500");
+        invCost.addClassName("iw-small-field");
+        invCost.setWidth("140px");
+
+        content.add(invCost);
+        return content;
+    }
+    private void applyLeftSizing(boolean detailsOpened) {
+        String h = detailsOpened ? "95px" : GRID_SIZE;
+        qtyGrid.setHeight(h);
+        costGrid.setHeight(h);
+        qtyGrid.getElement().getStyle().set("minHeight", h);
+        costGrid.getElement().getStyle().set("minHeight", h);
+    }
+
+    private Component infoLine(String k, String v) {
         HorizontalLayout row = new HorizontalLayout();
-        row.addClassName("inv-tools");
-        row.setWidthFull();
-        row.setAlignItems(Alignment.CENTER);
+        row.addClassName("iw-info-row");
+        //row.setWidthFull();
+        row.setSpacing(false);
+        row.setAlignItems(FlexComponent.Alignment.BASELINE);
 
-        Span label = new Span("Herramientas");
-        label.addClassName("inv-tools-label");
+        Span key = new Span(k);
+        //key.addClassName("iw-info-key");
+        Span val = new Span(v);
+        //val.addClassName("iw-info-val");
 
-        Button transfer = new Button("Transferir datos");
-        transfer.addClassName("inv-ghost");
-        Button perfil = new Button("Editar perfil");
-        perfil.addClassName("inv-ghost");
-
-        TextField buscar = new TextField();
-        buscar.setPlaceholder("Buscar producto");
-        buscar.addClassName("inv-search");
-
-        row.add(label, transfer, perfil, buscar);
-        row.expand(buscar);
+        row.add(key, val);
+        row.expand(key);
         return row;
     }
 
-    private Component buildMainGridCard() {
-        VerticalLayout card = new VerticalLayout();
-        card.addClassName("inv-main-card");
-        card.setSizeFull();
-        card.setPadding(true);
-        card.setSpacing(false);
-
-        grid.addClassName("inv-grid");
-        grid.setSizeFull();
-
-        grid.addColumn(pa -> pa.getProduct().getId()).setHeader("Código").setAutoWidth(true);
-        grid.addColumn(pa -> pa.getProduct().getName()).setHeader("Nombre").setFlexGrow(1);
-        grid.addColumn(ProductAccounting::getQuantity).setHeader("Cantidad").setAutoWidth(true);
-        grid.addColumn(pa -> pa.getProduct().getMeasure()).setHeader("Unidad").setAutoWidth(true);
-        grid.addColumn(ProductAccounting::getCost).setHeader("Costo").setAutoWidth(true);
-        grid.addColumn(ProductAccounting::getTotal).setHeader("Total").setAutoWidth(true);
-
-        grid.addComponentColumn(pa -> {
-            Button del = new Button("🗑");
-            del.addClassName("inv-icon-btn");
-            return del;
-        }).setHeader("Acción").setAutoWidth(true).setFlexGrow(0);
-
-        card.add(grid);
-        card.setFlexGrow(1, grid);
-        return card;
+    private Component exitButton() {
+        Button exit = new Button("Salir", FontAwesome.Solid.RIGHT_FROM_BRACKET.create());
+        exit.addClassName("iw-exit");
+        return exit;
     }
 
-    private void buildRightSidebar() {
-        rightSidebar.addClassName("inv-right");
-        rightSidebar.setHeightFull();
-        rightSidebar.setPadding(true);
-        rightSidebar.setSpacing(true);
 
-        rightSidebar.add(
+    private Component buildCenter() {
+        VerticalLayout center = new VerticalLayout();
+        center.setPadding(false);
+        center.setSpacing(true);
+        center.setHeightFull();
+        center.addClassName("iw-center");
+
+        Component form = inlineForm();
+        Component tools = toolsRow();
+        Component table = tableCard(listShell); // SOLO esto debe scrollear internamente
+
+        center.add(form, tools, table);
+        center.setFlexGrow(0, form);
+        center.setFlexGrow(0, tools);
+        center.setFlexGrow(1, table);
+
+        return center;
+    }
+
+    private Component inlineForm() {
+        FormLayout f = new FormLayout();
+        f.addClassName("iw-form");
+        f.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 6));
+
+        TextField codigo = new TextField("CODIGO");
+        TextField desc = new TextField("DESCRIPCION");
+        TextField cant = new TextField("CANT");
+        ComboBox<String> med = new ComboBox<>("MED");
+        TextField costo = new TextField("COSTO");
+        TextField total = new TextField("TOTAL");
+        total.setReadOnly(true);
+
+        f.add(codigo, desc, cant, med, costo, total);
+        f.setColspan(desc, 2);
+        return f;
+    }
+
+    private Component toolsRow() {
+        HorizontalLayout row = new HorizontalLayout();
+        row.addClassName("iw-tools");
+        row.setAlignItems(Alignment.CENTER);
+
+        Span label = new Span("HERRAMIENTAS");
+        label.addClassName("iw-tools-label");
+
+        row.add(
+                label,
+                tool("Transferir datos"),
+                tool("Editar perfil"),
+                tool("Buscar producto"),
+                tool("Modo escaner")
+        );
+        return row;
+    }
+
+    private Button tool(String text) {
+        Button b = new Button(text);
+        b.addClassName("iw-tool");
+        return b;
+    }
+
+    private Component tableCard(Component content) {
+        Div wrap = new Div(content);
+        wrap.addClassName("iw-table-card");
+        wrap.setSizeFull();
+        return wrap;
+    }
+
+    private Component buildRight() {
+        VerticalLayout right = new VerticalLayout();
+        right.setPadding(false);
+        right.setSpacing(true);
+        right.setHeightFull();
+        right.addClassName("iw-right");
+
+        right.add(
                 financeCard("ACTIVOS"),
                 financeCard("PASIVOS"),
-                distCard("DISTRIBUCIÓN")
+                distributionCard("DISTRIBUCION"),
+                totalsCard()
         );
+        return right;
     }
 
     private Component financeCard(String title) {
         VerticalLayout card = new VerticalLayout();
-        card.addClassName("inv-card");
+        card.addClassName("iw-fin-card");
         card.setPadding(true);
         card.setSpacing(true);
 
-        Div pill = new Div();
-        pill.setText(title);
-        pill.addClassName("inv-pill");
+        Div pill = new Div(new Span(title));
+        pill.addClassName("iw-pill");
+
+        // Lista (no scroller). Debe caber en el card con height fijo.
+        Div list = new Div();
+        list.addClassName("iw-fin-list");
+        // aquí tú renderizas filas tipo: desc | monto (como tu Figma)
+
+        HorizontalLayout addRow = new HorizontalLayout();
+        addRow.setWidthFull();
+        addRow.addClassName("iw-fin-add");
+
+        TextField desc = new TextField();
+        desc.setPlaceholder("Descripción");
+        desc.addClassName("iw-fin-input");
+
+        TextField amount = new TextField();
+        amount.setPlaceholder("Monto");
+        amount.addClassName("iw-fin-input");
+        amount.setWidth("120px");
+
+        Button plus = new Button("+");
+        plus.addClassName("iw-fin-plus");
+
+        addRow.add(desc, amount, plus);
+        addRow.expand(desc);
+
+        card.add(pill, list, addRow);
+        return card;
+    }
+
+    private Component distributionCard(String title) {
+        // versión con 3 inputs (desc / % / monto) como tu Figma
+        VerticalLayout card = new VerticalLayout();
+        card.addClassName("iw-fin-card");
+        card.setPadding(true);
+        card.setSpacing(true);
+
+        Div pill = new Div(new Span(title));
+        pill.addClassName("iw-pill");
 
         Div list = new Div();
-        list.addClassName("inv-list");
-        list.setText(""); // aquí irá el contenido
+        list.addClassName("iw-fin-list");
 
-        HorizontalLayout inputs = new HorizontalLayout();
-        inputs.setWidthFull();
+        HorizontalLayout addRow = new HorizontalLayout();
+        addRow.setWidthFull();
+        addRow.addClassName("iw-fin-add");
+
         TextField desc = new TextField();
         desc.setPlaceholder("Descripción");
-        TextField monto = new TextField();
-        monto.setPlaceholder("Monto");
-        Button plus = new Button("+");
-        plus.addClassName("inv-plus");
+        desc.addClassName("iw-fin-input");
 
-        inputs.add(desc, monto, plus);
-        inputs.expand(desc);
-
-        card.add(pill, list, inputs);
-        card.setFlexGrow(1, list);
-        return card;
-    }
-
-    private Component distCard(String title) {
-        VerticalLayout card = (VerticalLayout) financeCard(title);
-        // reemplaza inputs por 3 campos
-        HorizontalLayout inputs = new HorizontalLayout();
-        inputs.setWidthFull();
-        TextField desc = new TextField();
-        desc.setPlaceholder("Descripción");
         TextField pct = new TextField();
-        pct.setPlaceholder("Porcentaje (%)");
-        TextField monto = new TextField();
-        monto.setPlaceholder("Monto");
+        pct.setPlaceholder("%");
+        pct.addClassName("iw-fin-input");
+        pct.setWidth("70px");
+
+        TextField amount = new TextField();
+        amount.setPlaceholder("Monto");
+        amount.addClassName("iw-fin-input");
+        amount.setWidth("120px");
+
         Button plus = new Button("+");
-        plus.addClassName("inv-plus");
+        plus.addClassName("iw-fin-plus");
 
-        inputs.add(desc, pct, monto, plus);
-        inputs.expand(desc);
+        addRow.add(desc, pct, amount, plus);
+        addRow.expand(desc);
 
-        // card children: pill, list, inputs (sacamos el último y ponemos este)
-        card.remove(card.getComponentAt(2));
-        card.add(inputs);
+        card.add(pill, list, addRow);
         return card;
     }
 
-    private void buildBottomBar() {
-        bottomBar.addClassName("inv-bottombar");
-        bottomBar.setWidthFull();
-        bottomBar.setAlignItems(Alignment.CENTER);
+    private Component totalsCard() {
+        VerticalLayout card = new VerticalLayout();
+        card.addClassName("iw-totals");
+        card.setPadding(true);
+        card.setSpacing(true);
 
-        Span totalLabel = new Span("Total");
-        totalLabel.addClassName("inv-muted");
-        lblTotal.addClassName("inv-grand-total");
+        card.add(
+                totalsLine("Capital Anterior"),
+                totalsLine("Inversion proximo inventario"),
+                totalsLine("Gastos por operaciones"),
+                totalsLine("Ventas del periodo")
+        );
 
-        tfEntradaRapida.setPlaceholder("Ingresa un código o producto para sumarlo al inventario");
-        tfEntradaRapida.setWidthFull();
-
-        bottomBar.add(totalLabel, lblTotal, tfEntradaRapida);
-        bottomBar.expand(tfEntradaRapida);
+        return card;
     }
+
+    private Component totalsLine(String label) {
+        HorizontalLayout row = new HorizontalLayout(new Span(label), new TextField());
+        row.setWidthFull();
+        row.setAlignItems(Alignment.CENTER);
+        row.expand(row.getComponentAt(1));
+        row.addClassName("iw-totals-line");
+        return row;
+    }
+
+    private Component buildFooter() {
+        HorizontalLayout footer = new HorizontalLayout();
+        footer.setWidthFull();
+        footer.setAlignItems(Alignment.CENTER);
+        footer.addClassName("iw-footer");
+
+        Span total = new Span("872,426");
+        total.addClassName("iw-footer-total");
+
+        TextField scan = new TextField();
+        scan.setPlaceholder("Ingresa un codigo o producto para sumarlo al inventario");
+        scan.setWidthFull();
+        scan.addClassName("iw-footer-scan");
+
+        Span meta = new Span("00:53.25  |  7:13  |  7/13/2023");
+        meta.addClassName("iw-footer-meta");
+
+        footer.add(total, scan, meta);
+        footer.expand(scan);
+        return footer;
+    }
+
+    private Component sideCard(String title, Component content) {
+        VerticalLayout card = new VerticalLayout();
+        card.addClassName("iw-side-card");
+
+        Div pill = new Div(new Span(title));
+        pill.addClassName("iw-pill");
+
+        Div contentWrap = new Div(content);
+        contentWrap.addClassName("iw-side-content");
+
+        Button more = new Button("VER MAS");
+        more.addClassName("iw-more");
+
+        card.add(pill, contentWrap, more);
+        return card;
+    }
+
+
+    private Component line(String left, String right) {
+        HorizontalLayout row = new HorizontalLayout(new Span(left), new Span(right));
+        row.addClassName("iw-past-line");
+        row.setWidthFull();
+        row.setJustifyContentMode(JustifyContentMode.BETWEEN);
+        return row;
+    }
+
+    private Component divider() {
+        Div d = new Div();
+        d.addClassName("iw-divider");
+        return d;
+    }
+
+    private Component buildListShell(ListShell<ProductAccounting> compList) {
+        // usa tu ListConfig real aquí, lo dejo neutro:
+        ListConfig<ProductAccounting> cfg = new ListConfig<>(
+                "",
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of(),
+                null
+        );
+        DataProvider<ProductAccounting> dp = spec -> new PagedResult<>(List.of(), 0);
+        return compList.init(cfg, dp);
+    }
+
+    public record PastQtyRow(String fecha, String cantidad, String costo) {}
+    public record PastCostRow(String fecha, String costo) {}
 }

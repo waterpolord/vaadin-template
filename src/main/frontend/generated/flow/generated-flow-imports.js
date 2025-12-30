@@ -2,7 +2,7 @@ import { injectGlobalCss } from 'Frontend/generated/jar-resources/theme-util.js'
 
 import { css, unsafeCSS, registerStyles } from '@vaadin/vaadin-themable-mixin';
 import $cssFromFile_0 from 'Frontend/generated/jar-resources/styles/grid/grid-shape.css?inline';
-import $cssFromFile_1 from 'Frontend/generated/jar-resources/styles/grid/inventory.css?inline';
+import $cssFromFile_1 from 'Frontend/generated/jar-resources/styles/inventory-workbench.css?inline';
 import $cssFromFile_2 from 'Frontend/generated/jar-resources/styles/Login-Style.css?inline';
 import $cssFromFile_3 from 'Frontend/generated/jar-resources/styles/main-layout.css?inline';
 import '@vaadin/polymer-legacy-adapter/style-modules.js';

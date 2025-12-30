@@ -32,6 +32,13 @@ public class Helper {
         return formatted.toString();
     }
 
+    public static Button chip(String text, Icon icon, String iconColor) {
+        icon.setColor(iconColor);
+        Button b = new Button(text, icon);
+        b.addClassName("iw-chip");
+        return b;
+    }
+
     public static HorizontalLayout createHeader() {
 
         Button bell = new Button(new Icon(VaadinIcon.BELL_O));

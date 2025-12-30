@@ -1,0 +1,569 @@
+
+vaadin-app-layout::part(content) {
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #f3f6fb;
+}
+
+:root {
+    --iw-font-base: 15px;
+    font-size: var(--iw-font-base);
+    /*font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+*/
+}
+
+@media (max-width: 1600px) {
+    :root {
+        --iw-font-base: 11px;
+        font-size: var(--iw-font-base);
+    }
+}
+
+
+
+.iw{
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f3f6fb;
+}
+
+.iw-header{
+    flex: 0 0 64px;
+    height: 64px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(15,23,42,.06);
+    z-index: 10;
+}
+
+.iw-body{
+    flex: 1;
+    min-height: 0;
+    padding: 18px;
+    gap: 18px;
+
+    --side: clamp(240px, 18vw, 320px);
+
+    grid-template-columns: var(--side) minmax(520px, 1fr) var(--side);
+    align-items: stretch;
+    overflow: auto;
+
+}
+
+.iw-left, .iw-right{
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.iw-center{
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Card central ocupa TODO el alto del centro */
+.iw-central-card{
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+.iw-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    padding: 0.35rem 0.75rem;
+
+    border-radius: 999px;
+    background: #eef2f7;
+    border: 1px solid #d1d5db;
+
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+
+    line-height: 1;
+    cursor: pointer;
+}
+.iw-chip svg,
+.iw-chip img,
+.iw-chip vaadin-icon,
+.iw-chip i {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+.iw-chip:hover {
+    background: #e5e7eb;
+
+}
+
+/*.iw-center{
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    overflow: hidden;
+}*/
+
+.iw-card{
+    background: #ffffffcc;
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 18px 40px rgba(15,23,42,.05);
+}
+
+.iw-central-card{
+    /* fondo y tamaño */
+    background: #ffffff;
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+
+    border-top: 1px solid #8B5CF614;
+    border-left: 1px solid #8B5CF614;
+    border-right: none;
+    border-bottom: none;
+
+    border-top-left-radius: 24px;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    padding: 18px;
+
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+
+.iw-card-inner{
+    margin-top: 10px;
+}
+
+.iw-mini-card{
+    min-height: 0;
+}
+
+.iw-more{
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    color: #0ea5e9;
+    font-size: var(--iw-font-base);
+
+    cursor: pointer;
+    align-self: flex-start;
+}
+.iw-more:hover::part(label) {
+    text-decoration: underline;
+}
+
+
+
+vaadin-grid.iw-mini-table {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #edf1f5;
+}
+vaadin-grid.iw-mini-table::part(header-cell) {
+    background: #f4f6f9;
+    color: #6b7280;
+    font-size: var(--iw-font-base);
+    font-weight: 700;
+}
+
+.iw-mini-wrap{
+    flex: 1;
+    min-height: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #edf1f5;
+}
+
+
+.iw-mini-wrap > vaadin-grid{
+    height: 100%;
+}
+/* Footer */
+.iw-footer{
+    height: 56px;
+    background: #fff;
+    box-shadow: 0 -8px 20px rgba(15,23,42,.06);
+    padding: 8px 16px;
+    gap: 12px;
+}
+.iw-footer-total{
+    font-weight: 900;
+    font-size: 1.1rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #fff7d6;
+    border: 1px solid #f5d46a;
+}
+.iw-footer-scan::part(input-field){
+    border-radius: 999px;
+}
+
+
+
+/* Card individual (con separación interna) */
+.iw-side-card {
+    background: transparent;          /* en la #4 el gris es del panel */
+    border-radius: 18px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+/* Pill amarilla del título */
+.iw-pill {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+
+    background: #facc15;
+    color: #111827;
+
+    border-radius: 999px;
+    padding: 8px 14px;
+
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+/* Wrapper del contenido (tabla) */
+.iw-side-content {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+}
+
+.iw-side-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+}
+
+.iw-side-content thead th {
+    background: #f9fafb;
+    color: #374151;
+    font-weight: 700;
+    padding: 10px 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.iw-side-content tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #111827;
+}
+
+.iw-side-content tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* INVENTARIO PASADO  */
+
+
+.inventory-past-card {
+    padding: 10px 12px;
+    gap: 8px;
+    background: #F5F7FB;
+}
+
+.inventory-past-card .row {
+    font-size: var(--iw-font-base);
+    line-height: 1.4;
+}
+
+
+.inventory-past-card .row .label {
+    font-size: var(--iw-font-base);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #374151;
+}
+
+.inventory-past-card .row .value {
+    font-size: var(--iw-font-base);
+    font-weight: 600;
+    color: #111827;
+}
+
+
+.inventory-past-card .divider {
+    margin: 4px 0;
+}
+
+.inventory-past-card vaadin-text-field::part(input-field) {
+    font-size: var(--iw-font-base);
+    height: 28px;
+    padding: 4px 10px;
+}
+
+.inventory-past-card input {
+    font-size: var(--iw-font-base);
+}
+
+
+
+.iw-mini-grid::part(header-cell) {
+    background: #f4f6f9;
+    color: #6b7280;
+    font-weight: 800;
+    font-size: var(--iw-font-base);
+}
+.iw-mini-grid::part(cell) {
+    font-size:var(--iw-font-base);
+    border-bottom: 1px solid #edf1f5;
+}
+.iw-mini-grid::part(row):hover { background: #f9fbff; }
+
+/* Past inventory */
+.iw-info-row { padding: 0 2px; }
+.iw-divider { height: 1px; width: 100%; background: #e5e7eb; }
+
+.iw-small-field {
+    border-radius: 10px;
+}
+
+/* Left sidebar */
+.iw-left{
+    width: clamp(240px, 18vw, 320px);
+    min-width: 240px;
+    max-width: 320px;
+}
+
+.iw-left-shell{
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.iw-left-scroll{
+    flex: 1;
+    min-height: 0;
+}
+
+
+/* Botón exit */
+.iw-exit{
+    border-radius: 10px;
+    background: #fee2e2;
+    color: #b91c1c;
+    font-weight: 510;
+    border: 1px solid #fecaca;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+.iw-exit:hover{ background:#fecaca; }
+
+/* Details (Inventario pasado) que se vea como card */
+.iw-past-details{
+    border-radius: 18px;
+    background: #ffffffcc;
+    box-shadow: 0 18px 40px rgba(15,23,42,.05);
+    overflow: hidden;
+}
+.iw-past-details::part(summary){
+    padding: 12px 14px;
+    font-weight: 900;
+}
+.iw-past-details::part(content){
+    padding: 0 14px 14px 14px;
+}
+
+.iw-details {
+    width: 100%;
+}
+
+.iw-details::part(content) {
+    padding: 0;
+    margin: 0;
+}
+
+.iw-details-content {
+    box-sizing: border-box;
+}
+
+
+
+.iw-pill--summary{
+    width: 100%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.iw-details-content{
+    min-height: 0;
+}
+
+
+/* En pantallas pequeñas: sidebar full width (si tu layout lo apila) */
+@media (max-width: 1100px){
+    .iw-left{
+        width: 100%;
+        max-width: none;
+    }
+}
+
+
+/* Exit */
+.iw-exit {
+    width: fit-content;
+    border-radius: 10px;
+    background: #fee2e2;
+    color: #b91c1c;
+    font-weight: 900;
+    border: 1px solid #fecaca;
+}
+.iw-exit:hover { background: #fecaca; }
+
+/* ===== Center inline form ===== */
+.iw-inline-form {
+    background: transparent;
+}
+.iw-field::part(input-field) {
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+}
+
+/* Tools row */
+.iw-tools {
+    gap: 10px;
+}
+.iw-tools-label {
+    color: #6b7280;
+    font-weight: 900;
+}
+.iw-tool-btn {
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid #d1d5db;
+    font-weight: 800;
+}
+.iw-tool-btn:hover { background: #f8fafc; }
+
+.iw-tool-search::part(input-field) {
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+}
+.iw-tool-check {
+    font-weight: 800;
+    color: #374151;
+}
+
+/* Main table card wrapper */
+.iw-table-card {
+    padding: 12px;
+    height: 100%;
+}
+
+/* Action button (row) */
+.iw-row-action {
+    border-radius: 10px;
+    background: #eef2f7;
+    border: 1px solid #dbe3ef;
+}
+.iw-row-action:hover { background: #e3e8ef; }
+
+/* ===== Right finance blocks ===== */
+.iw-fin-list {
+    gap: 8px;
+}
+.iw-fin-row {
+    background: #f2f4f8;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 8px 10px;
+}
+.iw-fin-label { font-weight: 900; color: #111827; }
+.iw-fin-value { font-weight: 900; color: #111827; }
+.iw-fin-pill-mini {
+    background: #e5e7eb;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-weight: 900;
+    color: #111827;
+}
+
+.iw-fin-field::part(input-field) {
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+}
+.iw-plus {
+    border-radius: 10px;
+    background: #eef2f7;
+    border: 1px solid #dbe3ef;
+    font-weight: 900;
+}
+.iw-plus:hover { background: #e3e8ef; }
+
+/* Right totals */
+.iw-kv { gap: 10px; }
+.iw-kv-label { min-width: 160px; font-weight: 900; color: #374151; }
+.iw-kv-field::part(input-field) {
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+}
+@media (max-width: 1366px){
+    .iw-body{
+        padding: 12px;
+        gap: 12px;
+        --side: clamp(210px, 20vw, 280px);
+        grid-template-columns: var(--side) minmax(420px, 1fr) var(--side);
+    }
+
+    .iw-chip{
+        font-size: 0.75rem;
+        padding: 0.30rem 0.65rem;
+    }
+}
+
+.iw-mini-content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+
+    height: clamp(170px, 22vh, 280px);
+    min-height: 0;
+}
+
+
+.iw-mini-content > vaadin-grid{
+    flex: 1;
+    min-height: 0;
+}
+
+
+.iw-mini-content > .iw-more{
+    margin-top: auto;
+}
+
+@media (max-width: 1100px){
+    .iw-body{
+        grid-template-columns: 1fr;
+    }
+}
