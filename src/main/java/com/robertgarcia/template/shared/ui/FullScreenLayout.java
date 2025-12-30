@@ -7,7 +7,7 @@ public class FullScreenLayout extends AppLayout {
 
     public FullScreenLayout() {
 
-        addToNavbar(Helper.createHeader());
+        //addToNavbar(Helper.createHeader());
     }
 }
 

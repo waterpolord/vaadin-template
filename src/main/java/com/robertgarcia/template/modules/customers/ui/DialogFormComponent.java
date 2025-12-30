@@ -1,6 +1,5 @@
 package com.robertgarcia.template.modules.customers.ui;
 
-import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.robertgarcia.template.modules.customers.domain.Customer;
 import com.robertgarcia.template.shared.service.Helper;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -20,6 +19,7 @@ import jakarta.annotation.security.RolesAllowed;
 @RolesAllowed({"ADMIN","WRITE_BUSINESS"})
 public class DialogFormComponent {
     public static void generateCustomerForm(FormLayout form, Binder<Customer> binder) {
+
         TextField name = new TextField("Nombre");
         TextField lastName = new TextField("Apellido");
         TextField nickname = new TextField("Apodo");

@@ -1,6 +1,5 @@
 package com.robertgarcia.template.shared.crud;
 
-import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -39,7 +38,7 @@ public abstract class GenericCrudView<T, ID extends Serializable> extends Vertic
                            Icon icon) {
         this.beanType = beanType;
         this.service = service;
-        this.grid = new Grid<>(beanType, false);
+        this.grid = new Grid<>( );
         this.binder = new Binder<>(beanType);
         this.dialogForm = dialogForm;
         this.formViewClass = formViewClass;
