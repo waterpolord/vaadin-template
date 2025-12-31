@@ -6,7 +6,8 @@ import { css, unsafeCSS, registerStyles } from '@vaadin/vaadin-themable-mixin';
 import $cssFromFile_0 from 'Frontend/generated/jar-resources/styles/grid/grid-shape.css?inline';
 import $cssFromFile_1 from 'Frontend/generated/jar-resources/styles/inventory-workbench.css?inline';
 import $cssFromFile_2 from 'Frontend/generated/jar-resources/styles/Login-Style.css?inline';
-import $cssFromFile_3 from 'Frontend/generated/jar-resources/styles/main-layout.css?inline';
+import $cssFromFile_3 from 'Frontend/generated/jar-resources/styles/panel-map.css?inline';
+import $cssFromFile_4 from 'Frontend/generated/jar-resources/styles/main-layout.css?inline';
 import '@vaadin/polymer-legacy-adapter/style-modules.js';
 import '@vaadin/icon/theme/lumo/vaadin-icon.js';
 import '@vaadin/icons/vaadin-iconset.js';
@@ -127,6 +128,9 @@ injectGlobalWebcomponentCss($cssFromFile_2.toString());
 
 injectGlobalCss($cssFromFile_3.toString(), 'CSSImport end', document);
 injectGlobalWebcomponentCss($cssFromFile_3.toString());
+
+injectGlobalCss($cssFromFile_4.toString(), 'CSSImport end', document);
+injectGlobalWebcomponentCss($cssFromFile_4.toString());
 const loadOnDemand = (key) => { return Promise.resolve(0); }
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.Flow = window.Vaadin.Flow || {};

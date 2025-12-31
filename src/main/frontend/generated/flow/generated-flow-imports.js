@@ -4,7 +4,8 @@ import { css, unsafeCSS, registerStyles } from '@vaadin/vaadin-themable-mixin';
 import $cssFromFile_0 from 'Frontend/generated/jar-resources/styles/grid/grid-shape.css?inline';
 import $cssFromFile_1 from 'Frontend/generated/jar-resources/styles/inventory-workbench.css?inline';
 import $cssFromFile_2 from 'Frontend/generated/jar-resources/styles/Login-Style.css?inline';
-import $cssFromFile_3 from 'Frontend/generated/jar-resources/styles/main-layout.css?inline';
+import $cssFromFile_3 from 'Frontend/generated/jar-resources/styles/panel-map.css?inline';
+import $cssFromFile_4 from 'Frontend/generated/jar-resources/styles/main-layout.css?inline';
 import '@vaadin/polymer-legacy-adapter/style-modules.js';
 import '@vaadin/icon/theme/lumo/vaadin-icon.js';
 import '@vaadin/icons/vaadin-iconset.js';
@@ -123,6 +124,8 @@ injectGlobalCss($cssFromFile_1.toString(), 'CSSImport end', document);
 injectGlobalCss($cssFromFile_2.toString(), 'CSSImport end', document);
 
 injectGlobalCss($cssFromFile_3.toString(), 'CSSImport end', document);
+
+injectGlobalCss($cssFromFile_4.toString(), 'CSSImport end', document);
 const loadOnDemand = (key) => { return Promise.resolve(0); }
 window.Vaadin = window.Vaadin || {};
 window.Vaadin.Flow = window.Vaadin.Flow || {};

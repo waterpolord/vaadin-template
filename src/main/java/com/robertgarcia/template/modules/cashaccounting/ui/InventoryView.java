@@ -1,9 +1,15 @@
 package com.robertgarcia.template.modules.cashaccounting.ui;
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
+import com.robertgarcia.template.modules.cashaccounting.domain.AccountDetail;
 import com.robertgarcia.template.modules.cashaccounting.domain.ProductAccounting;
+import com.robertgarcia.template.modules.products.domain.Product;
+import com.robertgarcia.template.modules.products.service.ProductService;
 import com.robertgarcia.template.shared.list.*;
+import com.robertgarcia.template.shared.panelmap.PanelMapConfig;
+import com.robertgarcia.template.shared.panelmap.TextInputConfig;
 import com.robertgarcia.template.shared.service.Helper;
 import com.robertgarcia.template.shared.ui.FullScreenLayout;
+import com.robertgarcia.template.shared.panelmap.PanelMap;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -13,18 +19,20 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
-import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.IntegerField;
+import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Route(value = "inventory", layout = FullScreenLayout.class)
 @PageTitle("Inventario")
@@ -39,8 +47,10 @@ public class InventoryView extends VerticalLayout {
     private final Grid<PastCostRow> costGrid = new Grid<>(PastCostRow.class, false);
     private Details pastInventoryDetails;
     private final String GRID_SIZE = "170px";
+    private final ProductService productService;
 
-    public InventoryView(ListShell<ProductAccounting> compList) {
+    public InventoryView(ListShell<ProductAccounting> compList, ProductService productService) {
+        this.productService = productService;
         setSizeFull();
         setPadding(false);
         setSpacing(false);
@@ -86,20 +96,18 @@ public class InventoryView extends VerticalLayout {
         Div center = new Div();
         center.addClassName("iw-center");
 
-        Div centralCard = new Div();
+        HorizontalLayout centralCard = new HorizontalLayout();
         centralCard.addClassName("iw-central-card");
 
+        Component right = buildRight();
         centralCard.add(
-                /* grids, forms, layouts, etc */
+                buildProductEntryBar(), right
         );
 
         center.add(centralCard);
 
-        /*
-        Component center = buildCenter();
-        Component right = buildRight();*/
 
-        body.add(left,center/*, center, right*/);
+        body.add(left,center);
         body.setFlexGrow(0, left);
         body.setFlexGrow(1, center);
         /*
@@ -107,6 +115,163 @@ public class InventoryView extends VerticalLayout {
         body.setFlexGrow(0, right);*/
 
         return body;
+    }
+
+    private Component buildProductEntryBar() {
+        List<Product> products = productService.findAll();
+
+        IntegerField code = new IntegerField();
+        code.setLabel("Código");
+        code.setPlaceholder("Escanee o Escriba el código del producto");
+        code.setValueChangeMode(ValueChangeMode.ON_CHANGE);
+        code.setMin(0);
+        code.setWidthFull();
+
+        ComboBox<Product> description = new ComboBox<>();
+        description.setLabel("Descripción");
+        description.setItems(products);
+        description.setItemLabelGenerator(p -> p.getName() == null ? "" : p.getName());
+        description.setClearButtonVisible(true);
+        description.setAllowCustomValue(true);
+        description.setWidthFull();
+
+        TextField med = new TextField();
+        med.setLabel("Med");
+        med.setWidthFull();
+
+        NumberField cost = new NumberField();
+        cost.setLabel("Costo");
+        cost.setStep(0.01);
+        cost.setMin(0);
+        cost.setWidthFull();
+
+        IntegerField qty = new IntegerField();
+        qty.setLabel("Cant");
+        qty.setMin(0);
+        qty.setValueChangeMode(ValueChangeMode.ON_CHANGE);
+        qty.setWidthFull();
+
+        NumberField total = new NumberField();
+        total.setLabel("Total");
+        total.setReadOnly(true);
+        total.setWidthFull();
+
+        Runnable clearAll = () -> {
+            description.clear();
+            med.clear();
+            cost.clear();
+            qty.clear();
+            total.clear();
+        };
+
+        Runnable recalc = () -> {
+            Integer q = qty.getValue();
+            Double c = cost.getValue();
+            if (q == null || c == null) {
+                total.clear();
+                return;
+            }
+            total.setValue(q.doubleValue() * c);
+        };
+
+        code.addValueChangeListener(e -> {
+            Integer v = e.getValue();
+            if (v == null) {
+                clearAll.run();
+                return;
+            }
+
+            try {
+                Product p = productService.findById(v);
+                description.setValue(p);
+                med.setValue(p.getMeasure() == null ? "" : p.getMeasure());
+                cost.setValue(p.getCost() == null ? 0d : p.getCost());
+                qty.focus();
+                recalc.run();
+            } catch (NoSuchElementException ex) {
+                Product p = Product.builder()
+                        .name("")
+                        .measure("")
+                        .barCode(String.valueOf(v))
+                        .cost(0d)
+                        .price(0d)
+                        .build();
+                Product saved = productService.save(p);
+
+                code.setValue(saved.getId());
+                description.setValue(saved);
+                med.setValue("");
+                cost.setValue(0d);
+                qty.focus();
+                recalc.run();
+            }
+        });
+
+        description.addValueChangeListener(e -> {
+            Product p = e.getValue();
+            if (p == null) {
+                med.clear();
+                return;
+            }
+            med.setValue(p.getMeasure() == null ? "" : p.getMeasure());
+            if (p.getCost() != null) cost.setValue(p.getCost());
+            if (p.getId() != null) code.setValue(p.getId());
+            qty.focus();
+            recalc.run();
+        });
+
+        description.addCustomValueSetListener(e -> {
+            String name = e.getDetail() == null ? "" : e.getDetail().trim();
+            if (name.isEmpty()) return;
+
+            Product p = Product.builder()
+                    .name(name)
+                    .measure("")
+                    .cost(0d)
+                    .price(0d)
+                    .build();
+
+            Product saved = productService.save(p);
+
+            description.setItems(productService.findAll());
+            description.setValue(saved);
+            code.setValue(saved.getId());
+            qty.focus();
+        });
+
+        qty.addValueChangeListener(e -> recalc.run());
+        cost.addValueChangeListener(e -> recalc.run());
+
+        FormLayout form = new FormLayout();
+        form.addClassName("iw-product-bar");
+        form.setWidthFull();
+
+        /*form.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("0px", 6)
+        );*/
+
+        form.add(code, description, qty, med, cost, total);
+
+        //form.setColspan(description, 2);
+        Button dataTrans = new Button("Transferir datos", FontAwesome.Solid.UPLOAD.create());
+        dataTrans.addClassName("iw-chip");
+        Button editProfile = new Button("Editar perfil", FontAwesome.Solid.USER_EDIT.create());
+        editProfile.addClassName("iw-chip");
+        HorizontalLayout tools = new HorizontalLayout(
+                new Span("Herramientas"),
+                dataTrans, editProfile
+
+        );
+        tools.addClassName("iw-tools");
+        tools.setWidthFull();
+        form.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("0", 1),
+                new FormLayout.ResponsiveStep("700px", 2)
+        );
+        Div wrap = new Div(form, tools);
+        wrap.addClassName("iw-product-wrap");
+        wrap.getStyle().set("width", "100%");
+        return wrap;
     }
 
     void openCantidadPasada() {
@@ -147,7 +312,8 @@ public class InventoryView extends VerticalLayout {
         d.addClassName("iw-details");
         d.setOpened(opened);
         d.setWidthFull();
-        d.addOpenedChangeListener(e -> applyLeftSizing(e.isOpened()));
+        if(!opened)
+            d.addOpenedChangeListener(e -> applyLeftSizing(e.isOpened()));
         return d;
     }
 
@@ -212,7 +378,41 @@ public class InventoryView extends VerticalLayout {
         return costGrid;
     }
 
+    private Component accountDataCard() {
+        VerticalLayout content = new VerticalLayout();
+        content.setPadding(true);
+        content.setSpacing(true);
+        content.setWidthFull();
+        content.addClassName("iw-card");
+        content.addClassName("iw-past-card");
 
+        Span actual = new Span("CAPITAL ACTUAL");
+        TextField actualText = new TextField();
+        actualText.setValue("3500");
+        actual.addClassName("iw-small-field");
+        actualText.setWidth("140px");
+
+        Span inv = new Span("INVERSIÓN PROXIMO INVENTARIO");
+        TextField nextInv = new TextField();
+
+        inv.addClassName("iw-small-field");
+        nextInv.setWidth("140px");
+
+        Span inv2 = new Span("GASTOS POR OPERACIONES");
+        TextField expenses = new TextField();
+
+        inv2.addClassName("iw-small-field");
+        expenses.setWidth("140px");
+
+        Span inv3 = new Span("VENTAS DEL PERIODO");
+        TextField sales = new TextField();
+
+        inv3.addClassName("iw-small-field");
+        sales.setWidth("140px");
+
+        content.add(actual, actualText, inv, nextInv, inv2, expenses, inv3, sales);
+        return content;
+    }
 
     private Component pastInventoryCard() {
         VerticalLayout content = new VerticalLayout();
@@ -238,8 +438,8 @@ public class InventoryView extends VerticalLayout {
         content.add(invCost);
         return content;
     }
-    private void applyLeftSizing(boolean detailsOpened) {
-        String h = detailsOpened ? "95px" : GRID_SIZE;
+    private void applyLeftSizing(boolean invPastOpened) {
+        String h = invPastOpened ? "95px":GRID_SIZE;
         qtyGrid.setHeight(h);
         costGrid.setHeight(h);
         qtyGrid.getElement().getStyle().set("minHeight", h);
@@ -345,14 +545,132 @@ public class InventoryView extends VerticalLayout {
         right.setHeightFull();
         right.addClassName("iw-right");
 
-        right.add(
-                financeCard("ACTIVOS"),
-                financeCard("PASIVOS"),
-                distributionCard("DISTRIBUCION"),
-                totalsCard()
+        PanelMapConfig<AccountDetail> cfg = new PanelMapConfig<>(
+                "ACTIVOS",
+                java.util.List.of(
+                        TextInputConfig.text("desc", "Descripción", 1),
+                        TextInputConfig.number("amount", "Monto", "110px")
+                ),
+                values -> new AccountDetail(
+                        (String) values.get("desc"),
+                        (Double) values.getOrDefault("amount", 0d)
+                ),
+                (row, remove, update) -> {
+                    Div r = new Div();
+                    r.addClassName("pm-row");
+
+                    TextField d = new TextField();
+                    d.setValue(row.getDescription() == null ? "" : row.getDescription());
+                    d.addClassName("pm-row-edit");
+                    d.setClearButtonVisible(true);
+                    d.addValueChangeListener(e -> {
+                        row.setDescription(e.getValue());
+                        update.accept(row);
+                    });
+
+                    NumberField a = new NumberField();
+                    a.setValue(row.getAmount());
+                    a.addClassName("pm-row-edit");
+                    a.setWidth("90px");
+                    a.addValueChangeListener(e -> {
+                        row.setAmount(e.getValue() == null ? 0d : e.getValue());
+                        update.accept(row);
+                    });
+
+                    Button del = new Button("—", e -> remove.run());
+                    del.addClassName("pm-row-remove");
+
+                    r.add(d, a, del);
+                    return r;
+                },
+                row -> { /* onAdd */ },
+                row -> { /* onRemove */ },
+                (oldRow, newRow) -> { /* onUpdate */ }
         );
+
+        PanelMap<AccountDetail> activos = new PanelMap<>(cfg);
+
+
+        PanelMapConfig<AccountDetail> pasivosC = new PanelMapConfig<>(
+                "PASIVOS",
+                java.util.List.of(
+                        TextInputConfig.text("desc", "Descripción", 1),
+                        TextInputConfig.number("amount", "Monto", "110px")
+                ),
+                values -> new AccountDetail(
+                        (String) values.get("desc"),
+                        (Double) values.getOrDefault("amount", 0d)
+                ),
+                (row, remove, update) -> {
+                    Div r = new Div();
+                    r.addClassName("pm-row");
+
+                    Span d = new Span(row.getDescription());
+                    d.addClassName("pm-row-desc");
+
+                    Span a = new Span(String.valueOf(row.getAmount()));
+                    a.addClassName("pm-row-amount");
+
+                    Button del = new Button("—", e -> remove.run());
+                    del.addClassName("pm-row-remove");
+
+                    r.add(d, a, del);
+                    return r;
+                },
+                row -> { /* onAdd */ },
+                row -> { /* onRemove */ },
+                (oldRow, newRow) -> { /* onUpdate */ }
+        );
+
+        PanelMap<AccountDetail> pasivosDetail = new PanelMap<>(pasivosC);
+
+        PanelMapConfig<AccountDetail> distCfg = new PanelMapConfig<>(
+                "DISTRIBUCIÓN",
+                java.util.List.of(
+                        TextInputConfig.text("desc", "Descripción", 1),
+                        TextInputConfig.number("pct", "%", "70px"),
+                        TextInputConfig.number("amount", "Monto", "110px")
+                ),
+                values -> new AccountDetail(
+                        (String) values.get("desc"),
+                        (Double) values.getOrDefault("pct", 0d),
+                        (Double) values.getOrDefault("amount", 0d)
+                ),
+                (row, remove, update) -> {
+                    Div r = new Div();
+                    r.addClassName("pm-row");
+                    r.addClassName("pm-row--dist");
+
+                    Span d = new Span(row.getDescription());
+                    d.addClassName("pm-row-desc");
+
+                    Span p = new Span("% " + row.getPercentage());
+                    p.addClassName("pm-row-pct");
+
+                    Span a = new Span(String.valueOf(row.getAmount()));
+                    a.addClassName("pm-row-amount");
+
+                    Button del = new Button("—", e -> remove.run());
+                    del.addClassName("pm-row-remove");
+
+                    r.add(d, p, a, del);
+                    return r;
+                },
+                row -> {},
+                row -> {},
+                (oldRow, newRow) -> {}
+        );
+
+        PanelMap<AccountDetail> distribucion = new PanelMap<>(distCfg);
+        Details accountData = detailsPill("Datos de cuenta", accountDataCard(), true);
+        right.add(activos, pasivosDetail, distribucion, accountData);
+        right.setFlexGrow(1, activos);
+        right.setFlexGrow(1, pasivosDetail);
+        right.setFlexGrow(1, distribucion);
+
         return right;
     }
+
 
     private Component financeCard(String title) {
         VerticalLayout card = new VerticalLayout();
