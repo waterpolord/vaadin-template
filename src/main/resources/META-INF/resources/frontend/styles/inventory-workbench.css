@@ -6,7 +6,7 @@ vaadin-app-layout::part(content) {
 }
 
 :root {
-    --iw-font-base: 15px;
+    --iw-font-base: 11px;
     --iw-card-color: #F4F4F4;
     font-size: var(--iw-font-base);
 
@@ -50,6 +50,8 @@ vaadin-app-layout::part(content) {
     overflow: auto;
 
 }
+
+
 
 .iw-left, .iw-right{
     width: 100%;
@@ -114,8 +116,7 @@ vaadin-app-layout::part(content) {
 .iw-chip img,
 .iw-chip vaadin-icon,
 .iw-chip i {
-    width: 14px;
-    height: 14px;
+    width: 20px;
     flex-shrink: 0;
 }
 .iw-chip:hover {
@@ -195,7 +196,6 @@ vaadin-grid.iw-mini-table::part(header-cell) {
     background: #f4f6f9;
     color: #6b7280;
     font-size: var(--iw-font-base);
-    font-weight: 700;
 }
 
 .iw-mini-wrap{
@@ -259,7 +259,7 @@ vaadin-grid.iw-mini-table::part(header-cell) {
     padding: 8px 14px;
 
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 12px;
 }
 
 /* Wrapper del contenido (tabla) */
@@ -267,13 +267,19 @@ vaadin-grid.iw-mini-table::part(header-cell) {
     background: #ffffff;
     border-radius: 12px;
     border: 1px solid #e5e7eb;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
-
+/*
 .iw-side-content table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.78rem;
+}*/
+.iw-side-content table {
+    width: 100%;
+    min-width: 360px;
+    table-layout: auto;
 }
 
 .iw-side-content thead th {
@@ -289,6 +295,11 @@ vaadin-grid.iw-mini-table::part(header-cell) {
     border-bottom: 1px solid #f1f5f9;
     color: #111827;
 }
+.iw-side-content th,
+.iw-side-content td{
+    white-space: nowrap;
+}
+
 
 .iw-side-content tbody tr:last-child td {
     border-bottom: none;
@@ -360,15 +371,22 @@ vaadin-grid.iw-mini-table::part(header-cell) {
 }
 
 /* Left sidebar */
-.iw-left{
+/*.iw-left{
     width: clamp(240px, 18vw, 320px);
     min-width: 240px;
     max-width: 320px;
+}*/
+
+.iw-left{
+    width: auto;
+
+    max-width: 24%;
 }
 
+
 .iw-right{
-    min-width: 240px;
-    max-width: 402px;
+
+    max-width: 36%;
 }
 
 .iw-left-shell{
@@ -428,7 +446,7 @@ vaadin-grid.iw-mini-table::part(header-cell) {
 
 
 .iw-pill--summary{
-    width: 100%;
+    width: 90%;
     cursor: pointer;
     user-select: none;
 }

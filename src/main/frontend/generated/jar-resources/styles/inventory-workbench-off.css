@@ -1,12 +1,12 @@
 
-vaadin-app-layout::part(content) {
+/*vaadin-app-layout::part(content) {
     padding: 0 !important;
     overflow: hidden !important;
     background: #f3f6fb;
-}
+}*/
 
 :root {
-    --iw-font-base: 11px;
+    --iw-font-base: 15px;
     --iw-card-color: #F4F4F4;
     font-size: var(--iw-font-base);
 
@@ -14,7 +14,7 @@ vaadin-app-layout::part(content) {
 
 @media (max-width: 1600px) {
     :root {
-        --iw-font-base: 11px;
+        --iw-font-base: 15px;
         font-size: var(--iw-font-base);
     }
 }
@@ -37,7 +37,7 @@ vaadin-app-layout::part(content) {
     z-index: 10;
 }
 
-.iw-body{
+/*.iw-body{
     flex: 1;
     min-height: 0;
     padding: 18px;
@@ -49,8 +49,11 @@ vaadin-app-layout::part(content) {
     align-items: stretch;
     overflow: auto;
 
+}*/
+.iw-body{
+    --side: minmax(280px, 1fr);
+    grid-template-columns: var(--side) minmax(600px, 2fr) minmax(280px, 1fr);
 }
-
 
 
 .iw-left, .iw-right{
@@ -116,7 +119,8 @@ vaadin-app-layout::part(content) {
 .iw-chip img,
 .iw-chip vaadin-icon,
 .iw-chip i {
-    width: 20px;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
 }
 .iw-chip:hover {
@@ -259,7 +263,7 @@ vaadin-grid.iw-mini-table::part(header-cell) {
     padding: 8px 14px;
 
     font-weight: 700;
-    font-size: 12px;
+    font-size: 0.85rem;
 }
 
 /* Wrapper del contenido (tabla) */
@@ -379,14 +383,14 @@ vaadin-grid.iw-mini-table::part(header-cell) {
 
 .iw-left{
     width: auto;
-
-    max-width: 24%;
+    min-width: 280px;
+    max-width: none;
 }
 
 
 .iw-right{
-
-    max-width: 36%;
+    min-width: 240px;
+    max-width: 402px;
 }
 
 .iw-left-shell{
@@ -446,7 +450,7 @@ vaadin-grid.iw-mini-table::part(header-cell) {
 
 
 .iw-pill--summary{
-    width: 90%;
+    width: 100%;
     cursor: pointer;
     user-select: none;
 }

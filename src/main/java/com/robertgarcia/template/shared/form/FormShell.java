@@ -1,5 +1,6 @@
 package com.robertgarcia.template.shared.form;
 
+import com.robertgarcia.template.shared.service.Helper;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.avatar.Avatar;
@@ -73,7 +74,7 @@ public class FormShell<T> extends Composite<VerticalLayout> {
             titleRow.add(title);
         }
 
-        // Card grande con avatar + texto centrado
+
         Avatar avatar = new Avatar();
         avatar.addClassName("form-avatar");
 
@@ -120,7 +121,7 @@ public class FormShell<T> extends Composite<VerticalLayout> {
 
             for (FormField<T> field : section.fields()) {
                 Component c = field.componentFactory().apply(bean);
-                c.getElement().setProperty("label", field.label()); // para algunos componentes
+                c.getElement().setProperty("label", field.label());
                 field.bind().accept(binder, c);
 
                 form.add(c);
@@ -129,7 +130,7 @@ public class FormShell<T> extends Composite<VerticalLayout> {
                 }
             }
 
-            sectionCard.add(form);
+            sectionCard.add(form, Helper.divider());
             wrapper.add(sectionCard);
         }
 
@@ -146,8 +147,20 @@ public class FormShell<T> extends Composite<VerticalLayout> {
             b.addClassName("form-action-btn");
             if (a.variants() != null) a.variants().forEach(b::addThemeVariants);
 
+            b.getElement().setProperty("type", "button"); // evita comportamiento tipo submit por si acaso
+
             b.addClickListener(e -> {
+                boolean skipValidation =
+                        (a.variants() != null && a.variants().contains(com.vaadin.flow.component.button.ButtonVariant.LUMO_TERTIARY))
+                                || "cancelar".equalsIgnoreCase(a.label());
+
+                if (skipValidation) {
+                    a.handler().accept(bean, ctx);
+                    return;
+                }
+
                 if (!binder.validate().isOk()) return;
+
                 try {
                     binder.writeBean(bean);
                     a.handler().accept(bean, ctx);
@@ -155,6 +168,7 @@ public class FormShell<T> extends Composite<VerticalLayout> {
                     ctx.toast("No se pudo guardar: " + ex.getMessage());
                 }
             });
+
 
             actions.add(b);
         }

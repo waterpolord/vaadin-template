@@ -46,7 +46,7 @@ public class BusinessView extends VerticalLayout {
         ListConfig<Business> config = new ListConfig<>(
                 "Listado de clientes",
                 List.of(
-                        new ToolbarAction("Nuevo Cliente",this::openCreateBusiness,FontAwesome.Solid.USER_PLUS.create())
+                        new ToolbarAction("Nuevo Cliente",this::openCreateBusiness,FontAwesome.Solid.BUILDING_CIRCLE_ARROW_RIGHT.create())
                 ),
                 List.of(new Summary(FontAwesome.Solid.CIRCLE_USER.create(),"#6E727A", "Nuevos Clientes","","50","50"),
                         new Summary(FontAwesome.Solid.CHART_SIMPLE.create(),"#30DA9B", "Ingresos de clientes","S","250k","50"),
@@ -77,7 +77,7 @@ public class BusinessView extends VerticalLayout {
 
 
     private HorizontalLayout buildActionButtons(Business Business) {
-        Button edit = new Button(FontAwesome.Solid.PEN.create());
+        Button edit = new Button(FontAwesome.Solid.PLAY.create());
         edit.addClassName("app-grid-action-btn");
 
         Button delete = new Button(FontAwesome.Solid.TRASH.create());
@@ -116,10 +116,11 @@ public class BusinessView extends VerticalLayout {
 
 
     void openEditor(Business bean) {
-        UI.getCurrent().navigate(InventoryView.class);
+        UI.getCurrent().navigate(InventoryView.class, bean.getId());
     }
 
     private void openCreateBusiness() {
+        UI.getCurrent().navigate(CreateBusinessForm.class);
     }
 
     void openProfile(Business Business){

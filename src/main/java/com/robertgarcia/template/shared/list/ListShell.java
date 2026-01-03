@@ -30,6 +30,7 @@ public class ListShell<T> {
     private DataProvider<T> dataProvider;
 
     public VerticalLayout init(ListConfig<T> config, DataProvider<T> dataProvider) {
+        boolean buildSumaries = config.summaries() != null && !config.summaries().isEmpty();
         titleLabel = new H2();
         filtersSection = new HorizontalLayout();
         grid = new Grid<>();
@@ -42,7 +43,13 @@ public class ListShell<T> {
         buildColumns();
 
         loadPage(0);
-        VerticalLayout container = new VerticalLayout(header, summarySection, filtersSection, grid);
+        VerticalLayout container;
+        if(buildSumaries){
+             container = new VerticalLayout(header, summarySection, filtersSection, grid);
+        }else{
+             container = new VerticalLayout(header, filtersSection, grid);
+        }
+
         container.setSizeFull();
         container.setPadding(false);
         container.setSpacing(false);
@@ -75,12 +82,14 @@ public class ListShell<T> {
     }
 
     private void buildSummarySection(){
-        FlexLayout wrapper = new FlexLayout();
-        wrapper.addClassName("crud-summary-wrapper");
-        wrapper.add(createSummaryCard(config.summaries()));
-        wrapper.setAlignItems(FlexComponent.Alignment.CENTER);
-        wrapper.setWidthFull();
-        summarySection = wrapper;
+        if (config.summaries() != null && !config.summaries().isEmpty()) {
+            FlexLayout wrapper = new FlexLayout();
+            wrapper.addClassName("crud-summary-wrapper");
+            wrapper.add(createSummaryCard(config.summaries()));
+            wrapper.setAlignItems(FlexComponent.Alignment.CENTER);
+            wrapper.setWidthFull();
+            summarySection = wrapper;
+        }
     }
 
     private com.vaadin.flow.component.Component createSummaryCard(List<Summary> summaries) {

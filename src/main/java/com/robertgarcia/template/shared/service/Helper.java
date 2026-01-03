@@ -1,7 +1,11 @@
 package com.robertgarcia.template.shared.service;
 
+
+import com.robertgarcia.template.modules.cashaccounting.domain.TimeType;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -10,12 +14,13 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class Helper {
     public static String asMoney(double v) {
         return new java.text.DecimalFormat("#,##0.##").format(v);
     }
-
     public static String identificationFormat(String raw) {
         raw = raw.replaceAll("[^0-9]", "");
 
@@ -99,6 +104,34 @@ public class Helper {
     public static String nullSafety(String v) {
         return v == null || v.isBlank() ? "N/A" : v;
     }
+    public static LocalDate findDateByTimeTypeFromToday(TimeType timeType) {
+        LocalDate date = LocalDate.now();
+        switch (timeType) {
+            case DAILY -> date = date.plusDays(1);
+            case WEEKLY -> date = date.plusWeeks(1);
+            case FORTNIGHTLY -> date = date.plusWeeks(2);
+            case MONTHLY -> date = date.plusMonths(1);
+            case YEARLY -> date = date.plusYears(1);
+            default -> date = LocalDate.now();
+        }
+        return date;
+    }
 
+    public static Component divider() {
+        Div d = new Div();
+        d.addClassName("iw-divider");
+        return d;
+    }
+    public static boolean isEmpty(String s) { return s == null || s.isBlank(); }
+    public static String trim(String s) { return s == null ? "" : s.trim(); }
 
+    public static Integer parseInt(String s) {
+        try { return (s == null || s.isBlank()) ? null : Integer.valueOf(s.trim()); }
+        catch (NumberFormatException e) { return null; }
+    }
+
+    public static Double parseDouble(String s) {
+        try { return (s == null || s.isBlank()) ? null : Double.valueOf(s.trim()); }
+        catch (NumberFormatException e) { return null; }
+    }
 }

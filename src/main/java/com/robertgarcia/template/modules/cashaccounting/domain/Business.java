@@ -20,6 +20,8 @@ public class Business extends BasicEntity {
     private String address;
     @Column(name = "phone")
     private String phone;
+    @Column(name = "owner_phone")
+    private String ownerPhone;
     @Column(name = "cash")
     private Double cash;
     private Double latitude;
@@ -30,9 +32,34 @@ public class Business extends BasicEntity {
     private TimeType timeType;
     @ColumnDefault(value = "3000")
     @Column(nullable = false)
-    private Integer inventoryPrice;
+    private Double inventoryPrice;
     private LocalDate lastInventoryDate;
+    private String identification;
+    private Boolean isPassport;
 
+    public String getOwnerPhone() {
+        return ownerPhone;
+    }
+
+    public void setOwnerPhone(String ownerPhone) {
+        this.ownerPhone = ownerPhone;
+    }
+
+    public Boolean getPassport() {
+        return isPassport;
+    }
+
+    public void setPassport(Boolean passport) {
+        isPassport = passport;
+    }
+
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
 
     public String getAddress() {
         return address;
@@ -114,11 +141,11 @@ public class Business extends BasicEntity {
         this.timeType = timeType;
     }
 
-    public Integer getInventoryPrice() {
+    public Double getInventoryPrice() {
         return inventoryPrice;
     }
 
-    public void setInventoryPrice(Integer inventoryPrice) {
+    public void setInventoryPrice(Double inventoryPrice) {
         this.inventoryPrice = inventoryPrice;
     }
 

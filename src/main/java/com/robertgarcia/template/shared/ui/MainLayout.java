@@ -58,7 +58,7 @@ public class MainLayout extends AppLayout implements AfterNavigationObserver {
                 VaadinIcon.USERS.create(), "Clientes", "customers");
 
         addMenuItemIfAuthorized(menu, "ROLE_CASH_ACCOUNTING",
-                VaadinIcon.PACKAGE.create(), "Inventario", "inventory");
+                VaadinIcon.PACKAGE.create(), "Inventario", "cash-accounting");
 
         addMenuItemIfAuthorized(menu, "ROLE_USERS",
                 FontAwesome.Solid.USER_TIE.create(), "Usuarios", "users");

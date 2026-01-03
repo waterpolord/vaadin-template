@@ -11,6 +11,7 @@ vaadin-app-layout {
     background: #EBF4FB;
     border-color: #EBF4FB;
 }
+.iw-divider { height: 1px; width: 100%; background: #e5e7eb; }
 vaadin-app-layout::part(drawer) {
     border-right: none !important;
     box-shadow: none !important;

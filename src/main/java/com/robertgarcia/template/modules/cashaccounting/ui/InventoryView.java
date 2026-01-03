@@ -1,7 +1,9 @@
 package com.robertgarcia.template.modules.cashaccounting.ui;
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
-import com.robertgarcia.template.modules.cashaccounting.domain.AccountDetail;
-import com.robertgarcia.template.modules.cashaccounting.domain.ProductAccounting;
+import com.robertgarcia.template.modules.cashaccounting.domain.*;
+import com.robertgarcia.template.modules.cashaccounting.service.BusinessService;
+import com.robertgarcia.template.modules.cashaccounting.service.CashAccountingService;
+import com.robertgarcia.template.modules.cashaccounting.service.ProductAccountingService;
 import com.robertgarcia.template.modules.products.domain.Product;
 import com.robertgarcia.template.modules.products.service.ProductService;
 import com.robertgarcia.template.shared.list.*;
@@ -11,6 +13,8 @@ import com.robertgarcia.template.shared.service.Helper;
 import com.robertgarcia.template.shared.ui.FullScreenLayout;
 import com.robertgarcia.template.shared.panelmap.PanelMap;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -27,47 +31,56 @@ import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.wontlost.sweetalert2.Config;
+import com.wontlost.sweetalert2.SweetAlert2Vaadin;
 import jakarta.annotation.security.RolesAllowed;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @Route(value = "inventory", layout = FullScreenLayout.class)
 @PageTitle("Inventario")
 @RolesAllowed({"ADMIN","READ_BUSINESS","WRITE_BUSINESS","DELETE_BUSINESS"})
 @CssImport("./styles/inventory-workbench.css")
-public class InventoryView extends VerticalLayout {
+public class InventoryView extends VerticalLayout implements HasUrlParameter<Integer> {
 
-    private Component listShell; // tu ListShell<ProductAccounting>
+    private final ListShell<ProductAccounting> listShell;
 
     // left grids
     private final Grid<PastQtyRow> qtyGrid = new Grid<>(PastQtyRow.class, false);
     private final Grid<PastCostRow> costGrid = new Grid<>(PastCostRow.class, false);
-    private Details pastInventoryDetails;
     private final String GRID_SIZE = "170px";
     private final ProductService productService;
+    private final BusinessService businessService;
+    private CashAccounting cashAccounting;
+    private final CashAccountingService cashAccountingService;
+    private final ProductAccountingService productAccountingService;
+    private Business selectedBusiness;
 
-    public InventoryView(ListShell<ProductAccounting> compList, ProductService productService) {
+    private final IntegerField code = new IntegerField();
+    private final ComboBox<Product> description = new ComboBox<>();
+    private final TextField med = new TextField();
+    private final NumberField cost = new NumberField();
+    private final IntegerField qty = new IntegerField();
+    private final NumberField total = new NumberField();
+
+    public InventoryView(ListShell<ProductAccounting> compList, ProductService productService, CashAccountingService cashAccountingService, ProductAccountingService productAccountingService, BusinessService businessService) {
         this.productService = productService;
+        this.cashAccountingService = cashAccountingService;
+        this.productAccountingService = productAccountingService;
         setSizeFull();
         setPadding(false);
         setSpacing(false);
         addClassName("iw-root");
-
-        // tu listShell
-        listShell = buildListShell(compList);
-
-        Component header = buildHeader();
-        Component body = buildBody();
-        /*Component footer = buildFooter();*/
-
-        add(header, body/*, footer*/);
-        setFlexGrow(0, header);
-        setFlexGrow(1, body);
-        /*setFlexGrow(1, body);
-        setFlexGrow(0, footer);*/
+        listShell = compList;
+        this.businessService = businessService;
     }
 
     private Component buildHeader() {
@@ -100,8 +113,10 @@ public class InventoryView extends VerticalLayout {
         centralCard.addClassName("iw-central-card");
 
         Component right = buildRight();
+        Component centralGrid = initialize();
         centralCard.add(
-                buildProductEntryBar(), right
+                new VerticalLayout(buildProductEntryBar(),centralGrid),
+                 right
         );
 
         center.add(centralCard);
@@ -120,14 +135,13 @@ public class InventoryView extends VerticalLayout {
     private Component buildProductEntryBar() {
         List<Product> products = productService.findAll();
 
-        IntegerField code = new IntegerField();
+
         code.setLabel("Código");
         code.setPlaceholder("Escanee o Escriba el código del producto");
         code.setValueChangeMode(ValueChangeMode.ON_CHANGE);
         code.setMin(0);
         code.setWidthFull();
 
-        ComboBox<Product> description = new ComboBox<>();
         description.setLabel("Descripción");
         description.setItems(products);
         description.setItemLabelGenerator(p -> p.getName() == null ? "" : p.getName());
@@ -135,45 +149,30 @@ public class InventoryView extends VerticalLayout {
         description.setAllowCustomValue(true);
         description.setWidthFull();
 
-        TextField med = new TextField();
+
         med.setLabel("Med");
         med.setWidthFull();
 
-        NumberField cost = new NumberField();
+
         cost.setLabel("Costo");
         cost.setStep(0.01);
         cost.setMin(0);
         cost.setWidthFull();
 
-        IntegerField qty = new IntegerField();
+
         qty.setLabel("Cant");
-        qty.setMin(0);
+
         qty.setValueChangeMode(ValueChangeMode.ON_CHANGE);
         qty.setWidthFull();
 
-        NumberField total = new NumberField();
+
         total.setLabel("Total");
         total.setReadOnly(true);
         total.setWidthFull();
 
-        Runnable clearAll = () -> {
-            description.clear();
-            med.clear();
-            cost.clear();
-            qty.clear();
-            total.clear();
-        };
 
-        Runnable recalc = () -> {
-            Integer q = qty.getValue();
-            Double c = cost.getValue();
-            if (q == null || c == null) {
-                total.clear();
-                return;
-            }
-            total.setValue(q.doubleValue() * c);
-        };
-
+        code.setValueChangeMode(ValueChangeMode.LAZY);
+        qty.setValueChangeMode(ValueChangeMode.EAGER);
         code.addValueChangeListener(e -> {
             Integer v = e.getValue();
             if (v == null) {
@@ -189,30 +188,17 @@ public class InventoryView extends VerticalLayout {
                 qty.focus();
                 recalc.run();
             } catch (NoSuchElementException ex) {
-                Product p = Product.builder()
-                        .name("")
-                        .measure("")
-                        .barCode(String.valueOf(v))
-                        .cost(0d)
-                        .price(0d)
-                        .build();
-                Product saved = productService.save(p);
-
-                code.setValue(saved.getId());
-                description.setValue(saved);
-                med.setValue("");
-                cost.setValue(0d);
-                qty.focus();
-                recalc.run();
+                System.out.println("Producto no existe");
             }
         });
-
+        code.setValueChangeTimeout(500);
         description.addValueChangeListener(e -> {
             Product p = e.getValue();
             if (p == null) {
                 med.clear();
                 return;
             }
+            description.setValue(p);
             med.setValue(p.getMeasure() == null ? "" : p.getMeasure());
             if (p.getCost() != null) cost.setValue(p.getCost());
             if (p.getId() != null) code.setValue(p.getId());
@@ -235,24 +221,30 @@ public class InventoryView extends VerticalLayout {
 
             description.setItems(productService.findAll());
             description.setValue(saved);
+
             code.setValue(saved.getId());
             qty.focus();
         });
 
         qty.addValueChangeListener(e -> recalc.run());
+
         cost.addValueChangeListener(e -> recalc.run());
 
         FormLayout form = new FormLayout();
         form.addClassName("iw-product-bar");
         form.setWidthFull();
 
-        /*form.setResponsiveSteps(
-                new FormLayout.ResponsiveStep("0px", 6)
-        );*/
-
+        wireEnterCommit();
         form.add(code, description, qty, med, cost, total);
 
-        //form.setColspan(description, 2);
+        form.setColspan(code, 1);
+        form.setColspan(description, 3);
+
+        form.setColspan(qty, 1);
+        form.setColspan(med, 1);
+        form.setColspan(cost, 1);
+        form.setColspan(total, 1);
+
         Button dataTrans = new Button("Transferir datos", FontAwesome.Solid.UPLOAD.create());
         dataTrans.addClassName("iw-chip");
         Button editProfile = new Button("Editar perfil", FontAwesome.Solid.USER_EDIT.create());
@@ -265,14 +257,44 @@ public class InventoryView extends VerticalLayout {
         tools.addClassName("iw-tools");
         tools.setWidthFull();
         form.setResponsiveSteps(
-                new FormLayout.ResponsiveStep("0", 1),
-                new FormLayout.ResponsiveStep("700px", 2)
+                //new FormLayout.ResponsiveStep("0", 1),
+                new FormLayout.ResponsiveStep("300px", 4)
         );
         Div wrap = new Div(form, tools);
         wrap.addClassName("iw-product-wrap");
-        wrap.getStyle().set("width", "100%");
+        wrap.setWidthFull();
+        wrap.getStyle().set("flex", "1");
+
         return wrap;
     }
+
+    private void wireEnterCommit(){
+
+        code.addKeyPressListener(Key.ENTER, e -> commitCurrentLine());
+        qty.addKeyPressListener(Key.ENTER, e -> commitCurrentLine());
+        cost.addKeyPressListener(Key.ENTER, e -> commitCurrentLine());
+        med.addKeyPressListener(Key.ENTER, e -> commitCurrentLine());
+        total.addKeyPressListener(Key.ENTER, e -> commitCurrentLine());
+    }
+
+    Runnable clearAll = () -> {
+        code.clear();
+        description.clear();
+        med.clear();
+        cost.clear();
+        qty.clear();
+        total.clear();
+    };
+
+    Runnable recalc = () -> {
+        Integer q = qty.getValue();
+        Double c = cost.getValue();
+        if (q == null || c == null) {
+            total.clear();
+            return;
+        }
+        total.setValue(Math.round(q * c * 100.0) / 100.0);
+    };
 
     void openCantidadPasada() {
 
@@ -282,7 +304,51 @@ public class InventoryView extends VerticalLayout {
     }
 
     void exit() {
+        UI.getCurrent().navigate(BusinessView.class);
+    }
 
+    private void commitCurrentLine() {
+
+        String cod = Helper.isEmpty(code.getValue().toString()) ?"0": Helper.trim(code.getValue().toString());
+        String desc = Helper.trim(description.getValue().getName());
+        String measure = Helper.trim(med.getValue());
+
+        Double  price = cost.getValue();
+
+        List<String> errors = new ArrayList<>();
+        if ( Helper.isEmpty(desc)) errors.add(" Descripción requerido.");
+        if (Helper.isEmpty(measure)) errors.add("Medida requerida.");
+        if (qty.isEmpty() )      errors.add("Cantidad inválida.");
+        if (price == null || price < 0d)    errors.add("Costo inválido.");
+
+        if (!errors.isEmpty()) {
+
+            System.out.println("Validación: " + String.join(" | ", errors));
+            return;
+        }
+
+
+
+        Product product = productService.findById(Integer.parseInt(cod));
+        if(product == null){
+            product = new Product();
+            product.setName(desc);
+            product.setCost(price);
+            product.setMeasure(measure);
+            product = productService.save(product);
+        }
+        ProductAccounting productAccounting = new ProductAccounting();
+        productAccounting.setProduct(product);
+        productAccounting.setQuantity(qty.getValue());
+        productAccounting.setCost(price);
+        productAccounting.setTotal(total.getValue());
+        productAccounting.setCreateDate(LocalDateTime.now());
+        if(!cashAccounting.hasProductAc(productAccounting))
+            productAccounting = productAccountingService.save(productAccounting);
+        cashAccounting.addOrIncrementProduct(productAccounting);
+        cashAccountingService.save(cashAccounting);
+        listShell.reload();
+        clearAll.run();
     }
 
     private Component buildLeft() {
@@ -345,9 +411,9 @@ public class InventoryView extends VerticalLayout {
 
         qtyGrid.setAllRowsVisible(false);
 
-        qtyGrid.addColumn(PastQtyRow::fecha).setHeader("Fecha").setAutoWidth(true);
-        qtyGrid.addColumn(PastQtyRow::cantidad).setHeader("Cantidad").setAutoWidth(true);
-        qtyGrid.addColumn(PastQtyRow::costo).setHeader("Costo").setAutoWidth(true);
+        qtyGrid.addColumn(PastQtyRow::fecha).setHeader("Fecha").setAutoWidth(true).setFlexGrow(1);
+        qtyGrid.addColumn(PastQtyRow::cantidad).setHeader("Cantidad").setAutoWidth(true).setFlexGrow(1);
+        qtyGrid.addColumn(PastQtyRow::costo).setHeader("Costo").setAutoWidth(true).setFlexGrow(1);
 
         qtyGrid.setItems(
                 new PastQtyRow("15/74/40", "49", "45"),
@@ -355,6 +421,8 @@ public class InventoryView extends VerticalLayout {
                 new PastQtyRow("19/28/97", "51", "45"),
                 new PastQtyRow("19/28/97", "51", "45")
         );
+        qtyGrid.setWidthFull();
+        qtyGrid.setHeightFull();
 
         return qtyGrid;
     }
@@ -421,17 +489,18 @@ public class InventoryView extends VerticalLayout {
         content.setWidthFull();
         content.addClassName("iw-card");
         content.addClassName("iw-past-card");
-
+        selectedBusiness.setTimeType(TimeType.WEEKLY);
         content.add(
-                infoLine("INVENTARIO PASADO:", "25/12/2025"),
-                divider(),
-                infoLine("PROXIMO INVENTARIO:", "25/01/2025"),
-                divider(),
+                infoLine("INVENTARIO PASADO:", selectedBusiness.getLastInventoryDate() == null ?"N/A":selectedBusiness.getLastInventoryDate().toString()),
+                Helper.divider(),
+
+                infoLine("PROXIMO INVENTARIO:", Helper.findDateByTimeTypeFromToday(selectedBusiness.getTimeType()).toString()),
+                Helper.divider(),
                 new Span("COSTO DEL INVENTARIO")
         );
 
         TextField invCost = new TextField();
-        invCost.setValue("3500");
+        invCost.setValue(selectedBusiness.getInventoryPrice().toString());
         invCost.addClassName("iw-small-field");
         invCost.setWidth("140px");
 
@@ -465,77 +534,9 @@ public class InventoryView extends VerticalLayout {
 
     private Component exitButton() {
         Button exit = new Button("Salir", FontAwesome.Solid.RIGHT_FROM_BRACKET.create());
+        exit.addClickListener(e -> exit());
         exit.addClassName("iw-exit");
         return exit;
-    }
-
-
-    private Component buildCenter() {
-        VerticalLayout center = new VerticalLayout();
-        center.setPadding(false);
-        center.setSpacing(true);
-        center.setHeightFull();
-        center.addClassName("iw-center");
-
-        Component form = inlineForm();
-        Component tools = toolsRow();
-        Component table = tableCard(listShell); // SOLO esto debe scrollear internamente
-
-        center.add(form, tools, table);
-        center.setFlexGrow(0, form);
-        center.setFlexGrow(0, tools);
-        center.setFlexGrow(1, table);
-
-        return center;
-    }
-
-    private Component inlineForm() {
-        FormLayout f = new FormLayout();
-        f.addClassName("iw-form");
-        f.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 6));
-
-        TextField codigo = new TextField("CODIGO");
-        TextField desc = new TextField("DESCRIPCION");
-        TextField cant = new TextField("CANT");
-        ComboBox<String> med = new ComboBox<>("MED");
-        TextField costo = new TextField("COSTO");
-        TextField total = new TextField("TOTAL");
-        total.setReadOnly(true);
-
-        f.add(codigo, desc, cant, med, costo, total);
-        f.setColspan(desc, 2);
-        return f;
-    }
-
-    private Component toolsRow() {
-        HorizontalLayout row = new HorizontalLayout();
-        row.addClassName("iw-tools");
-        row.setAlignItems(Alignment.CENTER);
-
-        Span label = new Span("HERRAMIENTAS");
-        label.addClassName("iw-tools-label");
-
-        row.add(
-                label,
-                tool("Transferir datos"),
-                tool("Editar perfil"),
-                tool("Buscar producto"),
-                tool("Modo escaner")
-        );
-        return row;
-    }
-
-    private Button tool(String text) {
-        Button b = new Button(text);
-        b.addClassName("iw-tool");
-        return b;
-    }
-
-    private Component tableCard(Component content) {
-        Div wrap = new Div(content);
-        wrap.addClassName("iw-table-card");
-        wrap.setSizeFull();
-        return wrap;
     }
 
     private Component buildRight() {
@@ -672,175 +673,103 @@ public class InventoryView extends VerticalLayout {
     }
 
 
-    private Component financeCard(String title) {
-        VerticalLayout card = new VerticalLayout();
-        card.addClassName("iw-fin-card");
-        card.setPadding(true);
-        card.setSpacing(true);
-
-        Div pill = new Div(new Span(title));
-        pill.addClassName("iw-pill");
-
-        // Lista (no scroller). Debe caber en el card con height fijo.
-        Div list = new Div();
-        list.addClassName("iw-fin-list");
-        // aquí tú renderizas filas tipo: desc | monto (como tu Figma)
-
-        HorizontalLayout addRow = new HorizontalLayout();
-        addRow.setWidthFull();
-        addRow.addClassName("iw-fin-add");
-
-        TextField desc = new TextField();
-        desc.setPlaceholder("Descripción");
-        desc.addClassName("iw-fin-input");
-
-        TextField amount = new TextField();
-        amount.setPlaceholder("Monto");
-        amount.addClassName("iw-fin-input");
-        amount.setWidth("120px");
-
-        Button plus = new Button("+");
-        plus.addClassName("iw-fin-plus");
-
-        addRow.add(desc, amount, plus);
-        addRow.expand(desc);
-
-        card.add(pill, list, addRow);
-        return card;
-    }
-
-    private Component distributionCard(String title) {
-        // versión con 3 inputs (desc / % / monto) como tu Figma
-        VerticalLayout card = new VerticalLayout();
-        card.addClassName("iw-fin-card");
-        card.setPadding(true);
-        card.setSpacing(true);
-
-        Div pill = new Div(new Span(title));
-        pill.addClassName("iw-pill");
-
-        Div list = new Div();
-        list.addClassName("iw-fin-list");
-
-        HorizontalLayout addRow = new HorizontalLayout();
-        addRow.setWidthFull();
-        addRow.addClassName("iw-fin-add");
-
-        TextField desc = new TextField();
-        desc.setPlaceholder("Descripción");
-        desc.addClassName("iw-fin-input");
-
-        TextField pct = new TextField();
-        pct.setPlaceholder("%");
-        pct.addClassName("iw-fin-input");
-        pct.setWidth("70px");
-
-        TextField amount = new TextField();
-        amount.setPlaceholder("Monto");
-        amount.addClassName("iw-fin-input");
-        amount.setWidth("120px");
-
-        Button plus = new Button("+");
-        plus.addClassName("iw-fin-plus");
-
-        addRow.add(desc, pct, amount, plus);
-        addRow.expand(desc);
-
-        card.add(pill, list, addRow);
-        return card;
-    }
-
-    private Component totalsCard() {
-        VerticalLayout card = new VerticalLayout();
-        card.addClassName("iw-totals");
-        card.setPadding(true);
-        card.setSpacing(true);
-
-        card.add(
-                totalsLine("Capital Anterior"),
-                totalsLine("Inversion proximo inventario"),
-                totalsLine("Gastos por operaciones"),
-                totalsLine("Ventas del periodo")
-        );
-
-        return card;
-    }
-
-    private Component totalsLine(String label) {
-        HorizontalLayout row = new HorizontalLayout(new Span(label), new TextField());
-        row.setWidthFull();
-        row.setAlignItems(Alignment.CENTER);
-        row.expand(row.getComponentAt(1));
-        row.addClassName("iw-totals-line");
-        return row;
-    }
-
-    private Component buildFooter() {
-        HorizontalLayout footer = new HorizontalLayout();
-        footer.setWidthFull();
-        footer.setAlignItems(Alignment.CENTER);
-        footer.addClassName("iw-footer");
-
-        Span total = new Span("872,426");
-        total.addClassName("iw-footer-total");
-
-        TextField scan = new TextField();
-        scan.setPlaceholder("Ingresa un codigo o producto para sumarlo al inventario");
-        scan.setWidthFull();
-        scan.addClassName("iw-footer-scan");
-
-        Span meta = new Span("00:53.25  |  7:13  |  7/13/2023");
-        meta.addClassName("iw-footer-meta");
-
-        footer.add(total, scan, meta);
-        footer.expand(scan);
-        return footer;
-    }
-
-    private Component sideCard(String title, Component content) {
-        VerticalLayout card = new VerticalLayout();
-        card.addClassName("iw-side-card");
-
-        Div pill = new Div(new Span(title));
-        pill.addClassName("iw-pill");
-
-        Div contentWrap = new Div(content);
-        contentWrap.addClassName("iw-side-content");
-
-        Button more = new Button("VER MAS");
-        more.addClassName("iw-more");
-
-        card.add(pill, contentWrap, more);
-        return card;
-    }
+    private Component initialize() {
 
 
-    private Component line(String left, String right) {
-        HorizontalLayout row = new HorizontalLayout(new Span(left), new Span(right));
-        row.addClassName("iw-past-line");
-        row.setWidthFull();
-        row.setJustifyContentMode(JustifyContentMode.BETWEEN);
-        return row;
-    }
-
-    private Component divider() {
-        Div d = new Div();
-        d.addClassName("iw-divider");
-        return d;
-    }
-
-    private Component buildListShell(ListShell<ProductAccounting> compList) {
-        // usa tu ListConfig real aquí, lo dejo neutro:
         ListConfig<ProductAccounting> cfg = new ListConfig<>(
                 "",
                 List.of(),
                 List.of(),
                 List.of(),
-                List.of(),
-                null
+                List.of(
+                        new ColumnDef<>("Código", o -> o.getProduct().getId(), null, true),
+                        new ColumnDef<>("Nombre", o -> o.getProduct().getName() , null, true),
+                        new ColumnDef<>("Cantidad", ProductAccounting::getQuantity, null, true),
+                        new ColumnDef<>("Unidad", o -> o.getProduct().getMeasure(), null, true),
+                        new ColumnDef<>("Costo", ProductAccounting::getCost, null, true),
+                        new ColumnDef<>("Total", ProductAccounting::getTotal, null, true),
+                        new ColumnDef<ProductAccounting,Void>("Acción",null,this::buildActionButtons,true)
+
+                ),
+                this::onEditAccounting
         );
-        DataProvider<ProductAccounting> dp = spec -> new PagedResult<>(List.of(), 0);
-        return compList.init(cfg, dp);
+         cashAccounting =
+                cashAccountingService.findCashAccountingByBusiness(selectedBusiness)
+                        .orElseGet(() -> {
+                            CashAccounting ca = new CashAccounting();
+                            ca.initialize(selectedBusiness);
+                            return cashAccountingService.save(ca);
+                        });
+
+        DataProvider<ProductAccounting> dp = spec -> {
+            Set<ProductAccounting> items = cashAccounting.getProductAccountingsSortedByLatest();
+            long total = items.size();
+            return new PagedResult<>(items.stream().toList(), total);
+        };
+        return listShell.init(cfg, dp);
+    }
+
+    private void onEditAccounting(ProductAccounting productAccounting) {
+        code.setValue(productAccounting.getProduct().getId());
+        description.setValue(productAccounting.getProduct());
+        qty.setValue(productAccounting.getQuantity());
+        med.setValue(productAccounting.getProduct().getMeasure());
+        cost.setValue(productAccounting.getCost());
+        recalc.run();
+    }
+
+    private HorizontalLayout buildActionButtons(ProductAccounting productAccounting) {
+
+
+        Button delete = new Button(FontAwesome.Solid.TRASH.create());
+        delete.addClassName("app-grid-action-btn-delete");
+
+        delete.addClickListener(e -> {
+            Config config = new Config();
+
+            config.setTitle("Eliminar "+productAccounting.getProduct().getName());
+
+            config.setIcon("warning");
+            config.setIconColor("red");
+            config.setShowCancelButton(true);
+            config.setCancelButtonText("Cancelar");
+            SweetAlert2Vaadin sweetAlert2Vaadin = new SweetAlert2Vaadin(config);
+            sweetAlert2Vaadin.addConfirmListener(event->{
+                System.out.println("confirm result : "+event.getSource().getSweetAlert2Result());
+                cashAccounting.getProductAccountings().remove(productAccounting);
+                cashAccountingService.save(cashAccounting);
+                clearAll.run();
+                listShell.reload();
+            });
+            sweetAlert2Vaadin.addCancelListener(event->{
+                System.out.println("cancel result : "+event.getSource().getSweetAlert2Result());
+
+            });
+            sweetAlert2Vaadin.open();
+        });
+
+        HorizontalLayout actions = new HorizontalLayout(delete);
+        actions.setSpacing(true);
+        actions.addClassName("grid-actions");
+        return actions;
+    }
+    void onDelete(ProductAccounting productAccounting){}
+
+    @Override
+    public void setParameter(BeforeEvent beforeEvent, Integer id) {
+        if (id == null) {
+            removeAll();
+            add(new Span("Cliente no especificado"));
+            return;
+        }
+        selectedBusiness = businessService.findById(id);
+        Component header = buildHeader();
+        Component body = buildBody();
+
+        add(header, body);
+        setFlexGrow(0, header);
+        setFlexGrow(1, body);
+        //initialize();
     }
 
     public record PastQtyRow(String fecha, String cantidad, String costo) {}

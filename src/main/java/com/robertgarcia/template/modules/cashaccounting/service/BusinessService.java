@@ -2,6 +2,7 @@ package com.robertgarcia.template.modules.cashaccounting.service;
 
 
 import com.robertgarcia.template.modules.cashaccounting.domain.Business;
+import com.robertgarcia.template.modules.cashaccounting.domain.TimeType;
 import com.robertgarcia.template.modules.cashaccounting.repo.BusinessRepository;
 import com.robertgarcia.template.shared.crud.CrudService;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class BusinessService implements CrudService<Business,Integer> {
 
     public Business save(Business entity) {
         entity.setDeleted(false);
+        entity.setTimeType(TimeType.WEEKLY);
         return businessRepository.save(entity);
     }
 

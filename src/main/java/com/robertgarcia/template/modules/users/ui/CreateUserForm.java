@@ -4,6 +4,7 @@ import com.robertgarcia.template.modules.users.domain.User;
 import com.robertgarcia.template.modules.users.service.UserService;
 import com.robertgarcia.template.shared.form.*;
 import com.robertgarcia.template.shared.ui.MainLayout;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
@@ -67,11 +68,13 @@ public class CreateUserForm extends VerticalLayout {
                                 (user, ctx) -> {
                                     // userService.save(user);
                                     ctx.toast("Guardado");
-                                    ctx.reset(); // aquí limpias el form (tu problema actual)
+                                    ctx.reset();
                                 }),
                         new FormAction<>("Cancelar", null,
                                 java.util.List.of(com.vaadin.flow.component.button.ButtonVariant.LUMO_TERTIARY),
-                                (user, ctx) -> ctx.reset())
+                                (user, ctx) -> {
+                                    UI.getCurrent().navigate(UsersView.class);
+                                })
                 )
         );
 

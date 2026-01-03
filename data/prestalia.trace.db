@@ -1787,3 +1787,1190 @@ Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection wa
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 54 more
+2026-01-03 01:18:29.505611Z jdbc[3]: exception
+java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supported.
+	at org.h2.jdbc.JdbcConnection.setClientInfo(JdbcConnection.java:1624)
+	at com.intellij.database.remote.jdbc.impl.RemoteConnectionImpl.setClientInfo(RemoteConnectionImpl.java:468)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-01-03 01:18:31.658974Z jdbc[3]: exception
+java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supported.
+	at org.h2.jdbc.JdbcConnection.setClientInfo(JdbcConnection.java:1624)
+	at com.intellij.database.remote.jdbc.impl.RemoteConnectionImpl.setClientInfo(RemoteConnectionImpl.java:468)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-01-03 01:18:36.986088Z jdbc[3]: exception
+java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supported.
+	at org.h2.jdbc.JdbcConnection.setClientInfo(JdbcConnection.java:1624)
+	at com.intellij.database.remote.jdbc.impl.RemoteConnectionImpl.setClientInfo(RemoteConnectionImpl.java:468)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-01-03 01:18:41.382882Z jdbc[3]: exception
+java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supported.
+	at org.h2.jdbc.JdbcConnection.setClientInfo(JdbcConnection.java:1624)
+	at com.intellij.database.remote.jdbc.impl.RemoteConnectionImpl.setClientInfo(RemoteConnectionImpl.java:468)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-01-03 01:19:01.078387Z jdbc[4]: exception
+java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supported.
+	at org.h2.jdbc.JdbcConnection.setClientInfo(JdbcConnection.java:1624)
+	at com.intellij.database.remote.jdbc.impl.RemoteConnectionImpl.setClientInfo(RemoteConnectionImpl.java:468)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-01-03 01:19:01.168903Z jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "name" not found; SQL statement:
+INSERT INTO PRODUCT (name, measure, bar_code, price, BAR_CODE,  cost) VALUES
+('ACCESORIOS VAPE', 'POT', NULL, NULL, NULL, 300.0),
+('ACEITE BETIS 20 ML (SOBRE)', 'SOB', NULL, NULL, NULL, 32.5),
+('ACEITE BETYS 250 ML', 'BOT', NULL, NULL, NULL, 171.0),
+('ACEITE CRISOL 128 ONZ.', 'GAL', NULL, NULL, NULL, 531.25),
+('ACEITE CRISOL 16 ONZ.', 'UDS', NULL, NULL, NULL, 77.5),
+('ACEITE CRISOL 64 ONZ.', 'GAL', NULL, NULL, NULL, 273.12),
+('ACEITE CRISOL 8 ONZ', 'UDS', NULL, NULL, NULL, 40.87),
+('ACEITE EL GALLO 1/2 GALON', 'GAL', NULL, NULL, NULL, 272.0),
+('ACEITE FIGARO (SOBRE)', 'SOB', NULL, NULL, NULL, 43.0),
+('ACEITE MANICERO 16 ONZ', 'BOT', NULL, NULL, NULL, 81.25),
+('ACEITE VERDE LINDA 20 ML', 'UDS', NULL, NULL, NULL, 17.5),
+('ACEITUNA 16 ONZ', 'UDS', NULL, NULL, NULL, 67.5),
+('ADEREZO BALDOM 200 GRM', 'UDS', NULL, NULL, NULL, 65.83),
+('AGUA  SABORIZADA 20 ONZ', 'BOT', NULL, NULL, NULL, 29.2),
+('AGUA ATLANTA 16 ONZ', 'UDS', NULL, NULL, NULL, 6.25),
+('AGUA DASANI 5 LITROS', 'GAL', NULL, NULL, NULL, 97.75),
+('AGUA DASANI 500 ML', 'BOT', NULL, NULL, NULL, 11.58),
+('AGUA DE COCO GOYA 12 OZ', 'BOT', NULL, NULL, NULL, 85.88),
+('AGUA DE COCO GOYA 17.6 OZ', 'BOT', NULL, NULL, NULL, 115.0),
+('AGUA ORBIS 128 ONZ', 'GAL', NULL, NULL, NULL, 95.0),
+('AGUA PERRIER 330 ML', 'BOT', NULL, NULL, NULL, 79.17),
+('AGUA PLANETA LIT', 'LIT', NULL, NULL, NULL, 15.83),
+('AJO CONSTANZA 1 ONZ (SOBRE)', 'SOB', NULL, NULL, NULL, 7.05),
+('AJO EN PASTA 9.5 ONZ', 'UDS', NULL, NULL, NULL, 95.83),
+('AJO EN PASTA BALDON 4 ONZ', 'UDS', NULL, NULL, NULL, 48.75),
+('ALCAPARRADO 8 ONZ S/P', 'UDS', NULL, NULL, NULL, 51.04),
+('ALCOHOL 5 ONZ', 'UDS', NULL, NULL, NULL, 40.0),
+('ALISADO TCB 7.5 ONZ', 'UDS', NULL, NULL, NULL, 127.5),
+('ALMIDON NIAGARA 22 ONZ', 'UDS', NULL, NULL, NULL, 150.0),
+('AMBIENTADOR 8 ONZ', 'UDS', NULL, NULL, NULL, 170.83),
+('ARENQUE FILETE', 'LIB', NULL, NULL, NULL, 90.0),
+('ARRANCA GRASA AXION 85 GM', 'UDS', NULL, NULL, NULL, 9.0),
+('ARRANCAGRASA AXION 250 GRM', 'UDS', NULL, NULL, NULL, 47.59),
+('ARRANCAGRASA AXION LIQ 750 ML', 'LIT', NULL, NULL, NULL, 170.0),
+('ARRANCAGRASA AXION LIQ. 400 ML', 'UDS', NULL, NULL, NULL, 93.75),
+('ARROZ CAMPOS 16 ONZ', 'UDS', NULL, NULL, NULL, 43.0),
+('ARROZ DOS PINOS 1 LIBRA', 'LIB', NULL, NULL, NULL, 36.0),
+('ARROZ LA GARZA 16 ONZ', 'UDS', NULL, NULL, NULL, 40.17),
+('ARROZ PIMCO 16 ONZ', 'LIB', NULL, NULL, NULL, 39.5),
+('ARROZ PINCO 100 LIB', 'SAC', NULL, NULL, NULL, 3400.0),
+('ARROZ SELECTO (A) AL DETALLE', 'LIB', NULL, NULL, NULL, 31.2),
+('AVENA QUAKER 60 GRS', 'SOB', NULL, NULL, NULL, 11.05),
+('AVENA QUAKER 725 GRM', 'FUN', NULL, NULL, NULL, 75.5),
+('AZUCAR CREMA (AL DETALLE)', 'LIB', NULL, NULL, NULL, 27.4),
+('AZUCAR REFINO (AL DETALLE)', 'LIB', NULL, NULL, NULL, 33.6),
+('AZUL DE LAVAR AÑIL', 'UDS', NULL, NULL, NULL, 5.85),
+('BACALAO NORUEGO', 'LIB', NULL, NULL, NULL, 175.0),
+('BANDEJA ALUMINIO #316', 'UDS', NULL, NULL, NULL, 26.0),
+('BANDEJA ALUMINIO #322', 'UDS', NULL, NULL, NULL, 55.0),
+('BANDEJA ALUMINIO #367', 'UDS', NULL, NULL, NULL, 70.0),
+('BANDEJA CON TAPA PEQ', 'UDS', NULL, NULL, NULL, 2.8),
+('BANDEJA PLAST. GDE', 'UDS', NULL, NULL, NULL, 6.4),
+('BARAJA TIGER', 'UDS', NULL, NULL, NULL, 15.0),
+('BARCELO AÑEJADO 175 CC', 'UDS', NULL, NULL, NULL, 139.58),
+('BAYRUM CORRIENTE 350 CC', 'BOT', NULL, NULL, NULL, 28.75),
+('BIBERONE PEQ', 'UDS', NULL, NULL, NULL, 40.0),
+('BIBERONES CHACHITO', 'UDS', NULL, NULL, NULL, 95.0),
+('BIZCOCHO', 'UDS', NULL, NULL, NULL, 1.0),
+('BOBO NIÑO', 'UDS', NULL, NULL, NULL, 14.58),
+('BOLON PIP POP 48/1', 'PAQ', NULL, NULL, NULL, 172.0),
+('BOMBILLO 18W BAJO CONSUMO', 'UDS', NULL, NULL, NULL, 41.5),
+('BOMBILLO CORRIENTE 60W', 'UDS', NULL, NULL, NULL, 18.0),
+('BOMBILLO LEE GRA', 'UDS', NULL, NULL, NULL, 180.0),
+('BOMBILLO LEE PEQ.', 'UDS', NULL, NULL, NULL, 53.0),
+('BOTELLONE PLASTICO VACIO', 'GAL', NULL, NULL, NULL, 170.0),
+('BRILLO ESPONJA', 'UDS', NULL, NULL, NULL, 17.36),
+('BRILLO FINO GDE', 'UDS', NULL, NULL, NULL, 4.58),
+('BRILLO LA MAQUINA PEQ.', 'UDS', NULL, NULL, NULL, 15.23),
+('BRILLO VERDE', 'UDS', NULL, NULL, NULL, 2.8),
+('CAFE PILON 1 LIBRA', 'UDS', NULL, NULL, NULL, 255.0),
+('CAFE PILON 8 ONZ', 'UDS', NULL, NULL, NULL, 130.0),
+('CAFE SANTO DOMINGO 1 ONZ (SOBRE)', 'SOB', NULL, NULL, NULL, 22.5),
+('CAFE SANTO DOMINGO 16 ONZ', 'UDS', NULL, NULL, NULL, 305.0),
+('CAFE SANTO DOMINGO 8 ONZ', 'UDS', NULL, NULL, NULL, 160.0),
+('CAFE SUPREMO SOB.', 'UDS', NULL, NULL, NULL, 18.0),
+('CALDO DE GALLINA DOÑA GALLINA', 'UDS', NULL, NULL, NULL, 6.14),
+('CALDO DE POLLO MAGGI (SOPITA)', 'UDS', NULL, NULL, NULL, 7.0),
+('CANDADO #202', 'UDS', NULL, NULL, NULL, 54.17),
+('CANELONES MILANO', 'UDS', NULL, NULL, NULL, 47.16),
+('CARGADOR CELULAR', 'UDS', NULL, NULL, NULL, 70.0),
+('CARNE CERDO (PATICA)', 'LIB', NULL, NULL, NULL, 95.0),
+('CARNE CERDO SALADA', 'LIB', NULL, NULL, NULL, 125.0),
+('CARNE DE NERVIO RED', 'LIB', NULL, NULL, NULL, 125.0),
+('CARNE DE POLLO MATADO', 'LIB', NULL, NULL, NULL, 72.0),
+('CARNE GALLINA', 'LIB', NULL, NULL, NULL, 150.0),
+('CARNE MONDONGO', 'LIB', NULL, NULL, NULL, 120.0),
+('CARTULINA', 'UDS', NULL, NULL, NULL, 12.5),
+('CASABE CON AJO GDE', 'PAQ', NULL, NULL, NULL, 65.0),
+('CASABE NATURAL GDE.', 'PAQ', NULL, NULL, NULL, 40.0),
+('CATCHUP 50 GRS', 'SOB', NULL, NULL, NULL, 9.06),
+('CATCHUP BALDOM 12 ONZ (PLASTICO)', 'UDS', NULL, NULL, NULL, 61.45),
+('CEDAZO GDE', 'UDS', NULL, NULL, NULL, 70.0),
+('CEPILLO COLGATE 360', 'UDS', NULL, NULL, NULL, 231.0),
+('CEPILLO DENTAL COLGATE PREMIER', 'UDS', NULL, NULL, NULL, 21.53),
+('CEPILLO PAREDES TIPO PLANCHA', 'UDS', NULL, NULL, NULL, 45.83),
+('CEREAL 5 CEREALES 300 GRM.', 'LAT', NULL, NULL, NULL, 207.36),
+('CERVEVA ORIGINAL 5.5', 'LAT', NULL, NULL, NULL, 85.0),
+('CERVEZA  PAULANER 0.5L', 'LAT', NULL, NULL, NULL, 195.0),
+('CERVEZA BOHEMIA 16/1 HUACAL', 'HUA', NULL, NULL, NULL, 2162.0),
+('CERVEZA BOHEMIA ESPECIAL GDE', 'BOT', NULL, NULL, NULL, 135.16),
+('CERVEZA BOHEMIA PEQ', 'BOT', NULL, NULL, NULL, 94.16),
+('CERVEZA BOHEMIA PEQ 24/1', 'HUA', NULL, NULL, NULL, 2197.18),
+('CERVEZA BRAHMA LIGHT PEQ', 'BOT', NULL, NULL, NULL, 76.04),
+('CERVEZA BUDWEISER 40 OZ', 'UDS', NULL, NULL, NULL, 104.32),
+('CERVEZA CORONA 330 ML', 'BOT', NULL, NULL, NULL, 104.0),
+('CERVEZA ESMIRNOFF 350 ML', 'BOT', NULL, NULL, NULL, 136.74),
+('CERVEZA FOUR LOKO 473 ML LATA', 'LAT', NULL, NULL, NULL, 225.0),
+('CERVEZA HEINEKEN 330 ML', 'BOT', NULL, NULL, NULL, 72.0),
+('CERVEZA HEINEKEN 650 ML', 'UDS', NULL, NULL, NULL, 157.0),
+('CERVEZA HEINEKEN LATA', 'LAT', NULL, NULL, NULL, 54.17),
+('CERVEZA LUXUS 16 ONZ', 'LAT', NULL, NULL, NULL, 85.0),
+('CERVEZA MALTA  MEDIANA', 'BOT', NULL, NULL, NULL, 36.67),
+('CERVEZA MALTA FAMILIAR', 'LIT', NULL, NULL, NULL, 66.67),
+('CERVEZA MALTA PLAST. PEQ.', 'BOT.', NULL, NULL, NULL, 23.33),
+('CERVEZA MODELO 350 ML', 'BOT', NULL, NULL, NULL, 105.68),
+('CERVEZA MODELO NEGRA 350 ML', 'BOT', NULL, NULL, NULL, 120.37),
+('CERVEZA ONE #1 GRDE', 'BOT', NULL, NULL, NULL, 113.68),
+('CERVEZA ONE #1 PEQ', 'BOT', NULL, NULL, NULL, 79.07),
+('CERVEZA PRESIDENTE 1000 ML', 'LIT', NULL, NULL, NULL, 168.56),
+('CERVEZA PRESIDENTE 12 ONZ', 'LAT', NULL, NULL, NULL, 83.87),
+('CERVEZA PRESIDENTE 16/1 HUACAL', 'HUA', NULL, NULL, NULL, 2162.0),
+('CERVEZA PRESIDENTE GDE', 'BOT', NULL, NULL, NULL, 135.16),
+('CERVEZA PRESIDENTE PEQ', 'BOT', NULL, NULL, NULL, 94.55),
+('CERVEZA PRESIDENTE PEQ 24/1', 'HUA', NULL, NULL, NULL, 2267.16),
+('CERVEZA STELLA 350 ML', 'UDS', NULL, NULL, NULL, 120.37),
+('CHAMPAGNE MOET & CHANDON 750 ML', 'LIT', NULL, NULL, NULL, 3400.0),
+('CHAMPAÑA J.P CHENET 750 ML', 'LIT', NULL, NULL, NULL, 645.83),
+('CHICLET CLORETS PEQ', 'UDS', NULL, NULL, NULL, 2.5),
+('CHICLET TRIDENT 5pcs', 'UDS', NULL, NULL, NULL, 15.34),
+('CHICLET TRIDENT SPLASH 16 GRS', 'UDS', NULL, NULL, NULL, 30.13),
+('CHISPERO', 'UDS', NULL, NULL, NULL, 85.0),
+('CHOCO RICA 16 ONZ', 'UDS', NULL, NULL, NULL, 46.0),
+('CHOCO RICA UHT 1 LITRO', 'LIT', NULL, NULL, NULL, 86.0),
+('CHOCO RICA UHT 250 ML', 'UDS', NULL, NULL, NULL, 24.0),
+('CHOCOLATE BOMBOM', 'UDS', NULL, NULL, NULL, 11.83),
+('CHOCOLATE EMBAJADOR (TABLETA)', 'UDS', NULL, NULL, NULL, 7.92),
+('CHOCOLATE MAS MAS 45 GRS', 'UDS', NULL, NULL, NULL, 33.0),
+('CHOCOLATE MILKY WAY 2.05 ONZ', 'UDS', NULL, NULL, NULL, 55.0),
+('CHOCOLETE HERSHEYS 43 G', 'UDS', NULL, NULL, NULL, 57.7),
+('CHULETA CON HUESO', 'LIB', NULL, NULL, NULL, 110.0),
+('CIGARRILLO DOMINICANO', 'CJA', NULL, NULL, NULL, 75.0),
+('CIGARRILLO HILTON', 'CJA', NULL, NULL, NULL, 144.5),
+('CIGARRILLO LIDER', 'CJA', NULL, NULL, NULL, 135.6),
+('CIGARRILLO LM', 'CJS', NULL, NULL, NULL, 210.0),
+('CIGARRILLO MARLBORO', 'CJS', NULL, NULL, NULL, 289.0),
+('CIGARRILLO MONTECARLO', 'CJS', NULL, NULL, NULL, 205.0),
+('CIGARRILLO NACIONAL', 'CJS', NULL, NULL, NULL, 249.0),
+('CIGARRILLO NEWPORT', 'CAJ', NULL, NULL, NULL, 260.0),
+('CIGARRILLO PALL MALL', 'CJA', NULL, NULL, NULL, 155.0),
+('CIGARRILLOS CAPITAL', 'CJA', NULL, NULL, NULL, 85.0),
+('CIGARRO PRINCIPE PEQ.', 'CJS', NULL, NULL, NULL, 22.0),
+('CIGARROS NATIVO', 'CJS', NULL, NULL, NULL, 12.5),
+('CINTA PEGANTE GDE.', 'UDS', NULL, NULL, NULL, 54.16),
+('CLORO AJAX 1 LITRO', 'LIT', NULL, NULL, NULL, 48.33),
+('CLORO AJAX 1/2 GALON', 'GAL', NULL, NULL, NULL, 81.5),
+('CLORO AJAX 1/2 LITRO', 'BOT', NULL, NULL, NULL, 30.2),
+('CLORO AJAX 110 GRS', 'SOB', NULL, NULL, NULL, 7.63),
+('CLORO AJAX GALON', 'GAL', NULL, NULL, NULL, 115.0),
+('CLORO MACIER 1 GALON', 'GAL', NULL, NULL, NULL, 90.0),
+('CLORO MACIER 1/2 GALON', 'GAL', NULL, NULL, NULL, 54.17),
+('CLORO MACIER 150 ML', 'UDS', NULL, NULL, NULL, 9.0),
+('CLORO MACIER 16 ONZ', 'BOT', NULL, NULL, NULL, 21.25),
+('CLORO MACIER 300 ML', 'UDS', NULL, NULL, NULL, 13.4),
+('CLORO MACIER LIT', 'LIB', NULL, NULL, NULL, 35.42),
+('COCOA  SOBRINO 8 ONZ', 'UDS', NULL, NULL, NULL, 109.17),
+('COCOA SOBRINO 1 ONZ', 'SOB', NULL, NULL, NULL, 9.92),
+('COGNAC REMY MARTIN 70 CL', 'LIT', NULL, NULL, NULL, 3620.0),
+('COLGATE TRIPLE ACCION 50 ML', 'UDS', NULL, NULL, NULL, 81.24),
+('COMPOTA CHUPETIN 4 ONZ', 'UDS', NULL, NULL, NULL, 35.83),
+('CONDONES ONI', 'UDS', NULL, NULL, NULL, 11.45),
+('CONTROL REMOTO TV UNIVERSAL', 'UDS', NULL, NULL, NULL, 90.0),
+('CORN FLAKES (LIBRA DETALLE)', 'LIB', NULL, NULL, NULL, 73.75),
+('COSTILLITA AHUMADA', 'LIB', NULL, NULL, NULL, 110.0),
+('CREMA DE LECHE 300 G', 'LAT', NULL, NULL, NULL, 136.0),
+('CREYON GDE', 'UDS', NULL, NULL, NULL, 22.8),
+('CUADERNO 200 PAG', 'UDS', NULL, NULL, NULL, 39.58),
+('CUBIERTO PLASTICO 25/1', 'PAQ', NULL, NULL, NULL, 20.0),
+('DESENGRASANTE 16 ONZ', 'BOT', NULL, NULL, NULL, 85.0),
+('DESINFECTANTE FABULOSO (SOBRE)', 'SOB', NULL, NULL, NULL, 11.31),
+('DESINFECTANTE FABULOSO 1 GALON', 'GAL', NULL, NULL, NULL, 300.0),
+('DESINFECTANTE FABULOSO 1/2 LIT', 'UDS', NULL, NULL, NULL, 65.0),
+('DESINFECTANTE FABULOSO 900 ML', 'LIT', NULL, NULL, NULL, 101.0),
+('DESINFECTANTE TEN 770 ML', 'UDS', NULL, NULL, NULL, 85.0),
+('DESOD REXONA 50 GRM', 'UDS', NULL, NULL, NULL, 110.0),
+('DESOD SPEED STICK 20 GRS', 'UDS', NULL, NULL, NULL, 61.67),
+('DESOD. AVON 3 ONZ', 'UDS', NULL, NULL, NULL, 75.0),
+('DESOD. DEPORTE PEQ', 'UDS', NULL, NULL, NULL, 6.94),
+('DESOD. NIVEA 50 ML', 'UDS', NULL, NULL, NULL, 128.33),
+('DESODORANTE AVON 50 ML', 'UDS', NULL, NULL, NULL, 95.0),
+('DESODORANTE DOVE 40 ML', 'UDS', NULL, NULL, NULL, 117.5),
+('DESODORANTE DOVE 50 ML', 'UDS', NULL, NULL, NULL, 135.0),
+('DESODORANTE DOVE SPRAY', 'UDS', NULL, NULL, NULL, 197.5),
+('DESODORANTE LADY SPEED STICK 39 G', 'UDS', NULL, NULL, NULL, 105.0),
+('DESODORANTE LADY SPEED STICK 45 G', 'UDS', NULL, NULL, NULL, 120.0),
+('DESODORANTE NIVEA SPRAY 150 ML', 'UDS', NULL, NULL, NULL, 210.0),
+('DESODORANTE REXONA 150 ML', 'UDS', NULL, NULL, NULL, 190.0),
+('DESODORANTE REXONA MEN 150 ML', 'UDS', NULL, NULL, NULL, 200.0),
+('DESODORANTE SPEED STICK 39 G', 'UDS', NULL, NULL, NULL, 110.0),
+('DESODORANTE SPEED STICK 45 G', 'UDS', NULL, NULL, NULL, 125.0),
+('DESODORANTE SUAVE 50 ML', 'UDS', NULL, NULL, NULL, 90.0),
+('DESODORANTE SUAVE SPRAY', 'UDS', NULL, NULL, NULL, 180.0),
+('DESODORANTE VOGUE 50 ML', 'UDS', NULL, NULL, NULL, 100.0),
+('DESODORANTE VOGUE SPRAY', 'UDS', NULL, NULL, NULL, 175.0),
+('DESODORANTE YARDLEY 50 ML', 'UDS', NULL, NULL, NULL, 115.0),
+('DESODORANTE YARDLEY SPRAY', 'UDS', NULL, NULL, NULL, 190.0),
+('DETERGENTE FAB 125 GRS', 'SOB', NULL, NULL, NULL, 12.0),
+('DETERGENTE FAB 200 GRS', 'SOB', NULL, NULL, NULL, 18.0),
+('DETERGENTE FAB 250 GRS', 'SOB', NULL, NULL, NULL, 21.0),
+('DETERGENTE FAB 400 GRS', 'SOB', NULL, NULL, NULL, 32.0),
+('DETERGENTE FAB 500 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('DETERGENTE FAB 800 GRS', 'SOB', NULL, NULL, NULL, 60.0),
+('DETERGENTE OMO 125 GRS', 'SOB', NULL, NULL, NULL, 13.0),
+('DETERGENTE OMO 200 GRS', 'SOB', NULL, NULL, NULL, 19.0),
+('DETERGENTE OMO 400 GRS', 'SOB', NULL, NULL, NULL, 33.0),
+('DETERGENTE OMO 500 GRS', 'SOB', NULL, NULL, NULL, 39.0),
+('DETERGENTE OMO 800 GRS', 'SOB', NULL, NULL, NULL, 62.0),
+('DETERGENTE TROPICAL 125 GRS', 'SOB', NULL, NULL, NULL, 11.0),
+('DETERGENTE TROPICAL 200 GRS', 'SOB', NULL, NULL, NULL, 17.0),
+('DETERGENTE TROPICAL 400 GRS', 'SOB', NULL, NULL, NULL, 30.0),
+('DETERGENTE TROPICAL 500 GRS', 'SOB', NULL, NULL, NULL, 36.0),
+('DETERGENTE TROPICAL 800 GRS', 'SOB', NULL, NULL, NULL, 58.0),
+('DULCE DE LECHE 250 GRS', 'UDS', NULL, NULL, NULL, 65.0),
+('DULCE DE LECHE 500 GRS', 'UDS', NULL, NULL, NULL, 120.0),
+('DULCE DE LECHE 750 GRS', 'UDS', NULL, NULL, NULL, 175.0),
+('DULCE DE MEMBRILLO 250 GRS', 'UDS', NULL, NULL, NULL, 70.0),
+('DULCE DE MEMBRILLO 500 GRS', 'UDS', NULL, NULL, NULL, 130.0),
+('DULCE DE MEMBRILLO 750 GRS', 'UDS', NULL, NULL, NULL, 185.0),
+('EMBUTIDO JAMONADA 250 GRS', 'UDS', NULL, NULL, NULL, 80.0),
+('EMBUTIDO JAMONADA 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('EMBUTIDO JAMONADA 750 GRS', 'UDS', NULL, NULL, NULL, 220.0),
+('EMBUTIDO MORTADELA 250 GRS', 'UDS', NULL, NULL, NULL, 75.0),
+('EMBUTIDO MORTADELA 500 GRS', 'UDS', NULL, NULL, NULL, 140.0),
+('EMBUTIDO MORTADELA 750 GRS', 'UDS', NULL, NULL, NULL, 205.0),
+('EMBUTIDO SALAMI 250 GRS', 'UDS', NULL, NULL, NULL, 85.0),
+('EMBUTIDO SALAMI 500 GRS', 'UDS', NULL, NULL, NULL, 160.0),
+('EMBUTIDO SALAMI 750 GRS', 'UDS', NULL, NULL, NULL, 235.0),
+('EMPANADA CARNE', 'UDS', NULL, NULL, NULL, 50.0),
+('EMPANADA POLLO', 'UDS', NULL, NULL, NULL, 50.0),
+('EMPANADA QUESO', 'UDS', NULL, NULL, NULL, 50.0),
+('ENLATADO ATUN 140 GRS', 'LAT', NULL, NULL, NULL, 95.0),
+('ENLATADO ATUN 300 GRS', 'LAT', NULL, NULL, NULL, 180.0),
+('ENLATADO MAIZ 300 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('ENLATADO MAIZ 500 GRS', 'LAT', NULL, NULL, NULL, 140.0),
+('ENLATADO SARDINA 125 GRS', 'LAT', NULL, NULL, NULL, 75.0),
+('ENLATADO SARDINA 250 GRS', 'LAT', NULL, NULL, NULL, 130.0),
+('ENLATADO SARDINA 500 GRS', 'LAT', NULL, NULL, NULL, 210.0),
+('ENSALADA DE FRUTAS 300 GRS', 'LAT', NULL, NULL, NULL, 95.0),
+('ENSALADA DE FRUTAS 500 GRS', 'LAT', NULL, NULL, NULL, 150.0),
+('ESPAGUETI 500 GRS', 'PAQ', NULL, NULL, NULL, 85.0),
+('ESPAGUETI 1 KG', 'PAQ', NULL, NULL, NULL, 160.0),
+('ESPONJA LAVA PLATOS', 'UDS', NULL, NULL, NULL, 30.0),
+('ESPONJA LAVA PISOS', 'UDS', NULL, NULL, NULL, 45.0),
+('ESPONJA METALICA', 'UDS', NULL, NULL, NULL, 20.0),
+('FIDEO 500 GRS', 'PAQ', NULL, NULL, NULL, 80.0),
+('FIDEO 1 KG', 'PAQ', NULL, NULL, NULL, 150.0),
+('FILETE DE PESCADO 500 GRS', 'LIB', NULL, NULL, NULL, 250.0),
+('FILETE DE PESCADO 1 KG', 'LIB', NULL, NULL, NULL, 480.0),
+('FLAN VAINILLA 300 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('FLAN VAINILLA 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('FLAN VAINILLA 750 GRS', 'UDS', NULL, NULL, NULL, 210.0),
+('FOSFORO PEQ', 'UDS', NULL, NULL, NULL, 10.0),
+('FOSFORO GDE', 'UDS', NULL, NULL, NULL, 20.0),
+('FRIJOLES NEGROS 300 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('FRIJOLES NEGROS 500 GRS', 'LAT', NULL, NULL, NULL, 140.0),
+('FRIJOLES ROJOS 300 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('FRIJOLES ROJOS 500 GRS', 'LAT', NULL, NULL, NULL, 140.0),
+('FRUTAS EN ALMIBAR 300 GRS', 'LAT', NULL, NULL, NULL, 95.0),
+('FRUTAS EN ALMIBAR 500 GRS', 'LAT', NULL, NULL, NULL, 150.0),
+('GALLETAS DULCES 100 GRS', 'PAQ', NULL, NULL, NULL, 50.0),
+('GALLETAS DULCES 200 GRS', 'PAQ', NULL, NULL, NULL, 90.0),
+('GALLETAS SALADAS 100 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('GALLETAS SALADAS 200 GRS', 'PAQ', NULL, NULL, NULL, 95.0),
+('GELATINA FRESA 100 GRS', 'SOB', NULL, NULL, NULL, 20.0),
+('GELATINA FRESA 200 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('GELATINA LIMON 100 GRS', 'SOB', NULL, NULL, NULL, 20.0),
+('GELATINA LIMON 200 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('GELATINA UVA 100 GRS', 'SOB', NULL, NULL, NULL, 20.0),
+('GELATINA UVA 200 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('GELATINA MANGO 100 GRS', 'SOB', NULL, NULL, NULL, 20.0),
+('GELATINA MANGO 200 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('GOMAS MASTICABLES 100 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('GOMAS MASTICABLES 200 GRS', 'PAQ', NULL, NULL, NULL, 100.0),
+('GRANOLA 300 GRS', 'PAQ', NULL, NULL, NULL, 120.0),
+('GRANOLA 500 GRS', 'PAQ', NULL, NULL, NULL, 180.0),
+('HARINA DE MAIZ 300 GRS', 'PAQ', NULL, NULL, NULL, 60.0),
+('HARINA DE MAIZ 500 GRS', 'PAQ', NULL, NULL, NULL, 95.0),
+('HARINA DE MAIZ 1 KG', 'PAQ', NULL, NULL, NULL, 180.0),
+('HARINA DE TRIGO 300 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('HARINA DE TRIGO 500 GRS', 'PAQ', NULL, NULL, NULL, 90.0),
+('HARINA DE TRIGO 1 KG', 'PAQ', NULL, NULL, NULL, 170.0),
+('HELADO VAINILLA 300 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('HELADO VAINILLA 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('HELADO VAINILLA 750 GRS', 'UDS', NULL, NULL, NULL, 220.0),
+('HELADO CHOCOLATE 300 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('HELADO CHOCOLATE 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('HELADO CHOCOLATE 750 GRS', 'UDS', NULL, NULL, NULL, 220.0),
+('HELADO FRESA 300 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('HELADO FRESA 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('HELADO FRESA 750 GRS', 'UDS', NULL, NULL, NULL, 220.0),
+('HUEVOS DOCENA', 'DOC', NULL, NULL, NULL, 170.0),
+('HUEVOS UNIDAD', 'UDS', NULL, NULL, NULL, 15.0),
+('JABON DE BANO 125 GRS', 'UDS', NULL, NULL, NULL, 45.0),
+('JABON DE BANO 250 GRS', 'UDS', NULL, NULL, NULL, 85.0),
+('JABON DE LAVAR 200 GRS', 'UDS', NULL, NULL, NULL, 30.0),
+('JABON DE LAVAR 400 GRS', 'UDS', NULL, NULL, NULL, 55.0),
+('JABON DE LAVAR 800 GRS', 'UDS', NULL, NULL, NULL, 100.0),
+('JABON LIQUIDO 300 ML', 'UDS', NULL, NULL, NULL, 95.0),
+('JABON LIQUIDO 500 ML', 'UDS', NULL, NULL, NULL, 150.0),
+('JABON LIQUIDO 1 LT', 'LIT', NULL, NULL, NULL, 280.0),
+('JUGO DE NARANJA 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO DE NARANJA 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO DE NARANJA 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('JUGO DE MANZANA 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO DE MANZANA 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO DE MANZANA 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('JUGO DE PIÑA 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO DE PIÑA 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO DE PIÑA 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('JUGO DE MANGO 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO DE MANGO 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO DE MANGO 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('JUGO TROPICAL 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO TROPICAL 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO TROPICAL 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('KETCHUP 300 GRS', 'BOT', NULL, NULL, NULL, 75.0),
+('KETCHUP 500 GRS', 'BOT', NULL, NULL, NULL, 120.0),
+('KETCHUP 1 KG', 'BOT', NULL, NULL, NULL, 220.0),
+('LECHE ENTERA 1 LT', 'LIT', NULL, NULL, NULL, 110.0),
+('LECHE ENTERA 500 ML', 'BOT', NULL, NULL, NULL, 60.0),
+('LECHE DESCREMADA 1 LT', 'LIT', NULL, NULL, NULL, 115.0),
+('LECHE DESCREMADA 500 ML', 'BOT', NULL, NULL, NULL, 65.0),
+('LECHE EVAPORADA 315 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('LECHE EVAPORADA 410 GRS', 'LAT', NULL, NULL, NULL, 115.0),
+('LECHE CONDENSADA 315 GRS', 'LAT', NULL, NULL, NULL, 95.0),
+('LECHE CONDENSADA 410 GRS', 'LAT', NULL, NULL, NULL, 125.0),
+('LECHE EN POLVO 250 GRS', 'FUN', NULL, NULL, NULL, 190.0),
+('LECHE EN POLVO 500 GRS', 'FUN', NULL, NULL, NULL, 360.0),
+('LECHE EN POLVO 1 KG', 'FUN', NULL, NULL, NULL, 700.0),
+('LENTEJAS 300 GRS', 'PAQ', NULL, NULL, NULL, 80.0),
+('LENTEJAS 500 GRS', 'PAQ', NULL, NULL, NULL, 130.0),
+('LENTEJAS 1 KG', 'PAQ', NULL, NULL, NULL, 250.0),
+('LIMPIADOR CREMA 250 ML', 'BOT', NULL, NULL, NULL, 75.0),
+('LIMPIADOR CREMA 500 ML', 'BOT', NULL, NULL, NULL, 140.0),
+('LIMPIADOR MULTIUSO 300 ML', 'BOT', NULL, NULL, NULL, 85.0),
+('LIMPIADOR MULTIUSO 500 ML', 'BOT', NULL, NULL, NULL, 150.0),
+('LIMPIADOR MULTIUSO 1 LT', 'BOT', NULL, NULL, NULL, 280.0),
+('MALTA MORENA 10 OZ', 'BOT', NULL, NULL, NULL, 25.0),
+('MALTA MORENA 16 OZ', 'BOT', NULL, NULL, NULL, 35.0),
+('MALTA MORENA 20 OZ', 'BOT', NULL, NULL, NULL, 45.0),
+('MALTA MORENA 2 LT', 'BOT', NULL, NULL, NULL, 90.0),
+('MARGARINA 250 GRS', 'PAQ', NULL, NULL, NULL, 80.0),
+('MARGARINA 500 GRS', 'PAQ', NULL, NULL, NULL, 150.0),
+('MARGARINA 1 KG', 'PAQ', NULL, NULL, NULL, 280.0),
+('MAYONESA 250 GRS', 'BOT', NULL, NULL, NULL, 75.0),
+('MAYONESA 500 GRS', 'BOT', NULL, NULL, NULL, 140.0),
+('MAYONESA 1 KG', 'BOT', NULL, NULL, NULL, 270.0),
+('MERMELADA FRESA 250 GRS', 'BOT', NULL, NULL, NULL, 95.0),
+('MERMELADA FRESA 500 GRS', 'BOT', NULL, NULL, NULL, 170.0),
+('MERMELADA FRESA 1 KG', 'BOT', NULL, NULL, NULL, 320.0),
+('MERMELADA GUAYABA 250 GRS', 'BOT', NULL, NULL, NULL, 95.0),
+('MERMELADA GUAYABA 500 GRS', 'BOT', NULL, NULL, NULL, 170.0),
+('MERMELADA GUAYABA 1 KG', 'BOT', NULL, NULL, NULL, 320.0),
+('MERMELADA PIÑA 250 GRS', 'BOT', NULL, NULL, NULL, 95.0),
+('MERMELADA PIÑA 500 GRS', 'BOT', NULL, NULL, NULL, 170.0),
+('MERMELADA PIÑA 1 KG', 'BOT', NULL, NULL, NULL, 320.0),
+('MIEL 250 GRS', 'BOT', NULL, NULL, NULL, 150.0),
+('MIEL 500 GRS', 'BOT', NULL, NULL, NULL, 280.0),
+('MIEL 1 KG', 'BOT', NULL, NULL, NULL, 550.0),
+('MOSTAZA 250 GRS', 'BOT', NULL, NULL, NULL, 75.0),
+('MOSTAZA 500 GRS', 'BOT', NULL, NULL, NULL, 140.0),
+('MOSTAZA 1 KG', 'BOT', NULL, NULL, NULL, 270.0),
+('NATILLA 250 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('NATILLA 500 GRS', 'UDS', NULL, NULL, NULL, 170.0),
+('NATILLA 750 GRS', 'UDS', NULL, NULL, NULL, 240.0),
+('NUEZ MOSCADA 50 GRS', 'SOB', NULL, NULL, NULL, 55.0),
+('NUEZ MOSCADA 100 GRS', 'SOB', NULL, NULL, NULL, 100.0),
+('NUEZ MOSCADA 200 GRS', 'SOB', NULL, NULL, NULL, 180.0),
+('PAN DE AGUA', 'UDS', NULL, NULL, NULL, 15.0),
+('PAN DE MAIZ', 'UDS', NULL, NULL, NULL, 20.0),
+('PAN DULCE', 'UDS', NULL, NULL, NULL, 25.0),
+('PAN INTEGRAL', 'UDS', NULL, NULL, NULL, 35.0),
+('PAN SOBADO', 'UDS', NULL, NULL, NULL, 15.0),
+('PAPA BLANCA', 'LIB', NULL, NULL, NULL, 25.0),
+('PAPA ROJA', 'LIB', NULL, NULL, NULL, 28.0),
+('PASTA DE TOMATE 300 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('PASTA DE TOMATE 500 GRS', 'LAT', NULL, NULL, NULL, 140.0),
+('PASTA DE TOMATE 1 KG', 'LAT', NULL, NULL, NULL, 260.0),
+('PASTAS DENTALES 50 ML', 'UDS', NULL, NULL, NULL, 60.0),
+('PASTAS DENTALES 100 ML', 'UDS', NULL, NULL, NULL, 110.0),
+('PASTAS DENTALES 150 ML', 'UDS', NULL, NULL, NULL, 160.0),
+('PASTILLAS DE MENTA 100 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('PASTILLAS DE MENTA 200 GRS', 'PAQ', NULL, NULL, NULL, 100.0),
+('PASTILLAS DE MENTA 500 GRS', 'PAQ', NULL, NULL, NULL, 240.0),
+('PECHUGA DE POLLO', 'LIB', NULL, NULL, NULL, 120.0),
+('PEPINO', 'LIB', NULL, NULL, NULL, 35.0),
+('PESCADO ENTERO', 'LIB', NULL, NULL, NULL, 90.0),
+('PICADILLO DE RES', 'LIB', NULL, NULL, NULL, 150.0),
+('PIMIENTO MORRON', 'LIB', NULL, NULL, NULL, 80.0),
+('PINA', 'LIB', NULL, NULL, NULL, 25.0),
+('PIÑA COLADA 300 ML', 'BOT', NULL, NULL, NULL, 85.0),
+('PIÑA COLADA 500 ML', 'BOT', NULL, NULL, NULL, 150.0),
+('PIÑA COLADA 1 LT', 'BOT', NULL, NULL, NULL, 280.0),
+('PIZZA JAMON 300 GRS', 'UDS', NULL, NULL, NULL, 160.0),
+('PIZZA JAMON 500 GRS', 'UDS', NULL, NULL, NULL, 270.0),
+('PIZZA JAMON 750 GRS', 'UDS', NULL, NULL, NULL, 390.0),
+('PLATANO MADURO', 'LIB', NULL, NULL, NULL, 25.0),
+('PLATANO VERDE', 'LIB', NULL, NULL, NULL, 20.0),
+('POLLO ENTERO', 'LIB', NULL, NULL, NULL, 95.0),
+('POLLO TROCEADO', 'LIB', NULL, NULL, NULL, 105.0),
+('QUESO AMARILLO 250 GRS', 'LIB', NULL, NULL, NULL, 220.0),
+('QUESO AMARILLO 500 GRS', 'LIB', NULL, NULL, NULL, 420.0),
+('QUESO AMARILLO 1 KG', 'LIB', NULL, NULL, NULL, 800.0),
+('QUESO BLANCO 250 GRS', 'LIB', NULL, NULL, NULL, 180.0),
+('QUESO BLANCO 500 GRS', 'LIB', NULL, NULL, NULL, 340.0),
+('QUESO BLANCO 1 KG', 'LIB', NULL, NULL, NULL, 660.0),
+('QUESO CREMA 250 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('QUESO CREMA 500 GRS', 'UDS', NULL, NULL, NULL, 170.0),
+('QUESO CREMA 1 KG', 'UDS', NULL, NULL, NULL, 320.0),
+('QUESO RALLADO 250 GRS', 'PAQ', NULL, NULL, NULL, 140.0),
+('QUESO RALLADO 500 GRS', 'PAQ', NULL, NULL, NULL, 260.0),
+('REFRESCO COLA 300 ML', 'BOT', NULL, NULL, NULL, 30.0),
+('REFRESCO COLA 500 ML', 'BOT', NULL, NULL, NULL, 45.0),
+('REFRESCO COLA 1 LT', 'BOT', NULL, NULL, NULL, 85.0),
+('REFRESCO COLA 2 LT', 'BOT', NULL, NULL, NULL, 160.0),
+('REFRESCO NARANJA 300 ML', 'BOT', NULL, NULL, NULL, 30.0),
+('REFRESCO NARANJA 500 ML', 'BOT', NULL, NULL, NULL, 45.0),
+('REFRESCO NARANJA 1 LT', 'BOT', NULL, NULL, NULL, 85.0),
+('REFRESCO NARANJA 2 LT', 'BOT', NULL, NULL, NULL, 160.0),
+('REFRESCO UVA 300 ML', 'BOT', NULL, NULL, NULL, 30.0),
+('REFRESCO UVA 500 ML', 'BOT', NULL, NULL, NULL, 45.0),
+('REFRESCO UVA 1 LT', 'BOT', NULL, NULL, NULL, 85.0),
+('REFRESCO UVA 2 LT', 'BOT', NULL, NULL, NULL, 160.0),
+('REFRESCO LIMON 300 ML', 'BOT', NULL, NULL, NULL, 30.0),
+('REFRESCO LIMON 500 ML', 'BOT', NULL, NULL, NULL, 45.0),
+('REFRESCO LIMON 1 LT', 'BOT', NULL, NULL, NULL, 85.0),
+('REFRESCO LIMON 2 LT', 'BOT', NULL, NULL, NULL, 160.0),
+('SALAMI 250 GRS', 'LIB', NULL, NULL, NULL, 180.0),
+('SALAMI 500 GRS', 'LIB', NULL, NULL, NULL, 340.0),
+('SALAMI 1 KG', 'LIB', NULL, NULL, NULL, 660.0),
+('SALSA DE SOYA 250 ML', 'BOT', NULL, NULL, NULL, 75.0),
+('SALSA DE SOYA 500 ML', 'BOT', NULL, NULL, NULL, 140.0),
+('SALSA DE TOMATE 250 GRS', 'BOT', NULL, NULL, NULL, 75.0),
+('SALSA DE TOMATE 500 GRS', 'BOT', NULL, NULL, NULL, 140.0),
+('SALSA DE TOMATE 1 KG', 'BOT', NULL, NULL, NULL, 270.0),
+('SALSA INGLESA 250 ML', 'BOT', NULL, NULL, NULL, 85.0),
+('SALSA INGLESA 500 ML', 'BOT', NULL, NULL, NULL, 160.0),
+('SALSA ROSADA 250 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('SALSA ROSADA 500 ML', 'BOT', NULL, NULL, NULL, 170.0),
+('SALSA ROSADA 1 LT', 'BOT', NULL, NULL, NULL, 320.0),
+('SARDINAS EN SALSA 125 GRS', 'LAT', NULL, NULL, NULL, 75.0),
+('SARDINAS EN SALSA 250 GRS', 'LAT', NULL, NULL, NULL, 130.0),
+('SARDINAS EN SALSA 500 GRS', 'LAT', NULL, NULL, NULL, 210.0),
+('SOPA INSTANTANEA 65 GRS', 'SOB', NULL, NULL, NULL, 35.0),
+('SOPA INSTANTANEA 100 GRS', 'SOB', NULL, NULL, NULL, 50.0),
+('SOPA INSTANTANEA 120 GRS', 'SOB', NULL, NULL, NULL, 60.0),
+('SOPA INSTANTANEA 150 GRS', 'SOB', NULL, NULL, NULL, 75.0),
+('SPAGUETI INTEGRAL 500 GRS', 'PAQ', NULL, NULL, NULL, 95.0),
+('SPAGUETI INTEGRAL 1 KG', 'PAQ', NULL, NULL, NULL, 180.0),
+('TOMATE', 'LIB', NULL, NULL, NULL, 45.0),
+('TOSTADAS 100 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('TOSTADAS 200 GRS', 'PAQ', NULL, NULL, NULL, 95.0),
+('TOSTADAS 500 GRS', 'PAQ', NULL, NULL, NULL, 240.0),
+('TOSTADAS 1 KG', 'PAQ', NULL, NULL, NULL, 460.0),
+('VINO TINTO 750 ML', 'BOT', NULL, NULL, NULL, 450.0),
+('VINO BLANCO 750 ML', 'BOT', NULL, NULL, NULL, 450.0),
+('WHISKY 750 ML', 'BOT', NULL, NULL, NULL, 1200.0),
+('WHISKY 1 LT', 'BOT', NULL, NULL, NULL, 1500.0),
+('YOGURT FRESA 250 ML', 'BOT', NULL, NULL, NULL, 75.0),
+('YOGURT FRESA 500 ML', 'BOT', NULL, NULL, NULL, 140.0),
+('YOGURT FRESA 1 LT', 'BOT', NULL, NULL, NULL, 270.0),
+('YOGURT NATURAL 250 ML', 'BOT', NULL, NULL, NULL, 75.0),
+('YOGURT NATURAL 500 ML', 'BOT', NULL, NULL, NULL, 140.0),
+('YOGURT NATURAL 1 LT', 'BOT', NULL, NULL, NULL, 270.0) [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:786)
+	at org.h2.command.Parser.parseColumn(Parser.java:1171)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1156)
+	at org.h2.command.Parser.parseInsert(Parser.java:1530)
+	at org.h2.command.Parser.parsePrepared(Parser.java:698)
+	at org.h2.command.Parser.parse(Parser.java:581)
+	at org.h2.command.Parser.parse(Parser.java:556)
+	at org.h2.command.Parser.prepareCommand(Parser.java:484)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.intellij.database.remote.jdbc.impl.RemoteStatementImpl.execute(RemoteStatementImpl.java:79)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-01-03 01:19:51.985933Z jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Duplicate column name "BAR_CODE"; SQL statement:
+INSERT INTO PRODUCT (NAME, MEASURE, BAR_CODE, PRICE, BAR_CODE,  COST) VALUES
+('ACCESORIOS VAPE', 'POT', NULL, NULL, NULL, 300.0),
+('ACEITE BETIS 20 ML (SOBRE)', 'SOB', NULL, NULL, NULL, 32.5),
+('ACEITE BETYS 250 ML', 'BOT', NULL, NULL, NULL, 171.0),
+('ACEITE CRISOL 128 ONZ.', 'GAL', NULL, NULL, NULL, 531.25),
+('ACEITE CRISOL 16 ONZ.', 'UDS', NULL, NULL, NULL, 77.5),
+('ACEITE CRISOL 64 ONZ.', 'GAL', NULL, NULL, NULL, 273.12),
+('ACEITE CRISOL 8 ONZ', 'UDS', NULL, NULL, NULL, 40.87),
+('ACEITE EL GALLO 1/2 GALON', 'GAL', NULL, NULL, NULL, 272.0),
+('ACEITE FIGARO (SOBRE)', 'SOB', NULL, NULL, NULL, 43.0),
+('ACEITE MANICERO 16 ONZ', 'BOT', NULL, NULL, NULL, 81.25),
+('ACEITE VERDE LINDA 20 ML', 'UDS', NULL, NULL, NULL, 17.5),
+('ACEITUNA 16 ONZ', 'UDS', NULL, NULL, NULL, 67.5),
+('ADEREZO BALDOM 200 GRM', 'UDS', NULL, NULL, NULL, 65.83),
+('AGUA  SABORIZADA 20 ONZ', 'BOT', NULL, NULL, NULL, 29.2),
+('AGUA ATLANTA 16 ONZ', 'UDS', NULL, NULL, NULL, 6.25),
+('AGUA DASANI 5 LITROS', 'GAL', NULL, NULL, NULL, 97.75),
+('AGUA DASANI 500 ML', 'BOT', NULL, NULL, NULL, 11.58),
+('AGUA DE COCO GOYA 12 OZ', 'BOT', NULL, NULL, NULL, 85.88),
+('AGUA DE COCO GOYA 17.6 OZ', 'BOT', NULL, NULL, NULL, 115.0),
+('AGUA ORBIS 128 ONZ', 'GAL', NULL, NULL, NULL, 95.0),
+('AGUA PERRIER 330 ML', 'BOT', NULL, NULL, NULL, 79.17),
+('AGUA PLANETA LIT', 'LIT', NULL, NULL, NULL, 15.83),
+('AJO CONSTANZA 1 ONZ (SOBRE)', 'SOB', NULL, NULL, NULL, 7.05),
+('AJO EN PASTA 9.5 ONZ', 'UDS', NULL, NULL, NULL, 95.83),
+('AJO EN PASTA BALDON 4 ONZ', 'UDS', NULL, NULL, NULL, 48.75),
+('ALCAPARRADO 8 ONZ S/P', 'UDS', NULL, NULL, NULL, 51.04),
+('ALCOHOL 5 ONZ', 'UDS', NULL, NULL, NULL, 40.0),
+('ALISADO TCB 7.5 ONZ', 'UDS', NULL, NULL, NULL, 127.5),
+('ALMIDON NIAGARA 22 ONZ', 'UDS', NULL, NULL, NULL, 150.0),
+('AMBIENTADOR 8 ONZ', 'UDS', NULL, NULL, NULL, 170.83),
+('ARENQUE FILETE', 'LIB', NULL, NULL, NULL, 90.0),
+('ARRANCA GRASA AXION 85 GM', 'UDS', NULL, NULL, NULL, 9.0),
+('ARRANCAGRASA AXION 250 GRM', 'UDS', NULL, NULL, NULL, 47.59),
+('ARRANCAGRASA AXION LIQ 750 ML', 'LIT', NULL, NULL, NULL, 170.0),
+('ARRANCAGRASA AXION LIQ. 400 ML', 'UDS', NULL, NULL, NULL, 93.75),
+('ARROZ CAMPOS 16 ONZ', 'UDS', NULL, NULL, NULL, 43.0),
+('ARROZ DOS PINOS 1 LIBRA', 'LIB', NULL, NULL, NULL, 36.0),
+('ARROZ LA GARZA 16 ONZ', 'UDS', NULL, NULL, NULL, 40.17),
+('ARROZ PIMCO 16 ONZ', 'LIB', NULL, NULL, NULL, 39.5),
+('ARROZ PINCO 100 LIB', 'SAC', NULL, NULL, NULL, 3400.0),
+('ARROZ SELECTO (A) AL DETALLE', 'LIB', NULL, NULL, NULL, 31.2),
+('AVENA QUAKER 60 GRS', 'SOB', NULL, NULL, NULL, 11.05),
+('AVENA QUAKER 725 GRM', 'FUN', NULL, NULL, NULL, 75.5),
+('AZUCAR CREMA (AL DETALLE)', 'LIB', NULL, NULL, NULL, 27.4),
+('AZUCAR REFINO (AL DETALLE)', 'LIB', NULL, NULL, NULL, 33.6),
+('AZUL DE LAVAR AÑIL', 'UDS', NULL, NULL, NULL, 5.85),
+('BACALAO NORUEGO', 'LIB', NULL, NULL, NULL, 175.0),
+('BANDEJA ALUMINIO #316', 'UDS', NULL, NULL, NULL, 26.0),
+('BANDEJA ALUMINIO #322', 'UDS', NULL, NULL, NULL, 55.0),
+('BANDEJA ALUMINIO #367', 'UDS', NULL, NULL, NULL, 70.0),
+('BANDEJA CON TAPA PEQ', 'UDS', NULL, NULL, NULL, 2.8),
+('BANDEJA PLAST. GDE', 'UDS', NULL, NULL, NULL, 6.4),
+('BARAJA TIGER', 'UDS', NULL, NULL, NULL, 15.0),
+('BARCELO AÑEJADO 175 CC', 'UDS', NULL, NULL, NULL, 139.58),
+('BAYRUM CORRIENTE 350 CC', 'BOT', NULL, NULL, NULL, 28.75),
+('BIBERONE PEQ', 'UDS', NULL, NULL, NULL, 40.0),
+('BIBERONES CHACHITO', 'UDS', NULL, NULL, NULL, 95.0),
+('BIZCOCHO', 'UDS', NULL, NULL, NULL, 1.0),
+('BOBO NIÑO', 'UDS', NULL, NULL, NULL, 14.58),
+('BOLON PIP POP 48/1', 'PAQ', NULL, NULL, NULL, 172.0),
+('BOMBILLO 18W BAJO CONSUMO', 'UDS', NULL, NULL, NULL, 41.5),
+('BOMBILLO CORRIENTE 60W', 'UDS', NULL, NULL, NULL, 18.0),
+('BOMBILLO LEE GRA', 'UDS', NULL, NULL, NULL, 180.0),
+('BOMBILLO LEE PEQ.', 'UDS', NULL, NULL, NULL, 53.0),
+('BOTELLONE PLASTICO VACIO', 'GAL', NULL, NULL, NULL, 170.0),
+('BRILLO ESPONJA', 'UDS', NULL, NULL, NULL, 17.36),
+('BRILLO FINO GDE', 'UDS', NULL, NULL, NULL, 4.58),
+('BRILLO LA MAQUINA PEQ.', 'UDS', NULL, NULL, NULL, 15.23),
+('BRILLO VERDE', 'UDS', NULL, NULL, NULL, 2.8),
+('CAFE PILON 1 LIBRA', 'UDS', NULL, NULL, NULL, 255.0),
+('CAFE PILON 8 ONZ', 'UDS', NULL, NULL, NULL, 130.0),
+('CAFE SANTO DOMINGO 1 ONZ (SOBRE)', 'SOB', NULL, NULL, NULL, 22.5),
+('CAFE SANTO DOMINGO 16 ONZ', 'UDS', NULL, NULL, NULL, 305.0),
+('CAFE SANTO DOMINGO 8 ONZ', 'UDS', NULL, NULL, NULL, 160.0),
+('CAFE SUPREMO SOB.', 'UDS', NULL, NULL, NULL, 18.0),
+('CALDO DE GALLINA DOÑA GALLINA', 'UDS', NULL, NULL, NULL, 6.14),
+('CALDO DE POLLO MAGGI (SOPITA)', 'UDS', NULL, NULL, NULL, 7.0),
+('CANDADO #202', 'UDS', NULL, NULL, NULL, 54.17),
+('CANELONES MILANO', 'UDS', NULL, NULL, NULL, 47.16),
+('CARGADOR CELULAR', 'UDS', NULL, NULL, NULL, 70.0),
+('CARNE CERDO (PATICA)', 'LIB', NULL, NULL, NULL, 95.0),
+('CARNE CERDO SALADA', 'LIB', NULL, NULL, NULL, 125.0),
+('CARNE DE NERVIO RED', 'LIB', NULL, NULL, NULL, 125.0),
+('CARNE DE POLLO MATADO', 'LIB', NULL, NULL, NULL, 72.0),
+('CARNE GALLINA', 'LIB', NULL, NULL, NULL, 150.0),
+('CARNE MONDONGO', 'LIB', NULL, NULL, NULL, 120.0),
+('CARTULINA', 'UDS', NULL, NULL, NULL, 12.5),
+('CASABE CON AJO GDE', 'PAQ', NULL, NULL, NULL, 65.0),
+('CASABE NATURAL GDE.', 'PAQ', NULL, NULL, NULL, 40.0),
+('CATCHUP 50 GRS', 'SOB', NULL, NULL, NULL, 9.06),
+('CATCHUP BALDOM 12 ONZ (PLASTICO)', 'UDS', NULL, NULL, NULL, 61.45),
+('CEDAZO GDE', 'UDS', NULL, NULL, NULL, 70.0),
+('CEPILLO COLGATE 360', 'UDS', NULL, NULL, NULL, 231.0),
+('CEPILLO DENTAL COLGATE PREMIER', 'UDS', NULL, NULL, NULL, 21.53),
+('CEPILLO PAREDES TIPO PLANCHA', 'UDS', NULL, NULL, NULL, 45.83),
+('CEREAL 5 CEREALES 300 GRM.', 'LAT', NULL, NULL, NULL, 207.36),
+('CERVEVA ORIGINAL 5.5', 'LAT', NULL, NULL, NULL, 85.0),
+('CERVEZA  PAULANER 0.5L', 'LAT', NULL, NULL, NULL, 195.0),
+('CERVEZA BOHEMIA 16/1 HUACAL', 'HUA', NULL, NULL, NULL, 2162.0),
+('CERVEZA BOHEMIA ESPECIAL GDE', 'BOT', NULL, NULL, NULL, 135.16),
+('CERVEZA BOHEMIA PEQ', 'BOT', NULL, NULL, NULL, 94.16),
+('CERVEZA BOHEMIA PEQ 24/1', 'HUA', NULL, NULL, NULL, 2197.18),
+('CERVEZA BRAHMA LIGHT PEQ', 'BOT', NULL, NULL, NULL, 76.04),
+('CERVEZA BUDWEISER 40 OZ', 'UDS', NULL, NULL, NULL, 104.32),
+('CERVEZA CORONA 330 ML', 'BOT', NULL, NULL, NULL, 104.0),
+('CERVEZA ESMIRNOFF 350 ML', 'BOT', NULL, NULL, NULL, 136.74),
+('CERVEZA FOUR LOKO 473 ML LATA', 'LAT', NULL, NULL, NULL, 225.0),
+('CERVEZA HEINEKEN 330 ML', 'BOT', NULL, NULL, NULL, 72.0),
+('CERVEZA HEINEKEN 650 ML', 'UDS', NULL, NULL, NULL, 157.0),
+('CERVEZA HEINEKEN LATA', 'LAT', NULL, NULL, NULL, 54.17),
+('CERVEZA LUXUS 16 ONZ', 'LAT', NULL, NULL, NULL, 85.0),
+('CERVEZA MALTA  MEDIANA', 'BOT', NULL, NULL, NULL, 36.67),
+('CERVEZA MALTA FAMILIAR', 'LIT', NULL, NULL, NULL, 66.67),
+('CERVEZA MALTA PLAST. PEQ.', 'BOT.', NULL, NULL, NULL, 23.33),
+('CERVEZA MODELO 350 ML', 'BOT', NULL, NULL, NULL, 105.68),
+('CERVEZA MODELO NEGRA 350 ML', 'BOT', NULL, NULL, NULL, 120.37),
+('CERVEZA ONE #1 GRDE', 'BOT', NULL, NULL, NULL, 113.68),
+('CERVEZA ONE #1 PEQ', 'BOT', NULL, NULL, NULL, 79.07),
+('CERVEZA PRESIDENTE 1000 ML', 'LIT', NULL, NULL, NULL, 168.56),
+('CERVEZA PRESIDENTE 12 ONZ', 'LAT', NULL, NULL, NULL, 83.87),
+('CERVEZA PRESIDENTE 16/1 HUACAL', 'HUA', NULL, NULL, NULL, 2162.0),
+('CERVEZA PRESIDENTE GDE', 'BOT', NULL, NULL, NULL, 135.16),
+('CERVEZA PRESIDENTE PEQ', 'BOT', NULL, NULL, NULL, 94.55),
+('CERVEZA PRESIDENTE PEQ 24/1', 'HUA', NULL, NULL, NULL, 2267.16),
+('CERVEZA STELLA 350 ML', 'UDS', NULL, NULL, NULL, 120.37),
+('CHAMPAGNE MOET & CHANDON 750 ML', 'LIT', NULL, NULL, NULL, 3400.0),
+('CHAMPAÑA J.P CHENET 750 ML', 'LIT', NULL, NULL, NULL, 645.83),
+('CHICLET CLORETS PEQ', 'UDS', NULL, NULL, NULL, 2.5),
+('CHICLET TRIDENT 5pcs', 'UDS', NULL, NULL, NULL, 15.34),
+('CHICLET TRIDENT SPLASH 16 GRS', 'UDS', NULL, NULL, NULL, 30.13),
+('CHISPERO', 'UDS', NULL, NULL, NULL, 85.0),
+('CHOCO RICA 16 ONZ', 'UDS', NULL, NULL, NULL, 46.0),
+('CHOCO RICA UHT 1 LITRO', 'LIT', NULL, NULL, NULL, 86.0),
+('CHOCO RICA UHT 250 ML', 'UDS', NULL, NULL, NULL, 24.0),
+('CHOCOLATE BOMBOM', 'UDS', NULL, NULL, NULL, 11.83),
+('CHOCOLATE EMBAJADOR (TABLETA)', 'UDS', NULL, NULL, NULL, 7.92),
+('CHOCOLATE MAS MAS 45 GRS', 'UDS', NULL, NULL, NULL, 33.0),
+('CHOCOLATE MILKY WAY 2.05 ONZ', 'UDS', NULL, NULL, NULL, 55.0),
+('CHOCOLETE HERSHEYS 43 G', 'UDS', NULL, NULL, NULL, 57.7),
+('CHULETA CON HUESO', 'LIB', NULL, NULL, NULL, 110.0),
+('CIGARRILLO DOMINICANO', 'CJA', NULL, NULL, NULL, 75.0),
+('CIGARRILLO HILTON', 'CJA', NULL, NULL, NULL, 144.5),
+('CIGARRILLO LIDER', 'CJA', NULL, NULL, NULL, 135.6),
+('CIGARRILLO LM', 'CJS', NULL, NULL, NULL, 210.0),
+('CIGARRILLO MARLBORO', 'CJS', NULL, NULL, NULL, 289.0),
+('CIGARRILLO MONTECARLO', 'CJS', NULL, NULL, NULL, 205.0),
+('CIGARRILLO NACIONAL', 'CJS', NULL, NULL, NULL, 249.0),
+('CIGARRILLO NEWPORT', 'CAJ', NULL, NULL, NULL, 260.0),
+('CIGARRILLO PALL MALL', 'CJA', NULL, NULL, NULL, 155.0),
+('CIGARRILLOS CAPITAL', 'CJA', NULL, NULL, NULL, 85.0),
+('CIGARRO PRINCIPE PEQ.', 'CJS', NULL, NULL, NULL, 22.0),
+('CIGARROS NATIVO', 'CJS', NULL, NULL, NULL, 12.5),
+('CINTA PEGANTE GDE.', 'UDS', NULL, NULL, NULL, 54.16),
+('CLORO AJAX 1 LITRO', 'LIT', NULL, NULL, NULL, 48.33),
+('CLORO AJAX 1/2 GALON', 'GAL', NULL, NULL, NULL, 81.5),
+('CLORO AJAX 1/2 LITRO', 'BOT', NULL, NULL, NULL, 30.2),
+('CLORO AJAX 110 GRS', 'SOB', NULL, NULL, NULL, 7.63),
+('CLORO AJAX GALON', 'GAL', NULL, NULL, NULL, 115.0),
+('CLORO MACIER 1 GALON', 'GAL', NULL, NULL, NULL, 90.0),
+('CLORO MACIER 1/2 GALON', 'GAL', NULL, NULL, NULL, 54.17),
+('CLORO MACIER 150 ML', 'UDS', NULL, NULL, NULL, 9.0),
+('CLORO MACIER 16 ONZ', 'BOT', NULL, NULL, NULL, 21.25),
+('CLORO MACIER 300 ML', 'UDS', NULL, NULL, NULL, 13.4),
+('CLORO MACIER LIT', 'LIB', NULL, NULL, NULL, 35.42),
+('COCOA  SOBRINO 8 ONZ', 'UDS', NULL, NULL, NULL, 109.17),
+('COCOA SOBRINO 1 ONZ', 'SOB', NULL, NULL, NULL, 9.92),
+('COGNAC REMY MARTIN 70 CL', 'LIT', NULL, NULL, NULL, 3620.0),
+('COLGATE TRIPLE ACCION 50 ML', 'UDS', NULL, NULL, NULL, 81.24),
+('COMPOTA CHUPETIN 4 ONZ', 'UDS', NULL, NULL, NULL, 35.83),
+('CONDONES ONI', 'UDS', NULL, NULL, NULL, 11.45),
+('CONTROL REMOTO TV UNIVERSAL', 'UDS', NULL, NULL, NULL, 90.0),
+('CORN FLAKES (LIBRA DETALLE)', 'LIB', NULL, NULL, NULL, 73.75),
+('COSTILLITA AHUMADA', 'LIB', NULL, NULL, NULL, 110.0),
+('CREMA DE LECHE 300 G', 'LAT', NULL, NULL, NULL, 136.0),
+('CREYON GDE', 'UDS', NULL, NULL, NULL, 22.8),
+('CUADERNO 200 PAG', 'UDS', NULL, NULL, NULL, 39.58),
+('CUBIERTO PLASTICO 25/1', 'PAQ', NULL, NULL, NULL, 20.0),
+('DESENGRASANTE 16 ONZ', 'BOT', NULL, NULL, NULL, 85.0),
+('DESINFECTANTE FABULOSO (SOBRE)', 'SOB', NULL, NULL, NULL, 11.31),
+('DESINFECTANTE FABULOSO 1 GALON', 'GAL', NULL, NULL, NULL, 300.0),
+('DESINFECTANTE FABULOSO 1/2 LIT', 'UDS', NULL, NULL, NULL, 65.0),
+('DESINFECTANTE FABULOSO 900 ML', 'LIT', NULL, NULL, NULL, 101.0),
+('DESINFECTANTE TEN 770 ML', 'UDS', NULL, NULL, NULL, 85.0),
+('DESOD REXONA 50 GRM', 'UDS', NULL, NULL, NULL, 110.0),
+('DESOD SPEED STICK 20 GRS', 'UDS', NULL, NULL, NULL, 61.67),
+('DESOD. AVON 3 ONZ', 'UDS', NULL, NULL, NULL, 75.0),
+('DESOD. DEPORTE PEQ', 'UDS', NULL, NULL, NULL, 6.94),
+('DESOD. NIVEA 50 ML', 'UDS', NULL, NULL, NULL, 128.33),
+('DESODORANTE AVON 50 ML', 'UDS', NULL, NULL, NULL, 95.0),
+('DESODORANTE DOVE 40 ML', 'UDS', NULL, NULL, NULL, 117.5),
+('DESODORANTE DOVE 50 ML', 'UDS', NULL, NULL, NULL, 135.0),
+('DESODORANTE DOVE SPRAY', 'UDS', NULL, NULL, NULL, 197.5),
+('DESODORANTE LADY SPEED STICK 39 G', 'UDS', NULL, NULL, NULL, 105.0),
+('DESODORANTE LADY SPEED STICK 45 G', 'UDS', NULL, NULL, NULL, 120.0),
+('DESODORANTE NIVEA SPRAY 150 ML', 'UDS', NULL, NULL, NULL, 210.0),
+('DESODORANTE REXONA 150 ML', 'UDS', NULL, NULL, NULL, 190.0),
+('DESODORANTE REXONA MEN 150 ML', 'UDS', NULL, NULL, NULL, 200.0),
+('DESODORANTE SPEED STICK 39 G', 'UDS', NULL, NULL, NULL, 110.0),
+('DESODORANTE SPEED STICK 45 G', 'UDS', NULL, NULL, NULL, 125.0),
+('DESODORANTE SUAVE 50 ML', 'UDS', NULL, NULL, NULL, 90.0),
+('DESODORANTE SUAVE SPRAY', 'UDS', NULL, NULL, NULL, 180.0),
+('DESODORANTE VOGUE 50 ML', 'UDS', NULL, NULL, NULL, 100.0),
+('DESODORANTE VOGUE SPRAY', 'UDS', NULL, NULL, NULL, 175.0),
+('DESODORANTE YARDLEY 50 ML', 'UDS', NULL, NULL, NULL, 115.0),
+('DESODORANTE YARDLEY SPRAY', 'UDS', NULL, NULL, NULL, 190.0),
+('DETERGENTE FAB 125 GRS', 'SOB', NULL, NULL, NULL, 12.0),
+('DETERGENTE FAB 200 GRS', 'SOB', NULL, NULL, NULL, 18.0),
+('DETERGENTE FAB 250 GRS', 'SOB', NULL, NULL, NULL, 21.0),
+('DETERGENTE FAB 400 GRS', 'SOB', NULL, NULL, NULL, 32.0),
+('DETERGENTE FAB 500 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('DETERGENTE FAB 800 GRS', 'SOB', NULL, NULL, NULL, 60.0),
+('DETERGENTE OMO 125 GRS', 'SOB', NULL, NULL, NULL, 13.0),
+('DETERGENTE OMO 200 GRS', 'SOB', NULL, NULL, NULL, 19.0),
+('DETERGENTE OMO 400 GRS', 'SOB', NULL, NULL, NULL, 33.0),
+('DETERGENTE OMO 500 GRS', 'SOB', NULL, NULL, NULL, 39.0),
+('DETERGENTE OMO 800 GRS', 'SOB', NULL, NULL, NULL, 62.0),
+('DETERGENTE TROPICAL 125 GRS', 'SOB', NULL, NULL, NULL, 11.0),
+('DETERGENTE TROPICAL 200 GRS', 'SOB', NULL, NULL, NULL, 17.0),
+('DETERGENTE TROPICAL 400 GRS', 'SOB', NULL, NULL, NULL, 30.0),
+('DETERGENTE TROPICAL 500 GRS', 'SOB', NULL, NULL, NULL, 36.0),
+('DETERGENTE TROPICAL 800 GRS', 'SOB', NULL, NULL, NULL, 58.0),
+('DULCE DE LECHE 250 GRS', 'UDS', NULL, NULL, NULL, 65.0),
+('DULCE DE LECHE 500 GRS', 'UDS', NULL, NULL, NULL, 120.0),
+('DULCE DE LECHE 750 GRS', 'UDS', NULL, NULL, NULL, 175.0),
+('DULCE DE MEMBRILLO 250 GRS', 'UDS', NULL, NULL, NULL, 70.0),
+('DULCE DE MEMBRILLO 500 GRS', 'UDS', NULL, NULL, NULL, 130.0),
+('DULCE DE MEMBRILLO 750 GRS', 'UDS', NULL, NULL, NULL, 185.0),
+('EMBUTIDO JAMONADA 250 GRS', 'UDS', NULL, NULL, NULL, 80.0),
+('EMBUTIDO JAMONADA 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('EMBUTIDO JAMONADA 750 GRS', 'UDS', NULL, NULL, NULL, 220.0),
+('EMBUTIDO MORTADELA 250 GRS', 'UDS', NULL, NULL, NULL, 75.0),
+('EMBUTIDO MORTADELA 500 GRS', 'UDS', NULL, NULL, NULL, 140.0),
+('EMBUTIDO MORTADELA 750 GRS', 'UDS', NULL, NULL, NULL, 205.0),
+('EMBUTIDO SALAMI 250 GRS', 'UDS', NULL, NULL, NULL, 85.0),
+('EMBUTIDO SALAMI 500 GRS', 'UDS', NULL, NULL, NULL, 160.0),
+('EMBUTIDO SALAMI 750 GRS', 'UDS', NULL, NULL, NULL, 235.0),
+('EMPANADA CARNE', 'UDS', NULL, NULL, NULL, 50.0),
+('EMPANADA POLLO', 'UDS', NULL, NULL, NULL, 50.0),
+('EMPANADA QUESO', 'UDS', NULL, NULL, NULL, 50.0),
+('ENLATADO ATUN 140 GRS', 'LAT', NULL, NULL, NULL, 95.0),
+('ENLATADO ATUN 300 GRS', 'LAT', NULL, NULL, NULL, 180.0),
+('ENLATADO MAIZ 300 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('ENLATADO MAIZ 500 GRS', 'LAT', NULL, NULL, NULL, 140.0),
+('ENLATADO SARDINA 125 GRS', 'LAT', NULL, NULL, NULL, 75.0),
+('ENLATADO SARDINA 250 GRS', 'LAT', NULL, NULL, NULL, 130.0),
+('ENLATADO SARDINA 500 GRS', 'LAT', NULL, NULL, NULL, 210.0),
+('ENSALADA DE FRUTAS 300 GRS', 'LAT', NULL, NULL, NULL, 95.0),
+('ENSALADA DE FRUTAS 500 GRS', 'LAT', NULL, NULL, NULL, 150.0),
+('ESPAGUETI 500 GRS', 'PAQ', NULL, NULL, NULL, 85.0),
+('ESPAGUETI 1 KG', 'PAQ', NULL, NULL, NULL, 160.0),
+('ESPONJA LAVA PLATOS', 'UDS', NULL, NULL, NULL, 30.0),
+('ESPONJA LAVA PISOS', 'UDS', NULL, NULL, NULL, 45.0),
+('ESPONJA METALICA', 'UDS', NULL, NULL, NULL, 20.0),
+('FIDEO 500 GRS', 'PAQ', NULL, NULL, NULL, 80.0),
+('FIDEO 1 KG', 'PAQ', NULL, NULL, NULL, 150.0),
+('FILETE DE PESCADO 500 GRS', 'LIB', NULL, NULL, NULL, 250.0),
+('FILETE DE PESCADO 1 KG', 'LIB', NULL, NULL, NULL, 480.0),
+('FLAN VAINILLA 300 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('FLAN VAINILLA 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('FLAN VAINILLA 750 GRS', 'UDS', NULL, NULL, NULL, 210.0),
+('FOSFORO PEQ', 'UDS', NULL, NULL, NULL, 10.0),
+('FOSFORO GDE', 'UDS', NULL, NULL, NULL, 20.0),
+('FRIJOLES NEGROS 300 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('FRIJOLES NEGROS 500 GRS', 'LAT', NULL, NULL, NULL, 140.0),
+('FRIJOLES ROJOS 300 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('FRIJOLES ROJOS 500 GRS', 'LAT', NULL, NULL, NULL, 140.0),
+('FRUTAS EN ALMIBAR 300 GRS', 'LAT', NULL, NULL, NULL, 95.0),
+('FRUTAS EN ALMIBAR 500 GRS', 'LAT', NULL, NULL, NULL, 150.0),
+('GALLETAS DULCES 100 GRS', 'PAQ', NULL, NULL, NULL, 50.0),
+('GALLETAS DULCES 200 GRS', 'PAQ', NULL, NULL, NULL, 90.0),
+('GALLETAS SALADAS 100 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('GALLETAS SALADAS 200 GRS', 'PAQ', NULL, NULL, NULL, 95.0),
+('GELATINA FRESA 100 GRS', 'SOB', NULL, NULL, NULL, 20.0),
+('GELATINA FRESA 200 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('GELATINA LIMON 100 GRS', 'SOB', NULL, NULL, NULL, 20.0),
+('GELATINA LIMON 200 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('GELATINA UVA 100 GRS', 'SOB', NULL, NULL, NULL, 20.0),
+('GELATINA UVA 200 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('GELATINA MANGO 100 GRS', 'SOB', NULL, NULL, NULL, 20.0),
+('GELATINA MANGO 200 GRS', 'SOB', NULL, NULL, NULL, 38.0),
+('GOMAS MASTICABLES 100 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('GOMAS MASTICABLES 200 GRS', 'PAQ', NULL, NULL, NULL, 100.0),
+('GRANOLA 300 GRS', 'PAQ', NULL, NULL, NULL, 120.0),
+('GRANOLA 500 GRS', 'PAQ', NULL, NULL, NULL, 180.0),
+('HARINA DE MAIZ 300 GRS', 'PAQ', NULL, NULL, NULL, 60.0),
+('HARINA DE MAIZ 500 GRS', 'PAQ', NULL, NULL, NULL, 95.0),
+('HARINA DE MAIZ 1 KG', 'PAQ', NULL, NULL, NULL, 180.0),
+('HARINA DE TRIGO 300 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('HARINA DE TRIGO 500 GRS', 'PAQ', NULL, NULL, NULL, 90.0),
+('HARINA DE TRIGO 1 KG', 'PAQ', NULL, NULL, NULL, 170.0),
+('HELADO VAINILLA 300 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('HELADO VAINILLA 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('HELADO VAINILLA 750 GRS', 'UDS', NULL, NULL, NULL, 220.0),
+('HELADO CHOCOLATE 300 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('HELADO CHOCOLATE 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('HELADO CHOCOLATE 750 GRS', 'UDS', NULL, NULL, NULL, 220.0),
+('HELADO FRESA 300 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('HELADO FRESA 500 GRS', 'UDS', NULL, NULL, NULL, 150.0),
+('HELADO FRESA 750 GRS', 'UDS', NULL, NULL, NULL, 220.0),
+('HUEVOS DOCENA', 'DOC', NULL, NULL, NULL, 170.0),
+('HUEVOS UNIDAD', 'UDS', NULL, NULL, NULL, 15.0),
+('JABON DE BANO 125 GRS', 'UDS', NULL, NULL, NULL, 45.0),
+('JABON DE BANO 250 GRS', 'UDS', NULL, NULL, NULL, 85.0),
+('JABON DE LAVAR 200 GRS', 'UDS', NULL, NULL, NULL, 30.0),
+('JABON DE LAVAR 400 GRS', 'UDS', NULL, NULL, NULL, 55.0),
+('JABON DE LAVAR 800 GRS', 'UDS', NULL, NULL, NULL, 100.0),
+('JABON LIQUIDO 300 ML', 'UDS', NULL, NULL, NULL, 95.0),
+('JABON LIQUIDO 500 ML', 'UDS', NULL, NULL, NULL, 150.0),
+('JABON LIQUIDO 1 LT', 'LIT', NULL, NULL, NULL, 280.0),
+('JUGO DE NARANJA 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO DE NARANJA 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO DE NARANJA 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('JUGO DE MANZANA 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO DE MANZANA 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO DE MANZANA 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('JUGO DE PIÑA 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO DE PIÑA 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO DE PIÑA 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('JUGO DE MANGO 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO DE MANGO 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO DE MANGO 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('JUGO TROPICAL 300 ML', 'BOT', NULL, NULL, NULL, 50.0),
+('JUGO TROPICAL 500 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('JUGO TROPICAL 1 LT', 'LIT', NULL, NULL, NULL, 170.0),
+('KETCHUP 300 GRS', 'BOT', NULL, NULL, NULL, 75.0),
+('KETCHUP 500 GRS', 'BOT', NULL, NULL, NULL, 120.0),
+('KETCHUP 1 KG', 'BOT', NULL, NULL, NULL, 220.0),
+('LECHE ENTERA 1 LT', 'LIT', NULL, NULL, NULL, 110.0),
+('LECHE ENTERA 500 ML', 'BOT', NULL, NULL, NULL, 60.0),
+('LECHE DESCREMADA 1 LT', 'LIT', NULL, NULL, NULL, 115.0),
+('LECHE DESCREMADA 500 ML', 'BOT', NULL, NULL, NULL, 65.0),
+('LECHE EVAPORADA 315 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('LECHE EVAPORADA 410 GRS', 'LAT', NULL, NULL, NULL, 115.0),
+('LECHE CONDENSADA 315 GRS', 'LAT', NULL, NULL, NULL, 95.0),
+('LECHE CONDENSADA 410 GRS', 'LAT', NULL, NULL, NULL, 125.0),
+('LECHE EN POLVO 250 GRS', 'FUN', NULL, NULL, NULL, 190.0),
+('LECHE EN POLVO 500 GRS', 'FUN', NULL, NULL, NULL, 360.0),
+('LECHE EN POLVO 1 KG', 'FUN', NULL, NULL, NULL, 700.0),
+('LENTEJAS 300 GRS', 'PAQ', NULL, NULL, NULL, 80.0),
+('LENTEJAS 500 GRS', 'PAQ', NULL, NULL, NULL, 130.0),
+('LENTEJAS 1 KG', 'PAQ', NULL, NULL, NULL, 250.0),
+('LIMPIADOR CREMA 250 ML', 'BOT', NULL, NULL, NULL, 75.0),
+('LIMPIADOR CREMA 500 ML', 'BOT', NULL, NULL, NULL, 140.0),
+('LIMPIADOR MULTIUSO 300 ML', 'BOT', NULL, NULL, NULL, 85.0),
+('LIMPIADOR MULTIUSO 500 ML', 'BOT', NULL, NULL, NULL, 150.0),
+('LIMPIADOR MULTIUSO 1 LT', 'BOT', NULL, NULL, NULL, 280.0),
+('MALTA MORENA 10 OZ', 'BOT', NULL, NULL, NULL, 25.0),
+('MALTA MORENA 16 OZ', 'BOT', NULL, NULL, NULL, 35.0),
+('MALTA MORENA 20 OZ', 'BOT', NULL, NULL, NULL, 45.0),
+('MALTA MORENA 2 LT', 'BOT', NULL, NULL, NULL, 90.0),
+('MARGARINA 250 GRS', 'PAQ', NULL, NULL, NULL, 80.0),
+('MARGARINA 500 GRS', 'PAQ', NULL, NULL, NULL, 150.0),
+('MARGARINA 1 KG', 'PAQ', NULL, NULL, NULL, 280.0),
+('MAYONESA 250 GRS', 'BOT', NULL, NULL, NULL, 75.0),
+('MAYONESA 500 GRS', 'BOT', NULL, NULL, NULL, 140.0),
+('MAYONESA 1 KG', 'BOT', NULL, NULL, NULL, 270.0),
+('MERMELADA FRESA 250 GRS', 'BOT', NULL, NULL, NULL, 95.0),
+('MERMELADA FRESA 500 GRS', 'BOT', NULL, NULL, NULL, 170.0),
+('MERMELADA FRESA 1 KG', 'BOT', NULL, NULL, NULL, 320.0),
+('MERMELADA GUAYABA 250 GRS', 'BOT', NULL, NULL, NULL, 95.0),
+('MERMELADA GUAYABA 500 GRS', 'BOT', NULL, NULL, NULL, 170.0),
+('MERMELADA GUAYABA 1 KG', 'BOT', NULL, NULL, NULL, 320.0),
+('MERMELADA PIÑA 250 GRS', 'BOT', NULL, NULL, NULL, 95.0),
+('MERMELADA PIÑA 500 GRS', 'BOT', NULL, NULL, NULL, 170.0),
+('MERMELADA PIÑA 1 KG', 'BOT', NULL, NULL, NULL, 320.0),
+('MIEL 250 GRS', 'BOT', NULL, NULL, NULL, 150.0),
+('MIEL 500 GRS', 'BOT', NULL, NULL, NULL, 280.0),
+('MIEL 1 KG', 'BOT', NULL, NULL, NULL, 550.0),
+('MOSTAZA 250 GRS', 'BOT', NULL, NULL, NULL, 75.0),
+('MOSTAZA 500 GRS', 'BOT', NULL, NULL, NULL, 140.0),
+('MOSTAZA 1 KG', 'BOT', NULL, NULL, NULL, 270.0),
+('NATILLA 250 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('NATILLA 500 GRS', 'UDS', NULL, NULL, NULL, 170.0),
+('NATILLA 750 GRS', 'UDS', NULL, NULL, NULL, 240.0),
+('NUEZ MOSCADA 50 GRS', 'SOB', NULL, NULL, NULL, 55.0),
+('NUEZ MOSCADA 100 GRS', 'SOB', NULL, NULL, NULL, 100.0),
+('NUEZ MOSCADA 200 GRS', 'SOB', NULL, NULL, NULL, 180.0),
+('PAN DE AGUA', 'UDS', NULL, NULL, NULL, 15.0),
+('PAN DE MAIZ', 'UDS', NULL, NULL, NULL, 20.0),
+('PAN DULCE', 'UDS', NULL, NULL, NULL, 25.0),
+('PAN INTEGRAL', 'UDS', NULL, NULL, NULL, 35.0),
+('PAN SOBADO', 'UDS', NULL, NULL, NULL, 15.0),
+('PAPA BLANCA', 'LIB', NULL, NULL, NULL, 25.0),
+('PAPA ROJA', 'LIB', NULL, NULL, NULL, 28.0),
+('PASTA DE TOMATE 300 GRS', 'LAT', NULL, NULL, NULL, 85.0),
+('PASTA DE TOMATE 500 GRS', 'LAT', NULL, NULL, NULL, 140.0),
+('PASTA DE TOMATE 1 KG', 'LAT', NULL, NULL, NULL, 260.0),
+('PASTAS DENTALES 50 ML', 'UDS', NULL, NULL, NULL, 60.0),
+('PASTAS DENTALES 100 ML', 'UDS', NULL, NULL, NULL, 110.0),
+('PASTAS DENTALES 150 ML', 'UDS', NULL, NULL, NULL, 160.0),
+('PASTILLAS DE MENTA 100 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('PASTILLAS DE MENTA 200 GRS', 'PAQ', NULL, NULL, NULL, 100.0),
+('PASTILLAS DE MENTA 500 GRS', 'PAQ', NULL, NULL, NULL, 240.0),
+('PECHUGA DE POLLO', 'LIB', NULL, NULL, NULL, 120.0),
+('PEPINO', 'LIB', NULL, NULL, NULL, 35.0),
+('PESCADO ENTERO', 'LIB', NULL, NULL, NULL, 90.0),
+('PICADILLO DE RES', 'LIB', NULL, NULL, NULL, 150.0),
+('PIMIENTO MORRON', 'LIB', NULL, NULL, NULL, 80.0),
+('PINA', 'LIB', NULL, NULL, NULL, 25.0),
+('PIÑA COLADA 300 ML', 'BOT', NULL, NULL, NULL, 85.0),
+('PIÑA COLADA 500 ML', 'BOT', NULL, NULL, NULL, 150.0),
+('PIÑA COLADA 1 LT', 'BOT', NULL, NULL, NULL, 280.0),
+('PIZZA JAMON 300 GRS', 'UDS', NULL, NULL, NULL, 160.0),
+('PIZZA JAMON 500 GRS', 'UDS', NULL, NULL, NULL, 270.0),
+('PIZZA JAMON 750 GRS', 'UDS', NULL, NULL, NULL, 390.0),
+('PLATANO MADURO', 'LIB', NULL, NULL, NULL, 25.0),
+('PLATANO VERDE', 'LIB', NULL, NULL, NULL, 20.0),
+('POLLO ENTERO', 'LIB', NULL, NULL, NULL, 95.0),
+('POLLO TROCEADO', 'LIB', NULL, NULL, NULL, 105.0),
+('QUESO AMARILLO 250 GRS', 'LIB', NULL, NULL, NULL, 220.0),
+('QUESO AMARILLO 500 GRS', 'LIB', NULL, NULL, NULL, 420.0),
+('QUESO AMARILLO 1 KG', 'LIB', NULL, NULL, NULL, 800.0),
+('QUESO BLANCO 250 GRS', 'LIB', NULL, NULL, NULL, 180.0),
+('QUESO BLANCO 500 GRS', 'LIB', NULL, NULL, NULL, 340.0),
+('QUESO BLANCO 1 KG', 'LIB', NULL, NULL, NULL, 660.0),
+('QUESO CREMA 250 GRS', 'UDS', NULL, NULL, NULL, 95.0),
+('QUESO CREMA 500 GRS', 'UDS', NULL, NULL, NULL, 170.0),
+('QUESO CREMA 1 KG', 'UDS', NULL, NULL, NULL, 320.0),
+('QUESO RALLADO 250 GRS', 'PAQ', NULL, NULL, NULL, 140.0),
+('QUESO RALLADO 500 GRS', 'PAQ', NULL, NULL, NULL, 260.0),
+('REFRESCO COLA 300 ML', 'BOT', NULL, NULL, NULL, 30.0),
+('REFRESCO COLA 500 ML', 'BOT', NULL, NULL, NULL, 45.0),
+('REFRESCO COLA 1 LT', 'BOT', NULL, NULL, NULL, 85.0),
+('REFRESCO COLA 2 LT', 'BOT', NULL, NULL, NULL, 160.0),
+('REFRESCO NARANJA 300 ML', 'BOT', NULL, NULL, NULL, 30.0),
+('REFRESCO NARANJA 500 ML', 'BOT', NULL, NULL, NULL, 45.0),
+('REFRESCO NARANJA 1 LT', 'BOT', NULL, NULL, NULL, 85.0),
+('REFRESCO NARANJA 2 LT', 'BOT', NULL, NULL, NULL, 160.0),
+('REFRESCO UVA 300 ML', 'BOT', NULL, NULL, NULL, 30.0),
+('REFRESCO UVA 500 ML', 'BOT', NULL, NULL, NULL, 45.0),
+('REFRESCO UVA 1 LT', 'BOT', NULL, NULL, NULL, 85.0),
+('REFRESCO UVA 2 LT', 'BOT', NULL, NULL, NULL, 160.0),
+('REFRESCO LIMON 300 ML', 'BOT', NULL, NULL, NULL, 30.0),
+('REFRESCO LIMON 500 ML', 'BOT', NULL, NULL, NULL, 45.0),
+('REFRESCO LIMON 1 LT', 'BOT', NULL, NULL, NULL, 85.0),
+('REFRESCO LIMON 2 LT', 'BOT', NULL, NULL, NULL, 160.0),
+('SALAMI 250 GRS', 'LIB', NULL, NULL, NULL, 180.0),
+('SALAMI 500 GRS', 'LIB', NULL, NULL, NULL, 340.0),
+('SALAMI 1 KG', 'LIB', NULL, NULL, NULL, 660.0),
+('SALSA DE SOYA 250 ML', 'BOT', NULL, NULL, NULL, 75.0),
+('SALSA DE SOYA 500 ML', 'BOT', NULL, NULL, NULL, 140.0),
+('SALSA DE TOMATE 250 GRS', 'BOT', NULL, NULL, NULL, 75.0),
+('SALSA DE TOMATE 500 GRS', 'BOT', NULL, NULL, NULL, 140.0),
+('SALSA DE TOMATE 1 KG', 'BOT', NULL, NULL, NULL, 270.0),
+('SALSA INGLESA 250 ML', 'BOT', NULL, NULL, NULL, 85.0),
+('SALSA INGLESA 500 ML', 'BOT', NULL, NULL, NULL, 160.0),
+('SALSA ROSADA 250 ML', 'BOT', NULL, NULL, NULL, 90.0),
+('SALSA ROSADA 500 ML', 'BOT', NULL, NULL, NULL, 170.0),
+('SALSA ROSADA 1 LT', 'BOT', NULL, NULL, NULL, 320.0),
+('SARDINAS EN SALSA 125 GRS', 'LAT', NULL, NULL, NULL, 75.0),
+('SARDINAS EN SALSA 250 GRS', 'LAT', NULL, NULL, NULL, 130.0),
+('SARDINAS EN SALSA 500 GRS', 'LAT', NULL, NULL, NULL, 210.0),
+('SOPA INSTANTANEA 65 GRS', 'SOB', NULL, NULL, NULL, 35.0),
+('SOPA INSTANTANEA 100 GRS', 'SOB', NULL, NULL, NULL, 50.0),
+('SOPA INSTANTANEA 120 GRS', 'SOB', NULL, NULL, NULL, 60.0),
+('SOPA INSTANTANEA 150 GRS', 'SOB', NULL, NULL, NULL, 75.0),
+('SPAGUETI INTEGRAL 500 GRS', 'PAQ', NULL, NULL, NULL, 95.0),
+('SPAGUETI INTEGRAL 1 KG', 'PAQ', NULL, NULL, NULL, 180.0),
+('TOMATE', 'LIB', NULL, NULL, NULL, 45.0),
+('TOSTADAS 100 GRS', 'PAQ', NULL, NULL, NULL, 55.0),
+('TOSTADAS 200 GRS', 'PAQ', NULL, NULL, NULL, 95.0),
+('TOSTADAS 500 GRS', 'PAQ', NULL, NULL, NULL, 240.0),
+('TOSTADAS 1 KG', 'PAQ', NULL, NULL, NULL, 460.0),
+('VINO TINTO 750 ML', 'BOT', NULL, NULL, NULL, 450.0),
+('VINO BLANCO 750 ML', 'BOT', NULL, NULL, NULL, 450.0),
+('WHISKY 750 ML', 'BOT', NULL, NULL, NULL, 1200.0),
+('WHISKY 1 LT', 'BOT', NULL, NULL, NULL, 1500.0),
+('YOGURT FRESA 250 ML', 'BOT', NULL, NULL, NULL, 75.0),
+('YOGURT FRESA 500 ML', 'BOT', NULL, NULL, NULL, 140.0),
+('YOGURT FRESA 1 LT', 'BOT', NULL, NULL, NULL, 270.0),
+('YOGURT NATURAL 250 ML', 'BOT', NULL, NULL, NULL, 75.0),
+('YOGURT NATURAL 500 ML', 'BOT', NULL, NULL, NULL, 140.0),
+('YOGURT NATURAL 1 LT', 'BOT', NULL, NULL, NULL, 270.0) [42121-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1158)
+	at org.h2.command.Parser.parseInsert(Parser.java:1530)
+	at org.h2.command.Parser.parsePrepared(Parser.java:698)
+	at org.h2.command.Parser.parse(Parser.java:581)
+	at org.h2.command.Parser.parse(Parser.java:556)
+	at org.h2.command.Parser.prepareCommand(Parser.java:484)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.intellij.database.remote.jdbc.impl.RemoteStatementImpl.execute(RemoteStatementImpl.java:79)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-01-03 01:56:09.665281-04:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: G:/ATG/template/data/prestalia.mv.db [2.3.232/7]" [50000-232]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:344)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:126)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:485)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:334)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:129)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:81)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:226)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:194)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1442)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1513)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.robertgarcia.template.TemplateApplication.main(TemplateApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: G:/ATG/template/data/prestalia.mv.db [2.3.232/7]" [50000-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 63 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: G:/ATG/template/data/prestalia.mv.db [2.3.232/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 57 more
